@@ -1,7 +1,7 @@
 
 # Business Objective:
 1. We want to understand the customers like who can be easily converge [Target Customers] so that the sense can be given to marketing team and plan the strategy accordingly.
-2.To find the most valuable customer for brand
+2. To find the most valuable customer for brand
 
 # Brand
 Women Shoes
