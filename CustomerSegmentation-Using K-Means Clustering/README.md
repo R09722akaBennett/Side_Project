@@ -11,6 +11,11 @@ Women Shoes
 2. K-means algorithm 
 3. Monpa
 
+# Tools:
+1. Python
+2. BigQuery
+3. Google Data Studio
+
 # Summary:
 Customer segmentation models are often used for dividing a company’s clients into different user groups. Customers in each group display shared characteristics that distinguish them from other users.
 
