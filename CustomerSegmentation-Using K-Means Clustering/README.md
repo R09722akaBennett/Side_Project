@@ -16,6 +16,7 @@ Customer segmentation models are often used for dividing a company’s clients i
 
 # Result
 ## VIP Persona
+https://datastudio.google.com/reporting/bd02af85-2c91-4945-ae02-4d33c6658e1f
 
 Gender : Mostly are Female <br>
 ![Screen Shot 2022-11-10 at 8 51 08 PM](https://user-images.githubusercontent.com/74374763/201096143-64fd25fd-2d33-47c6-bd43-96454a1053c7.png)
