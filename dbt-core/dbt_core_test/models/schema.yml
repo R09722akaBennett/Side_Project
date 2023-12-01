@@ -1,0 +1,229 @@
+
+version: 2
+
+models:
+  - name: orders
+    description: "raw_orders_from_shopline"
+    columns:
+      - name: id
+        description: "id"
+        tests:
+          - unique
+          - not_null
+
+      - name: order_number
+        description: "order_number"
+        tests:
+          - unique
+          - not_null
+
+      - name: status
+        description: "status"
+
+      - name: order_remarks
+        description: "order_remarks"
+
+      - name: customer_id
+        description: "customer_id"
+
+      - name: customer_name
+        description: "customer_name"
+
+      - name: customer_phone
+        description: "customer_phone"
+
+      - name: created_from
+        description: "created_from"
+        
+
+      - name: updated_at
+        description: "updated_at"
+
+
+      - name: created_at
+        description: "created_at"
+
+
+      - name: ga_tracked
+        description: "ga_tracked"
+
+
+      - name: is_guest_checkout
+        description: "is_guest_checkout"
+
+
+      - name: default_warehouse_id
+        description: "default_warehouse_id"
+
+
+      - name: default_warehouse_name
+        description: "default_warehouse_name"
+
+
+      - name: default_warehouse_address
+        description: "default_warehouse_address"
+
+
+      - name: product_subscription_period
+        description: "product_subscription_period"
+
+
+      - name: order_payment_id
+        description: "order_payment_id"
+
+
+      - name: order_payment_method_id
+        description: "order_payment_method_id"
+
+
+      - name: payment_type
+        description: "payment_type"
+
+
+      - name: payment_name
+        description: "payment_name"
+
+
+      - name: payment_name_hant
+        description: "payment_name_hant"
+
+
+      - name: payment_status
+        description: "payment_status"
+
+
+      - name: payment_amount
+        description: "payment_amount"
+
+
+      - name: ref_payment_id
+        description: "ref_payment_id"
+
+
+      - name: subtotal_dollars
+        description: "subtotal_dollars"
+
+
+      - name: order_discount_dollars
+        description: "order_discount_dollars"
+
+
+      - name: user_credit_dollars
+        description: "user_credit_dollars"
+
+
+      - name: total_dollars
+        description: "total_dollars"
+
+
+      - name: order_points_to_cash_dollars
+        description: "order_points_to_cash_dollars"
+
+
+      - name: invoice_tax_id
+        description: "invoice_tax_id"
+
+
+      - name: order_remarks
+        description: "order_remarks"
+
+
+      - name: invoice_buyer_name
+        description: "invoice_buyer_name"
+
+
+      - name: invoice_mailling_address
+        description: "invoice_mailling_address"
+
+
+      - name: invoice_shipping_address
+        description: "invoice_shipping_address"
+
+
+      - name: created_by_channel_id
+        description: "created_by_channel_id"
+
+
+      - name: created_by_channel_name
+        description: "created_by_channel_name"
+
+
+      - name: agent_name
+        description: "agent_name"
+
+
+      - name: order_source_id
+        description: "order_source_id"
+
+
+      - name: order_source_type
+        description: "order_source_type"
+
+
+      - name: order_source_source_id
+        description: "order_source_source_id"
+
+
+      - name: order_source_name
+        description: "order_source_name"
+
+
+      - name: delivery_address_country
+        description: "delivery_address_country"
+
+
+      - name: delivery_address_city
+        description: "delivery_address_city"
+
+
+      - name: delivery_address_state
+        description: "delivery_address_state"
+
+
+      - name: delivery_address_postcode
+        description: "delivery_address_postcode"
+
+
+      - name: delivery_address_1
+        description: "delivery_address_1"
+
+
+      - name: delivery_address_2
+        description: "delivery_address_2"
+
+
+      - name: delivery_address_logistic_codes
+        description: "delivery_address_logistic_codes"
+
+
+      - name: delivery_address_name
+        description: "delivery_address_name"
+
+
+      - name: delivery_address_phone
+        description: "delivery_address_phone"
+
+
+      - name: utm_source
+        description: "utm_source"
+
+
+      - name: utm_medium
+        description: "utm_medium"
+
+
+      - name: utm_campaign
+        description: "utm_campaign"
+
+
+      - name: utm_term
+        description: "utm_term"
+
+
+      - name: utm_time
+        description: "utm_time"
+
+
+      - name: membership_tier_name
+        description: "membership_tier_name"
+
