@@ -1,0 +1,15 @@
+[0m19:28:12.179674 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10733e890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1073ae5d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1073af4d0>]}
+
+
+============================== 19:28:12.184252 | 754fbef6-25ba-40b6-bb5b-f1704511b88d ==============================
+[0m19:28:12.184252 [info ] [MainThread]: Running with dbt=1.7.3
+[0m19:28:12.184571 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/kdanmobile/.dbt', 'fail_fast': 'False', 'version_check': 'True', 'log_path': 'logs', 'debug': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'introspect': 'True', 'invocation_command': 'dbt test', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m19:28:12.185023 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/kdanmobile/Side_Project/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m19:28:12.187192 [debug] [MainThread]: Resource report: {"command_name": "test", "command_wall_clock_time": 0.06755229, "process_user_time": 0.82354, "process_kernel_time": 0.154316, "process_mem_max_rss": "101761024", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m19:28:12.187490 [debug] [MainThread]: Command `dbt test` failed at 19:28:12.187421 after 0.07 seconds
+[0m19:28:12.187710 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106cbde10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107388f50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1029fc290>]}
+[0m19:28:12.187903 [debug] [MainThread]: Flushing usage events
