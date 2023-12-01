@@ -2,7 +2,7 @@
 version: 2
 
 models:
-  - name: orders
+  - name: stg-orders
     description: "raw_orders_from_shopline"
     columns:
       - name: id
@@ -227,3 +227,63 @@ models:
       - name: membership_tier_name
         description: "membership_tier_name"
 
+###########################################################################
+  - name: stg-items_records
+    description: "raw_subtotal_items_from_shopline"
+    columns:
+
+      - name: order_number
+        description: "order_number"
+        tests:
+          - not_null
+          - unique
+
+      - name: id
+        description: "id"
+
+      - name: item_type
+        description: "item_type"
+
+
+      - name: item_id
+        description: "item_id"
+
+
+      - name: item_name
+        description: "item_name"
+
+
+      - name: sku
+        description: "sku"
+
+
+      - name: quantity
+        description: "quantity"
+
+
+      - name: item_price
+        description: "item_price"
+
+
+      - name: media_id
+        description: "media_id"
+
+
+      - name: total_dollars
+        description: "total_dollars"
+
+
+      - name: order_discounted_price_dollars
+        description: "order_discounted_price_dollars"
+
+
+      - name: order_custom_discount_items_discounted_price
+        description: "order_custom_discount_items_discounted_price"
+
+
+      - name: discounted_price
+        description: "discounted_price"
+
+
+      - name: created_by
+        description: "created_by"
