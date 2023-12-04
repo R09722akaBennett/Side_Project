@@ -238,8 +238,8 @@ models:
           - not_null
           - unique
 
-      - name: id
-        description: "id"
+      # - name: id
+      #   description: "id"
 
       - name: item_type
         description: "item_type"
@@ -277,8 +277,8 @@ models:
         description: "order_discounted_price_dollars"
 
 
-      - name: order_custom_discount_items_discounted_price
-        description: "order_custom_discount_items_discounted_price"
+      - name: order_custom_discount_items_order_discounted_price
+        description: "order_custom_discount_items_order_discounted_price"
 
 
       - name: discounted_price
@@ -287,3 +287,103 @@ models:
 
       - name: created_by
         description: "created_by"
+
+###########################################################################
+  - name: stg-promotion_items
+    description: "raw_promotion_items_from_shopline"
+    columns:
+
+      - name: order_number
+        description: "order_number"
+        tests:
+          - not_null
+          - unique
+
+      - name: id
+        description: "subtotal_items.item_data.order_promotion_items.discounted_price"
+
+      - name: discounted_amount_dollars
+        description: "discounted_amount_dollars"
+
+
+      - name: subtotal_after_dollars
+        description: "subtotal_after_dollars"
+
+
+      - name: available_platforms
+        description: "available_platforms"
+
+
+      - name: promotion_created_at
+        description: "promotion_created_at"
+
+
+      - name: discount_on
+        description: "discount_on"
+
+
+      - name: discount_percentage
+        description: "discount_percentage"
+
+
+      - name: discount_type
+        description: "discount_type"
+
+
+      - name: discountable_category_ids
+        description: "discountable_category_ids"
+
+
+      - name: discountable_product_ids
+        description: "discountable_product_ids"
+
+
+      - name: discountable_quantity
+        description: "discountable_quantity"
+
+
+      - name: discounted_point
+        description: "discounted_point"
+
+
+      - name: discounted_price
+        description: "discounted_price"
+
+      - name: title_translations
+        description: "title of promotion"
+      
+      - name: updated_at
+        description: "updated_at"
+
+      - name: created_at
+        description: "created_at"
+
+###########################################################################
+  - name: stg-custom_promotion_items
+    description: "raw_promotion_items_from_shopline"
+    columns:
+
+      - name: order_number
+        description: "order_number"
+        tests:
+          - not_null
+          - unique
+
+      - name: id
+        description: "subtotal_item.item_dat.order_custom_discount_items.order_discounted_price"
+
+      - name: item_type
+        description: "item_type"
+
+
+      - name: item_data_name
+        description: "custom_discount_item.item_data_name"
+
+
+      - name: item_id
+        description: "item_id"
+
+
+      - name: total_dollars
+        description: "total_dollars"
+

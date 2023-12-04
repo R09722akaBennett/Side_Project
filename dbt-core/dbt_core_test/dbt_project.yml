@@ -32,5 +32,21 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   dbt_core_test:
     # Config indicated by + and applies to all files under models/example/
-    example:
+    Staging:
       +materialized: view
+      +tags:
+            - "staging"
+            - "daily"
+    
+    mart:
+      core:
+          materialized: table
+          +dataset: Core
+          +tags:
+            - "core"
+            - "mart"
+            - "daily"
+
+      # marketing:
+      #     materialized: table
+      #     +dataset: marketing
