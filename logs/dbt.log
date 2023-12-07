@@ -13,3 +13,351 @@ Runtime Error
 [0m19:28:12.187490 [debug] [MainThread]: Command `dbt test` failed at 19:28:12.187421 after 0.07 seconds
 [0m19:28:12.187710 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106cbde10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107388f50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1029fc290>]}
 [0m19:28:12.187903 [debug] [MainThread]: Flushing usage events
+[0m18:04:06.111158 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1094fa950>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109547e10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109583d90>]}
+
+
+============================== 18:04:06.114107 | 8a413fd6-3de7-4972-8241-d71ef523ebdf ==============================
+[0m18:04:06.114107 [info ] [MainThread]: Running with dbt=1.7.3
+[0m18:04:06.114392 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': '/Users/kdanmobile/.dbt', 'log_path': 'logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'static_parser': 'True', 'invocation_command': 'dbt debug', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m18:04:06.114704 [info ] [MainThread]: dbt version: 1.7.3
+[0m18:04:06.114869 [info ] [MainThread]: python version: 3.11.5
+[0m18:04:06.115025 [info ] [MainThread]: python path: /Users/kdanmobile/anaconda3/bin/python
+[0m18:04:06.115164 [info ] [MainThread]: os info: macOS-14.1.1-arm64-arm-64bit
+[0m18:04:07.792553 [info ] [MainThread]: Using profiles dir at /Users/kdanmobile/.dbt
+[0m18:04:07.792826 [info ] [MainThread]: Using profiles.yml file at /Users/kdanmobile/.dbt/profiles.yml
+[0m18:04:07.793001 [info ] [MainThread]: Using dbt_project.yml file at /Users/kdanmobile/Side_Project/dbt_project.yml
+[0m18:04:07.793502 [info ] [MainThread]: adapter type: bigquery
+[0m18:04:07.793691 [info ] [MainThread]: adapter version: 1.7.2
+[0m18:04:07.793853 [info ] [MainThread]: Configuration:
+[0m18:04:07.793988 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m18:04:07.794113 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m18:04:07.794235 [info ] [MainThread]: Required dependencies:
+[0m18:04:07.794440 [debug] [MainThread]: Executing "git --help"
+[0m18:04:07.808223 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m18:04:07.808637 [debug] [MainThread]: STDERR: "b''"
+[0m18:04:07.808814 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m18:04:07.808962 [info ] [MainThread]: Connection:
+[0m18:04:07.809140 [info ] [MainThread]:   method: service-account
+[0m18:04:07.809261 [info ] [MainThread]:   database: mobegal
+[0m18:04:07.809380 [info ] [MainThread]:   execution_project: mobegal
+[0m18:04:07.809493 [info ] [MainThread]:   schema: Staging
+[0m18:04:07.809610 [info ] [MainThread]:   location: US
+[0m18:04:07.809725 [info ] [MainThread]:   priority: interactive
+[0m18:04:07.809841 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m18:04:07.809960 [info ] [MainThread]:   impersonate_service_account: None
+[0m18:04:07.810073 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m18:04:07.810185 [info ] [MainThread]:   job_retries: 1
+[0m18:04:07.810300 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m18:04:07.810419 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m18:04:07.810538 [info ] [MainThread]:   keyfile: /Users/kdanmobile/Side_Project/dbt-core/gcp_files/mobegal-adb731493dfd.json
+[0m18:04:07.810658 [info ] [MainThread]:   timeout_seconds: 300
+[0m18:04:07.810782 [info ] [MainThread]:   refresh_token: None
+[0m18:04:07.810899 [info ] [MainThread]:   client_id: None
+[0m18:04:07.811014 [info ] [MainThread]:   token_uri: None
+[0m18:04:07.811127 [info ] [MainThread]:   dataproc_region: None
+[0m18:04:07.811244 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m18:04:07.811357 [info ] [MainThread]:   gcs_bucket: None
+[0m18:04:07.811471 [info ] [MainThread]:   dataproc_batch: None
+[0m18:04:07.811894 [info ] [MainThread]: Registered adapter: bigquery=1.7.2
+[0m18:04:07.817653 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m18:04:07.818185 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m18:04:07.818544 [debug] [MainThread]: BigQuery adapter: Got an error when attempting to create a bigquery client: '[Errno 2] No such file or directory: '/Users/kdanmobile/Side_Project/dbt-core/gcp_files/mobegal-adb731493dfd.json''
+[0m18:04:07.818808 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m18:04:07.818980 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m18:04:07.819108 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </Users/kdanmobile/Side_Project/dbt_project.yml> not found
+
+[0m18:04:07.819246 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Database Error
+  [Errno 2] No such file or directory: '/Users/kdanmobile/Side_Project/dbt-core/gcp_files/mobegal-adb731493dfd.json'
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m18:04:07.819597 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_wall_clock_time": 1.7491298, "process_user_time": 3.044826, "process_kernel_time": 0.459024, "process_mem_max_rss": "215056384", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m18:04:07.819859 [debug] [MainThread]: Command `dbt debug` failed at 18:04:07.819796 after 1.75 seconds
+[0m18:04:07.820052 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m18:04:07.820239 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109594bd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1095a9590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1095a9990>]}
+[0m18:04:07.820473 [debug] [MainThread]: Flushing usage events
+[0m18:05:04.380487 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10780d910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1123cfe10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1123cffd0>]}
+
+
+============================== 18:05:04.383621 | cc3e7d86-505c-4ee9-86d4-14cc96955dfd ==============================
+[0m18:05:04.383621 [info ] [MainThread]: Running with dbt=1.7.3
+[0m18:05:04.383947 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': '/Users/kdanmobile/.dbt', 'log_path': 'logs', 'debug': 'False', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'invocation_command': 'dbt debug', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m18:05:04.384260 [info ] [MainThread]: dbt version: 1.7.3
+[0m18:05:04.384424 [info ] [MainThread]: python version: 3.11.5
+[0m18:05:04.384581 [info ] [MainThread]: python path: /Users/kdanmobile/anaconda3/bin/python
+[0m18:05:04.384730 [info ] [MainThread]: os info: macOS-14.1.1-arm64-arm-64bit
+[0m18:05:07.578411 [info ] [MainThread]: Using profiles dir at /Users/kdanmobile/.dbt
+[0m18:05:07.578703 [info ] [MainThread]: Using profiles.yml file at /Users/kdanmobile/.dbt/profiles.yml
+[0m18:05:07.578861 [info ] [MainThread]: Using dbt_project.yml file at /Users/kdanmobile/Side_Project/dbt_project.yml
+[0m18:05:07.579398 [info ] [MainThread]: adapter type: bigquery
+[0m18:05:07.579588 [info ] [MainThread]: adapter version: 1.7.2
+[0m18:05:07.579745 [info ] [MainThread]: Configuration:
+[0m18:05:07.579879 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m18:05:07.580012 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m18:05:07.580141 [info ] [MainThread]: Required dependencies:
+[0m18:05:07.580357 [debug] [MainThread]: Executing "git --help"
+[0m18:05:07.607424 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m18:05:07.607983 [debug] [MainThread]: STDERR: "b''"
+[0m18:05:07.608238 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m18:05:07.608431 [info ] [MainThread]: Connection:
+[0m18:05:07.608655 [info ] [MainThread]:   method: service-account
+[0m18:05:07.608788 [info ] [MainThread]:   database: mobegal
+[0m18:05:07.608922 [info ] [MainThread]:   execution_project: mobegal
+[0m18:05:07.609047 [info ] [MainThread]:   schema: Staging
+[0m18:05:07.609173 [info ] [MainThread]:   location: US
+[0m18:05:07.609295 [info ] [MainThread]:   priority: interactive
+[0m18:05:07.609419 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m18:05:07.609546 [info ] [MainThread]:   impersonate_service_account: None
+[0m18:05:07.609666 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m18:05:07.609791 [info ] [MainThread]:   job_retries: 1
+[0m18:05:07.609924 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m18:05:07.610045 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m18:05:07.610181 [info ] [MainThread]:   keyfile: /Users/kdanmobile/Side_Project/dbt-core/gcp_files/mobegal-adb731493dfd.json
+[0m18:05:07.610303 [info ] [MainThread]:   timeout_seconds: 300
+[0m18:05:07.610424 [info ] [MainThread]:   refresh_token: None
+[0m18:05:07.610543 [info ] [MainThread]:   client_id: None
+[0m18:05:07.610660 [info ] [MainThread]:   token_uri: None
+[0m18:05:07.610776 [info ] [MainThread]:   dataproc_region: None
+[0m18:05:07.610895 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m18:05:07.611011 [info ] [MainThread]:   gcs_bucket: None
+[0m18:05:07.611127 [info ] [MainThread]:   dataproc_batch: None
+[0m18:05:07.611541 [info ] [MainThread]: Registered adapter: bigquery=1.7.2
+[0m18:05:07.621472 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m18:05:07.622160 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m18:05:07.622494 [debug] [MainThread]: BigQuery adapter: Got an error when attempting to create a bigquery client: '[Errno 2] No such file or directory: '/Users/kdanmobile/Side_Project/dbt-core/gcp_files/mobegal-adb731493dfd.json''
+[0m18:05:07.622739 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m18:05:07.622905 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m18:05:07.623035 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </Users/kdanmobile/Side_Project/dbt_project.yml> not found
+
+[0m18:05:07.623175 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Database Error
+  [Errno 2] No such file or directory: '/Users/kdanmobile/Side_Project/dbt-core/gcp_files/mobegal-adb731493dfd.json'
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m18:05:07.623772 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_wall_clock_time": 3.2810316, "process_user_time": 3.123673, "process_kernel_time": 0.724953, "process_mem_max_rss": "214679552", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m18:05:07.624120 [debug] [MainThread]: Command `dbt debug` failed at 18:05:07.624014 after 3.28 seconds
+[0m18:05:07.624354 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m18:05:07.624574 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1123e6550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x13ebfb050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1123e66d0>]}
+[0m18:05:07.624809 [debug] [MainThread]: Flushing usage events
+[0m18:06:57.742282 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109a5cb90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109a97b10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109a97f90>]}
+
+
+============================== 18:06:57.745484 | a3c60bb4-f020-4c10-b7d1-dfc5b1c37417 ==============================
+[0m18:06:57.745484 [info ] [MainThread]: Running with dbt=1.7.3
+[0m18:06:57.745853 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/kdanmobile/.dbt', 'fail_fast': 'False', 'warn_error': 'None', 'log_path': 'logs', 'debug': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt debug', 'introspect': 'True', 'log_format': 'default', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m18:06:57.746263 [info ] [MainThread]: dbt version: 1.7.3
+[0m18:06:57.746462 [info ] [MainThread]: python version: 3.11.5
+[0m18:06:57.746633 [info ] [MainThread]: python path: /Users/kdanmobile/anaconda3/bin/python
+[0m18:06:57.746822 [info ] [MainThread]: os info: macOS-14.1.1-arm64-arm-64bit
+[0m18:06:59.562277 [info ] [MainThread]: Using profiles dir at /Users/kdanmobile/.dbt
+[0m18:06:59.562586 [info ] [MainThread]: Using profiles.yml file at /Users/kdanmobile/.dbt/profiles.yml
+[0m18:06:59.562777 [info ] [MainThread]: Using dbt_project.yml file at /Users/kdanmobile/Side_Project/dbt_project.yml
+[0m18:06:59.563280 [info ] [MainThread]: adapter type: bigquery
+[0m18:06:59.563444 [info ] [MainThread]: adapter version: 1.7.2
+[0m18:06:59.563595 [info ] [MainThread]: Configuration:
+[0m18:06:59.563726 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m18:06:59.563861 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m18:06:59.563983 [info ] [MainThread]: Required dependencies:
+[0m18:06:59.564209 [debug] [MainThread]: Executing "git --help"
+[0m18:06:59.580489 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m18:06:59.581043 [debug] [MainThread]: STDERR: "b''"
+[0m18:06:59.581274 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m18:06:59.581436 [info ] [MainThread]: Connection:
+[0m18:06:59.581637 [info ] [MainThread]:   method: service-account
+[0m18:06:59.581770 [info ] [MainThread]:   database: mobegal
+[0m18:06:59.581893 [info ] [MainThread]:   execution_project: mobegal
+[0m18:06:59.582014 [info ] [MainThread]:   schema: Staging
+[0m18:06:59.582131 [info ] [MainThread]:   location: US
+[0m18:06:59.582252 [info ] [MainThread]:   priority: interactive
+[0m18:06:59.582374 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m18:06:59.582495 [info ] [MainThread]:   impersonate_service_account: None
+[0m18:06:59.582614 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m18:06:59.582741 [info ] [MainThread]:   job_retries: 1
+[0m18:06:59.582860 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m18:06:59.582980 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m18:06:59.583099 [info ] [MainThread]:   keyfile: /Users/kdanmobile/Downloads/mobegal-adb731493dfd.json
+[0m18:06:59.583217 [info ] [MainThread]:   timeout_seconds: 300
+[0m18:06:59.583335 [info ] [MainThread]:   refresh_token: None
+[0m18:06:59.583451 [info ] [MainThread]:   client_id: None
+[0m18:06:59.583564 [info ] [MainThread]:   token_uri: None
+[0m18:06:59.583679 [info ] [MainThread]:   dataproc_region: None
+[0m18:06:59.583793 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m18:06:59.583907 [info ] [MainThread]:   gcs_bucket: None
+[0m18:06:59.584020 [info ] [MainThread]:   dataproc_batch: None
+[0m18:06:59.584245 [info ] [MainThread]: Registered adapter: bigquery=1.7.2
+[0m18:06:59.590026 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m18:06:59.590620 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m18:06:59.658059 [debug] [MainThread]: On debug: select 1 as id
+[0m18:07:00.136016 [error] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=mobegal&j=bq:US:13b3270b-4c70-47b8-b9c7-64b46a5549df&page=queryresults
+[0m18:07:00.136915 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m18:07:00.137438 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m18:07:00.138530 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </Users/kdanmobile/Side_Project/dbt_project.yml> not found
+
+[0m18:07:00.139330 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Database Error
+  Access Denied: Project mobegal: User does not have bigquery.jobs.create permission in project mobegal.
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m18:07:00.139940 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_wall_clock_time": 2.4376388, "process_user_time": 3.309098, "process_kernel_time": 0.555899, "process_mem_max_rss": "222511104", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m18:07:00.140484 [debug] [MainThread]: Command `dbt debug` failed at 18:07:00.140339 after 2.44 seconds
+[0m18:07:00.140936 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m18:07:00.141526 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109a0de90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109a5c8d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104e65c90>]}
+[0m18:07:00.142273 [debug] [MainThread]: Flushing usage events
+[0m18:16:55.832246 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105c733d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105ca79d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105ca7f90>]}
+
+
+============================== 18:16:55.835980 | 4a0b6c20-f2af-41b9-ac7b-69ee75dea1f5 ==============================
+[0m18:16:55.835980 [info ] [MainThread]: Running with dbt=1.7.3
+[0m18:16:55.836290 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/kdanmobile/.dbt', 'debug': 'False', 'version_check': 'True', 'log_path': 'logs', 'fail_fast': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'introspect': 'True', 'invocation_command': 'dbt debug', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m18:16:55.836618 [info ] [MainThread]: dbt version: 1.7.3
+[0m18:16:55.836783 [info ] [MainThread]: python version: 3.11.5
+[0m18:16:55.836937 [info ] [MainThread]: python path: /Users/kdanmobile/anaconda3/bin/python
+[0m18:16:55.837074 [info ] [MainThread]: os info: macOS-14.1.1-arm64-arm-64bit
+[0m18:16:58.123825 [info ] [MainThread]: Using profiles dir at /Users/kdanmobile/.dbt
+[0m18:16:58.124088 [info ] [MainThread]: Using profiles.yml file at /Users/kdanmobile/.dbt/profiles.yml
+[0m18:16:58.124241 [info ] [MainThread]: Using dbt_project.yml file at /Users/kdanmobile/Side_Project/dbt_project.yml
+[0m18:16:58.124860 [info ] [MainThread]: adapter type: bigquery
+[0m18:16:58.125012 [info ] [MainThread]: adapter version: 1.7.2
+[0m18:16:58.125152 [info ] [MainThread]: Configuration:
+[0m18:16:58.125285 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m18:16:58.125425 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m18:16:58.125568 [info ] [MainThread]: Required dependencies:
+[0m18:16:58.125807 [debug] [MainThread]: Executing "git --help"
+[0m18:16:58.159357 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m18:16:58.159797 [debug] [MainThread]: STDERR: "b''"
+[0m18:16:58.159973 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m18:16:58.160137 [info ] [MainThread]: Connection:
+[0m18:16:58.160339 [info ] [MainThread]:   method: service-account
+[0m18:16:58.160489 [info ] [MainThread]:   database: mobegal
+[0m18:16:58.160623 [info ] [MainThread]:   execution_project: mobegal
+[0m18:16:58.160752 [info ] [MainThread]:   schema: Staging
+[0m18:16:58.160883 [info ] [MainThread]:   location: US
+[0m18:16:58.161006 [info ] [MainThread]:   priority: interactive
+[0m18:16:58.161131 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m18:16:58.161270 [info ] [MainThread]:   impersonate_service_account: None
+[0m18:16:58.161393 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m18:16:58.161513 [info ] [MainThread]:   job_retries: 1
+[0m18:16:58.161633 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m18:16:58.161753 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m18:16:58.161875 [info ] [MainThread]:   keyfile: /Users/kdanmobile/Downloads/norse-quest-379015-cece758f5211.json
+[0m18:16:58.161999 [info ] [MainThread]:   timeout_seconds: 300
+[0m18:16:58.162122 [info ] [MainThread]:   refresh_token: None
+[0m18:16:58.162241 [info ] [MainThread]:   client_id: None
+[0m18:16:58.162358 [info ] [MainThread]:   token_uri: None
+[0m18:16:58.162472 [info ] [MainThread]:   dataproc_region: None
+[0m18:16:58.162589 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m18:16:58.162705 [info ] [MainThread]:   gcs_bucket: None
+[0m18:16:58.162820 [info ] [MainThread]:   dataproc_batch: None
+[0m18:16:58.163093 [info ] [MainThread]: Registered adapter: bigquery=1.7.2
+[0m18:16:58.170089 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m18:16:58.170674 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m18:16:58.210138 [debug] [MainThread]: On debug: select 1 as id
+[0m18:16:58.809570 [error] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=mobegal&j=bq:US:bd841d6c-ef58-4ab4-b216-8a9b3a1fd6ed&page=queryresults
+[0m18:16:58.811261 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m18:16:58.811839 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m18:16:58.812276 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </Users/kdanmobile/Side_Project/dbt_project.yml> not found
+
+[0m18:16:58.812672 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Database Error
+  Access Denied: Project mobegal: User does not have bigquery.jobs.create permission in project mobegal.
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m18:16:58.813349 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_wall_clock_time": 3.0191782, "process_user_time": 3.107116, "process_kernel_time": 0.578694, "process_mem_max_rss": "215482368", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m18:16:58.813948 [debug] [MainThread]: Command `dbt debug` failed at 18:16:58.813789 after 3.02 seconds
+[0m18:16:58.814565 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m18:16:58.815283 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105ca7bd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105ca7c50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12f4fa7d0>]}
+[0m18:16:58.815881 [debug] [MainThread]: Flushing usage events
+[0m18:17:28.945709 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105631f90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1056bba10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1056bbf90>]}
+
+
+============================== 18:17:28.948594 | 0f1d7d0f-a7e1-4613-9756-0ef92d89f1ef ==============================
+[0m18:17:28.948594 [info ] [MainThread]: Running with dbt=1.7.3
+[0m18:17:28.948932 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/kdanmobile/.dbt', 'version_check': 'True', 'debug': 'False', 'log_path': 'logs', 'warn_error': 'None', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'invocation_command': 'dbt debug', 'static_parser': 'True', 'introspect': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m18:17:28.949282 [info ] [MainThread]: dbt version: 1.7.3
+[0m18:17:28.949448 [info ] [MainThread]: python version: 3.11.5
+[0m18:17:28.949601 [info ] [MainThread]: python path: /Users/kdanmobile/anaconda3/bin/python
+[0m18:17:28.949742 [info ] [MainThread]: os info: macOS-14.1.1-arm64-arm-64bit
+[0m18:17:30.512445 [info ] [MainThread]: Using profiles dir at /Users/kdanmobile/.dbt
+[0m18:17:30.512711 [info ] [MainThread]: Using profiles.yml file at /Users/kdanmobile/.dbt/profiles.yml
+[0m18:17:30.512866 [info ] [MainThread]: Using dbt_project.yml file at /Users/kdanmobile/Side_Project/dbt_project.yml
+[0m18:17:30.516138 [info ] [MainThread]: adapter type: bigquery
+[0m18:17:30.516289 [info ] [MainThread]: adapter version: 1.7.2
+[0m18:17:30.516421 [info ] [MainThread]: Configuration:
+[0m18:17:30.516548 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m18:17:30.516671 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m18:17:30.516792 [info ] [MainThread]: Required dependencies:
+[0m18:17:30.517025 [debug] [MainThread]: Executing "git --help"
+[0m18:17:30.530186 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m18:17:30.530666 [debug] [MainThread]: STDERR: "b''"
+[0m18:17:30.530878 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m18:17:30.531049 [info ] [MainThread]: Connection:
+[0m18:17:30.531259 [info ] [MainThread]:   method: service-account
+[0m18:17:30.531402 [info ] [MainThread]:   database: norse-quest-379015
+[0m18:17:30.531532 [info ] [MainThread]:   execution_project: norse-quest-379015
+[0m18:17:30.531670 [info ] [MainThread]:   schema: Staging
+[0m18:17:30.531792 [info ] [MainThread]:   location: US
+[0m18:17:30.531912 [info ] [MainThread]:   priority: interactive
+[0m18:17:30.532034 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m18:17:30.532157 [info ] [MainThread]:   impersonate_service_account: None
+[0m18:17:30.532278 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m18:17:30.532406 [info ] [MainThread]:   job_retries: 1
+[0m18:17:30.532527 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m18:17:30.532645 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m18:17:30.532764 [info ] [MainThread]:   keyfile: /Users/kdanmobile/Downloads/norse-quest-379015-cece758f5211.json
+[0m18:17:30.532884 [info ] [MainThread]:   timeout_seconds: 300
+[0m18:17:30.533002 [info ] [MainThread]:   refresh_token: None
+[0m18:17:30.533118 [info ] [MainThread]:   client_id: None
+[0m18:17:30.533228 [info ] [MainThread]:   token_uri: None
+[0m18:17:30.533337 [info ] [MainThread]:   dataproc_region: None
+[0m18:17:30.533447 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m18:17:30.533565 [info ] [MainThread]:   gcs_bucket: None
+[0m18:17:30.533679 [info ] [MainThread]:   dataproc_batch: None
+[0m18:17:30.533892 [info ] [MainThread]: Registered adapter: bigquery=1.7.2
+[0m18:17:30.540220 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m18:17:30.541166 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m18:17:30.581589 [debug] [MainThread]: On debug: select 1 as id
+[0m18:17:31.284914 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=norse-quest-379015&j=bq:US:92534a19-590d-4327-b953-91c9816540df&page=queryresults
+[0m18:17:32.089541 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m18:17:32.091204 [info ] [MainThread]: [31m1 check failed:[0m
+[0m18:17:32.091711 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </Users/kdanmobile/Side_Project/dbt_project.yml> not found
+
+[0m18:17:32.092679 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_wall_clock_time": 3.1970515, "process_user_time": 3.11445, "process_kernel_time": 0.659521, "process_mem_max_rss": "220479488", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m18:17:32.093503 [debug] [MainThread]: Command `dbt debug` failed at 18:17:32.093300 after 3.20 seconds
+[0m18:17:32.094113 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m18:17:32.094727 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1056e06d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1056bbb50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x167203490>]}
+[0m18:17:32.095855 [debug] [MainThread]: Flushing usage events
