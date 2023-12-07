@@ -34,16 +34,17 @@ models:
     # Config indicated by + and applies to all files under models/example/
     Staging:
       +materialized: table
+      +dataset: Staging
       +schema: Staging
       +tags:
             - "staging"
             - "daily"
     
-    mart:
+    Mart:
       core:
           materialized: table
           +schema: Mart
-          +dataset: Core
+          +dataset: Mart
           +tags:
             - "core"
             - "mart"
