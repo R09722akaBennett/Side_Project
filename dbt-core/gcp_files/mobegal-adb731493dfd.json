@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "mobegal",
+  "private_key_id": "adb731493dfd40fc75b024276969140b8d1449d8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDGMECXoxJFFlRq\nqBacZlXWmWLI570/AiYKvbRnt23GLRgoCQnPik7DkNcPoyLbixY9mEha+ICOyHwX\ntKGQPkT2Oeh/QIPapCqXihZsLj+Hk0sa2mG50vFSbt37LoczuYfiAF2vUCtuW4nK\nBJLUtUliklADjjcM1RQCympka3KEZC1e9doGWaBR65b5fsBDFtLT1ue+4ZBx0uqy\nmkW8hz3KcbEuIH+5PmoAV1yyfinYhsPJvaMs5crsWZTScwAAo1E8cSZkfaorbtDr\n650fX9WhsHZk2Wn7PtnYQonEkGM1rtJEKdLROOnNj1k7spFd0cAdinJO7LHvk8yP\nnYsUrunpAgMBAAECggEAHLZH3VAIKQ8jmrIQWIcw316oY4/DKHowtbSnCrGVyzSk\nP8STcchJQebdaUwKlEDRr4m8zcUbptPfunV2RJXo2r0n9CuODqJi80JTnkeS95q8\nsj66Erg/MuCR8z5Z4wH5cCH6cJgOOrYzP5urA/rhj1DAG8vCKO9Dr2XQxQyV8hzp\n9peKj00Pbr/XXH9FbJxQ/7QEMX7BYK6xt9kqSUAcMC/8s0927knwpKtYa3P37yfR\nZKLOMxsGm5vByK2n/ZjxNZLA62se1bEjX8steBe7S26T5+xdysoSK2ISkhMZB9xo\n0jRcJIaFrzyYX5eppcMwSD55blXpXcma+mHYgv49qQKBgQDnAfHRq1e0S3CYWjrA\nbZN+Z3iYHPWpch3FdvnPHcw4OBmhhi1mt3UnP51Nu+miMyxjNNZauWnhc1AjoLDx\noNHndbmCf0NzK18cJ51YzOK8e8yfOhD+3yUHHL72IJLSGgxvyBFaIjpn9nJZl2UL\n29l+myB8+vvIEHdubkXh/8F6PQKBgQDboVb+XrYwrZ3XXk7ocmP+78kZyYEoykrA\nkMP7w/gfHG4esYDnKLllFlWlWsqGuc+mxHzdVGBL0Q+o+BKFyVbmDFY1rfqrdVnd\nss4sE0FMIW5ai1EFQL9LzCg2wzxtnL+G2s/IiZsFiLKIRYpbZL8Nf+m0RXdYdG67\ngN0QC1JlHQKBgGB9MXJwbSvDrv4UAiJKIqdTtM1kmz/xiHnoXiOiwKBi3mHXV7Nl\nwatpKN1FNisn0MyHT1mJxK4Eql6XShFDKSnSxG+7lILQhOOPsGtc+P/dffSsHlk2\n/5Je8WyA4pKbisJOAOFzFo5CJDVDxVMUu13kkcdiVjSUnC4mJU5ms3vJAoGBAKMV\nsps/iNmskcASb1V7W3U6aIGVdyrqy4ch9+VDJ0MywTJZa/Y57zB43S/jsu9HmkGj\nNXTD6p1hp9c4HcjqMHSyRHGntrMKeKh+1Uk1Iw9844yoVokoAuQtvM6tOnnKIw3n\n/NJUG6CIWMmHma0zqgpEKS2LR4uPKYphrcT0I0KhAoGALkKakvGusz2C5HJF5Xme\n6YyfPprves3aP0k+JO2P2Jdf57fjJlYj+PGKI+OeqLlQdxCQOZ/vjSoCpcdRRG1P\nuh0so0BCEqOzm1qJ6fkwRAOak6DaFQGtxfJzhcgBuMjH7oJGGs8yAe4pOIVulBxY\nJGKCZGPwuyB3Eo2aF3VOMqU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "bennett-tai@mobegal.iam.gserviceaccount.com",
+  "client_id": "117705452332652660690",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bennett-tai%40mobegal.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
