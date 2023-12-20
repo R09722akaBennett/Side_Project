@@ -13,6 +13,7 @@ pandas = "*"
 flask = "*"
 pymysql = "*"
 financialdata = {file = ".", editable = true}
+celery = "*"
 
 [dev-packages]
 
