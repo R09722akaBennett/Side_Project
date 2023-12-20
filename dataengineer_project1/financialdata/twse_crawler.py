@@ -9,7 +9,11 @@ from loguru import logger
 from pydantic import BaseModel
 from tqdm import tqdm
 
-from financialdata.router import Router
+from router import Router
+from sqlalchemy import (
+    create_engine,
+    engine,
+)
 
 
 def clear_data(
@@ -238,10 +242,12 @@ def main(
             # 檢查資料型態
             df = check_schema(df.copy())
             # upload db
+            address = "mysql+pymysql://root:test@localhost:3306/financialdata"
+            engine = create_engine(address)
             try:
                 df.to_sql(
                     name="TaiwanStockPrice",
-                    con=db_router.mysql_financialdata_conn,
+                    con=engine,
                     if_exists="append",
                     index=False,
                     chunksize=1000,

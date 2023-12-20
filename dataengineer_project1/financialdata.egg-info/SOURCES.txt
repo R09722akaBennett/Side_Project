@@ -1,0 +1,12 @@
+README.md
+setup.py
+financialdata/__init__.py
+financialdata/clients.py
+financialdata/router.py
+financialdata/taifex_crawler.py
+financialdata/tpex_crawler.py
+financialdata/twse_crawler.py
+financialdata.egg-info/PKG-INFO
+financialdata.egg-info/SOURCES.txt
+financialdata.egg-info/dependency_links.txt
+financialdata.egg-info/top_level.txt

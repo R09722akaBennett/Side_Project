@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: financialdata
+Version: 1.0.1
+Summary: financial mining
+Home-page: https://github.com/R09722akaBennett/
+Author: bennett
+Author-email: samlin266118@gmail.com
+Project-URL: documentation, https://linsamtw.github.io/FinMindDoc/
+Project-URL: Source, https://github.com/R09722akaBennett/Side_Project/
+Keywords: financial,python
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.11
+Description-Content-Type: text/markdown
+
+Project
+for data engineer
