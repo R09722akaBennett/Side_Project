@@ -7,5 +7,5 @@ app = Celery(
     # 連線到 rabbitmq,
     # pyamqp://user:password@localhost:5672/
     # 本書的帳號密碼都是 worker
-    broker="pyamqp://worker:worker@http://34.16.69.189:5672/",
+    broker="pyamqp://worker:worker@34.16.69.189:5672/",
 )
