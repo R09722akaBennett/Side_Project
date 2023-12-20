@@ -4,7 +4,7 @@ import typing
 from loguru import logger
 from sqlalchemy import engine
 
-from financialdata import clients
+import clients
 
 
 def check_alive(

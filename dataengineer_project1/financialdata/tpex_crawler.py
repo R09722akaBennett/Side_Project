@@ -9,7 +9,7 @@ from loguru import logger
 from pydantic import BaseModel
 from tqdm import tqdm
 
-from financialdata.router import Router
+from financialdata import Router
 
 
 def clear_data(
