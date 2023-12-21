@@ -3,35 +3,23 @@ import typing
 import pandas as pd
 import pymysql
 from loguru import logger
-from sqlalchemy import (
-    create_engine,
-    engine,
-)
-from financialdata.config import (
-    MYSQL_DATA_USER,
-    MYSQL_DATA_PASSWORD,
-    MYSQL_DATA_HOST,
-    MYSQL_DATA_PORT,
-    MYSQL_DATA_DATABASE,
-)
-address = f"mysql+pymysql://{MYSQL_DATA_USER}:{MYSQL_DATA_PASSWORD}@{MYSQL_DATA_HOST}:{MYSQL_DATA_PORT}/{MYSQL_DATA_DATABASE}"
-engine = create_engine(address)
+from sqlalchemy import engine
+
 
 def update2mysql_by_pandas(
     df: pd.DataFrame,
     table: str,
-    engine: engine,
+    mysql_conn: engine.base.Connection,
 ):
     if len(df) > 0:
         try:
-            with engine as conn:
-                df.to_sql(
-                    name=table,
-                    con=conn,
-                    if_exists="append",
-                    index=False,
-                    chunksize=1000,
-                )
+            df.to_sql(
+                name=table,
+                con=mysql_conn,
+                if_exists="append",
+                index=False,
+                chunksize=1000,
+            )
         except Exception as e:
             logger.info(e)
             return False
@@ -100,18 +88,19 @@ def build_df_update_sql(
 def update2mysql_by_sql(
     df: pd.DataFrame,
     table: str,
-    engine: engine,
+    mysql_conn: engine.base.Connection,
 ):
     sql = build_df_update_sql(table, df)
-    with engine as conn:
-        commit(sql=sql, mysql_conn=conn)
+    commit(
+        sql=sql, mysql_conn=mysql_conn
+    )
 
 
 def commit(
     sql: typing.Union[
         str, typing.List[str]
     ],
-    mysql_conn: engine
+    mysql_conn: engine.base.Connection = None,
 ):
     logger.info("commit")
     try:
@@ -144,13 +133,14 @@ def commit(
 def upload_data(
     df: pd.DataFrame,
     table: str,
-    engine: engine ):
+    mysql_conn: engine.base.Connection,
+):
     if len(df) > 0:
         # 直接上傳
         if update2mysql_by_pandas(
             df=df,
             table=table,
-            engine=engine
+            mysql_conn=mysql_conn,
         ):
             pass
         else:
@@ -159,5 +149,5 @@ def upload_data(
             update2mysql_by_sql(
                 df=df,
                 table=table,
-                engine=engine
+                mysql_conn=mysql_conn,
             )
