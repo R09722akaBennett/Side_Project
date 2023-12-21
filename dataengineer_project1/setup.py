@@ -17,7 +17,7 @@ setup(
     # Optional (see note above)
     url="https://github.com/R09722akaBennett/",  # Optional
     author="bennett",  # Optional
-    author_email="samlin266118@gmail.com",  # Optional
+    author_email="bennett951013@gmail.com",  # Optional
     classifiers=[  # Optional
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
