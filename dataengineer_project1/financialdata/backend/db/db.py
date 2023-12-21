@@ -144,7 +144,7 @@ def commit(
 def upload_data(
     df: pd.DataFrame,
     table: str,
-    engine: engine)
+    engine: engine ):
     if len(df) > 0:
         # 直接上傳
         if update2mysql_by_pandas(
