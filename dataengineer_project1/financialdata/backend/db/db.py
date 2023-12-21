@@ -100,7 +100,7 @@ def build_df_update_sql(
 def update2mysql_by_sql(
     df: pd.DataFrame,
     table: str,
-    engine: engine.base.Engine,
+    engine: engine,
 ):
     sql = build_df_update_sql(table, df)
     with engine as conn:
