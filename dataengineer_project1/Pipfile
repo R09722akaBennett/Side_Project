@@ -14,6 +14,7 @@ flask = "*"
 pymysql = "*"
 financialdata = {file = ".", editable = true}
 celery = "*"
+apscheduler = "*"
 
 [dev-packages]
 
