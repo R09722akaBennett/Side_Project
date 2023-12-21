@@ -20,11 +20,11 @@ engine = create_engine(address)
 def update2mysql_by_pandas(
     df: pd.DataFrame,
     table: str,
-    engine: engine.base.Engine,
+    engine: engine,
 ):
     if len(df) > 0:
         try:
-            with engine.connect() as conn:
+            with engine as conn:
                 df.to_sql(
                     name=table,
                     con=conn,
@@ -103,7 +103,7 @@ def update2mysql_by_sql(
     engine: engine.base.Engine,
 ):
     sql = build_df_update_sql(table, df)
-    with engine.connect() as conn:
+    with engine as conn:
         commit(sql=sql, mysql_conn=conn)
 
 
@@ -111,7 +111,7 @@ def commit(
     sql: typing.Union[
         str, typing.List[str]
     ],
-    mysql_conn: engine.base.Connection
+    mysql_conn: engine
 ):
     logger.info("commit")
     try:
@@ -144,8 +144,7 @@ def commit(
 def upload_data(
     df: pd.DataFrame,
     table: str,
-    engine: engine.base.Engine
-):
+    engine: engine)
     if len(df) > 0:
         # 直接上傳
         if update2mysql_by_pandas(
