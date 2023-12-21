@@ -21,7 +21,7 @@ run-celery-tpex:
 
 # sent task
 sent-taiwan-stock-price-task:
-	pipenv run python financialdata/producer.py taiwan_stock_price 2021-04-01 2021-04-12
+	pipenv run python financialdata/producer.py taiwan_stock_price 2023-12-01 2021-12-21
 
 # 建立 dev 環境變數
 gen-dev-env-variable:
