@@ -16,6 +16,7 @@ from financialdata.schema.dataset import (
 )
 
 
+
 def is_weekend(day: int) -> bool:
     return day in [5, 6]
 
