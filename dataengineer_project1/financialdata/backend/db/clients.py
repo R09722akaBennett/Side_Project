@@ -15,4 +15,4 @@ def get_mysql_financialdata_conn() -> engine.base.Connection:
     )
     engine = create_engine(address)
     connect = engine.connect()
-    return connect
+    return engine
