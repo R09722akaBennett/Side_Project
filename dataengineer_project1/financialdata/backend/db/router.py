@@ -2,7 +2,7 @@ import time
 import typing
 
 from loguru import logger
-from sqlalchemy import engine
+from sqlalchemy import engine,text
 from financialdata.backend.db import (
     clients,
 )
@@ -11,7 +11,7 @@ from financialdata.backend.db import (
 def check_alive(
     connect: engine.base.Connection,
 ):
-    connect.execute("SELECT 1 + 1")
+    connect.execute(text("SELECT 1 + 1"))
 
 
 def check_connect_alive(
@@ -65,5 +65,5 @@ class Router:
             self.check_mysql_financialdata_conn_alive()
         )
 
-    def close_connection(self):
-        self._mysql_financialdata_conn.close()
+    # def close_connection(self):
+    #     self._mysql_financialdata_conn.close()
