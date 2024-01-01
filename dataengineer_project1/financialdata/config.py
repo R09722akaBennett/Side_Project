@@ -1,7 +1,7 @@
 import os
 
 MYSQL_DATA_HOST = os.environ.get(
-    "MYSQL_DATA_HOST", "35.199.160.249"
+    "MYSQL_DATA_HOST", "34.171.157.51"
 )
 MYSQL_DATA_USER = os.environ.get(
     "MYSQL_DATA_USER", "root"
@@ -27,7 +27,7 @@ WORKER_PASSWORD = os.environ.get(
 )
 
 MESSAGE_QUEUE_HOST = os.environ.get(
-    "MESSAGE_QUEUE_HOST", "35.199.160.249"
+    "MESSAGE_QUEUE_HOST", "34.171.157.51"
 )
 MESSAGE_QUEUE_PORT = int(
     os.environ.get(
