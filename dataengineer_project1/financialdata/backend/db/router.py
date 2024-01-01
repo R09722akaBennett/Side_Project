@@ -65,5 +65,5 @@ class Router:
             self.check_mysql_financialdata_conn_alive()
         )
 
-    # def close_connection(self):
-    #     self._mysql_financialdata_conn.close()
+    def close_connection(self):
+        self._mysql_financialdata_conn.close()
