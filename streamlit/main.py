@@ -17,15 +17,7 @@ from openai import OpenAI
 
 # Streamlit Page Configuration
 st.set_page_config(page_title="@data_lemak", layout="wide")
-st.sidebar.header("Chatbot")
-# 初始化session state
-if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-4"
 
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-# 側邊欄設置
 st.sidebar.title("設置")
 
 with st.sidebar.expander("OpenAI API Settings"):
@@ -34,6 +26,15 @@ with st.sidebar.expander("OpenAI API Settings"):
         st.success("API Key entered!")
         client = OpenAI(api_key=openai_apikey)
     temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.7, step=0.1)
+    openai_model = st.selectbox("OpenAI Model", ["gpt-3.5-turbo", "gpt-4", "gpt-4o"])
+
+    if "openai_model" not in st.session_state:
+        st.session_state["openai_model"] = openai_model
+    else:
+        st.session_state["openai_model"] = openai_model
+
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
 st.sidebar.divider()
 st.sidebar.header("專案流程")
@@ -47,75 +48,76 @@ sidebar_options = [
     "7. 模型部署模擬",
     "8. What-If 分析"
 ]
-selected_option = st.sidebar.radio("選擇步驟", sidebar_options)
-# Main content
-st.title("用戶流失率預測與聊天助手系統")
+selected_option = st.sidebar.radio("選擇步驟(Demo)", sidebar_options)
+st.title("📊 AI 驅動的用戶流失預測與互動聊天機器人")
 
-# Create tabs
-tab1, tab2 = st.tabs([ "用戶流失率預測系統","聊天機器人"])
-
+tab1, tab2 = st.tabs([ "用戶流失率預測系統","Chatbot"])
 with tab2:
     st.header("聊天機器人 (Chatbot)")
 
+    # 創建一個容器來包含整個聊天機器人
     chat_container = st.container()
+    
     with chat_container:
+        # 顯示聊天歷史
+        
         for message in st.session_state.messages:
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
 
-    # 平滑滾動到聊天末尾
-    st.markdown("<div id='end-of-chat'></div>", unsafe_allow_html=True)
-    st.markdown("""
-    <script>
-    const endOfChat = document.querySelector('#end-of-chat');
-    if (endOfChat) {
-        endOfChat.scrollIntoView({ behavior: 'smooth' });
-    }
-    </script>
-    """, unsafe_allow_html=True)
+        # 平滑滾動到聊天末尾
+        st.markdown("<div id='end-of-chat'></div>", unsafe_allow_html=True)
+        st.markdown("""
+        <script>
+        const endOfChat = document.querySelector('#end-of-chat');
+        if (endOfChat) {
+            endOfChat.scrollIntoView({ behavior: 'smooth' });
+        }
+        </script>
+        """, unsafe_allow_html=True)
 
-    # 檢查OpenAI API密鑰並處理用戶輸入
-    if openai_apikey:
-        if prompt := st.chat_input("You:"):
-            if openai_apikey == '1':  # 可選的佔位符檢查
-                st.warning("Warning: Please do not share personal information.")
-            else:
-                # 將用戶消息添加到session state
-                st.session_state.messages.append({"role": "user", "content": prompt})
+        # 檢查OpenAI API密鑰並處理用戶輸入
+        if openai_apikey:
+            if prompt := st.chat_input("You:"):
+                if openai_apikey == '1':  # 可選的佔位符檢查
+                    st.warning("Warning: Please do not share personal information.")
+                else:
+                    # 將用戶消息添加到session state
+                    st.session_state.messages.append({"role": "user", "content": prompt})
 
-                # 在聊天中顯示用戶消息
-                with st.chat_message("user"):
-                    st.markdown(prompt)
+                    # 在聊天中顯示用戶消息
+                    with st.chat_message("user"):
+                        st.markdown(prompt)
 
-                # 創建助手回應的佔位符
-                with st.chat_message("assistant"):
-                    message_placeholder = st.empty()
-                    full_response = ""
-                    try:
-                        response = client.chat.completions.create(
-                            model=st.session_state["openai_model"],
-                            messages=[{"role": m["role"], "content": m["content"]} for m in st.session_state.messages],
-                            temperature=temperature
-                        )
-                        full_response = response.choices[0].message.content
+                    # 創建助手回應的佔位符
+                    with st.chat_message("assistant"):
+                        message_placeholder = st.empty()
+                        full_response = ""
+                        try:
+                            response = client.chat.completions.create(
+                                model=st.session_state["openai_model"],
+                                messages=[{"role": m["role"], "content": m["content"]} for m in st.session_state.messages],
+                                temperature=temperature
+                            )
+                            full_response = response.choices[0].message.content
 
-                        # 更新佔位符為最終回應
-                        message_placeholder.markdown(full_response)
+                            # 更新佔位符為最終回應
+                            message_placeholder.markdown(full_response)
 
-                        # 將助手的消息添加到session state
-                        st.session_state.messages.append({"role": "assistant", "content": full_response})
-                    except Exception as e:
-                        st.error(f"發生錯誤: {str(e)}")
-                        full_response = "很抱歉，生成回應時發生錯誤。請檢查您的API密鑰和網絡連接，然後重試。"
-                        message_placeholder.markdown(full_response)
+                            # 將助手的消息添加到session state
+                            st.session_state.messages.append({"role": "assistant", "content": full_response})
+                        except Exception as e:
+                            st.error(f"發生錯誤: {str(e)}")
+                            full_response = "很抱歉，生成回應時發生錯誤。請檢查您的API密鑰和網絡連接，然後重試。"
+                            message_placeholder.markdown(full_response)
 
-                # 重新運行應用以顯示更新的聊天
-                st.rerun()
+                    # 重新運行應用以顯示更新的聊天
+                    st.rerun()
 
-    # 清除對話按鈕
-    if st.button('Clear Conversation'):
-        st.session_state.messages = []
-        st.rerun()
+        # 清除對話按鈕
+        if st.button('清除對話'):
+            st.session_state.messages = []
+            st.rerun()
 
 
 
@@ -239,7 +241,7 @@ with tab1:
     )
 
     # Model Selection and Training
-    st.header("5. 模型選擇與訓練")
+    st.header("5. Model Selection and Training")
     tuning_method = st.radio("選擇超參數調優方法", ["手動調整", "GridSearchCV", "RandomizedSearchCV"])
     if tuning_method == "手動調整":
         n_splits = st.slider("K-Fold 交叉驗證折數", 2, 10, 5)
@@ -416,7 +418,7 @@ with tab1:
             st.success("Model training completed! You can proceed with model evaluation and interpretation. @data_lemak")
 
     # Model Evaluation
-    st.header("6. 模型評估")
+    st.header("6. Model Evaluation")
 
     if 'model' in st.session_state:
         if tuning_method == "手動調整":
@@ -461,9 +463,7 @@ with tab1:
         roc_auc = auc(fpr, tpr)
         precision, recall, _ = precision_recall_curve(st.session_state['y_test'], st.session_state['y_prob'])
 
-        # Allow user to adjust Plotly style
-        st.subheader("Plotly 圖表樣式調整")
-        plotly_template = st.selectbox("選擇 Plotly 樣式模板", ["plotly", "ggplot2", "seaborn", "simple_white", "plotly_white", "plotly_dark", "presentation", "xgridoff", "ygridoff", "gridon", "none"])
+        plotly_template = st.selectbox("選擇 Plotly 模板", ["plotly", "ggplot2", "seaborn", "simple_white", "plotly_white", "plotly_dark", "presentation", "xgridoff", "ygridoff", "gridon", "none"])
 
         col1, col2 = st.columns([1, 1], gap="small")
 
@@ -501,9 +501,6 @@ with tab1:
         # Confusion Matrix
         st.subheader("混淆矩陣")
         cm = confusion_matrix(st.session_state['y_test'], st.session_state['y_pred'])
-        
-        # Allow user to adjust colorscale
-        st.subheader("顏色比例調整")
         colorscale = st.selectbox("選擇顏色比例", ['aggrnyl', 'agsunset', 'algae', 'amp', 'armyrose', 'balance', 'blackbody', 'bluered', 'blues', 'blugrn', 'bluyl', 'brbg', 'brwnyl', 'bugn', 'bupu', 'burg', 'burgyl', 'cividis', 'curl', 'darkmint', 'deep', 'delta', 'dense', 'earth', 'edge', 'electric', 'emrld', 'fall', 'geyser', 'gnbu', 'gray', 'greens', 'greys', 'haline', 'hot', 'hsv', 'ice', 'icefire', 'inferno', 'jet', 'magenta', 'magma', 'matter', 'mint', 'mrybm', 'mygbm', 'oranges', 'orrd', 'oryel', 'oxy', 'peach', 'phase', 'picnic', 'pinkyl', 'piyg', 'plasma', 'plotly3', 'portland', 'prgn', 'pubu', 'pubugn', 'puor', 'purd', 'purp', 'purples', 'purpor', 'rainbow', 'rdbu', 'rdgy', 'rdpu', 'rdylbu', 'rdylgn', 'redor', 'reds', 'solar', 'spectral', 'speed', 'sunset', 'sunsetdark', 'teal', 'tealgrn', 'tealrose', 'tempo', 'temps', 'thermal', 'tropic', 'turbid', 'turbo', 'twilight', 'viridis', 'ylgn', 'ylgnbu', 'ylorbr', 'ylorrd'])
         
         fig = ff.create_annotated_heatmap(cm, x=['Predicted 0', 'Predicted 1'], y=['Actual 0', 'Actual 1'], colorscale=colorscale)
@@ -550,18 +547,38 @@ with tab1:
             )
             
             st.plotly_chart(fig)
-            
-            st.write("""
-            SHAP (SHapley Additive exPlanations) 值表示每個特徵對模型預測的貢獻度。
-            正值表示該特徵增加了預測為正類（流失）的可能性，負值則相反。
-            柱狀圖顯示了每個特徵的平均絕對 SHAP 值，代表該特徵對模型預測的整體重要性。
+            st.markdown("""
+            # SHAP值解釋
+
+            ## 什麼是SHAP值？
+
+            SHAP值（SHapley Additive exPlanations）幫助我們理解每個特徵如何影響模型的預測結果。想像一下,每個特徵都是一個球員,而SHAP值就是評分卡,告訴我們每個球員對比賽結果的貢獻。
+
+            ## SHAP值的含義
+
+            - **正值**：這個特徵增加了客戶可能流失的機會。
+            例如：如果"客戶服務滿意度"的SHAP值為正,意味著較低的滿意度增加了客戶流失的可能性。
+
+            - **負值**：這個特徵減少了客戶可能流失的機會。
+            例如：如果"使用時長"的SHAP值為負,意味著使用時間越長,客戶越不可能流失。
+
+            ## 柱狀圖的解讀
+
+            柱狀圖展示了每個特徵的平均重要性。柱子越長,表示這個特徵對預測結果的影響越大,不管是正面還是負面影響。
+
+            ## SHAP值統計信息
+
+            以下是SHAP值的統計信息,幫助我們了解每個特徵影響的範圍和整體趨勢：
             """)
 
-            # 顯示 SHAP 值的統計信息
-            st.write("SHAP 值統計信息：")
             st.write(shap_df.describe())
+
+            st.markdown("""
+            - **平均值**：特徵通常的影響程度
+            - **最小值和最大值**：特徵影響的極端情況
+            - **25%、50%、75%分位數**：特徵影響的常見範圍
+            """)
         
-        # 特徵重要性（如果模型支持）
         if hasattr(st.session_state['model'], 'feature_importances_'):
             st.subheader("特徵重要性")
             feature_importance = pd.DataFrame({
