@@ -7,5 +7,5 @@ tqdm
 pygwalker
 xgboost
 lightgbm
-catboost
 shap
+openai
