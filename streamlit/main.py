@@ -18,19 +18,22 @@ from openai import OpenAI
 # Streamlit Page Configuration
 st.set_page_config(page_title="@data_lemak", layout="wide")
 st.sidebar.header("Chatbot")
-with st.sidebar.expander("OpenAI API Settings"):
-    openai_apikey = st.sidebar.text_input("Enter OpenAI API Key", type="password")
-    if openai_apikey:
-        st.sidebar.success("API Key entered!")
-        client = OpenAI(api_key=openai_apikey)
-    temperature = st.sidebar.slider("temperature", min_value=0.0, max_value=1.0, value=0.7, step=0.1)
-
-# Initialize session state
+# 初始化session state
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-4o"
+    st.session_state["openai_model"] = "gpt-4"
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
+
+# 側邊欄設置
+st.sidebar.title("設置")
+
+with st.sidebar.expander("OpenAI API Settings"):
+    openai_apikey = st.text_input("Enter OpenAI API Key", type="password")
+    if openai_apikey:
+        st.success("API Key entered!")
+        client = OpenAI(api_key=openai_apikey)
+    temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.7, step=0.1)
 
 st.sidebar.divider()
 st.sidebar.header("專案流程")
@@ -52,49 +55,67 @@ st.title("用戶流失率預測與聊天助手系統")
 tab1, tab2 = st.tabs([ "用戶流失率預測系統","聊天機器人"])
 
 with tab2:
-        st.header("聊天機器人")
-        chat_container = st.container()
-        with chat_container:
-            for message in st.session_state.messages:
-                with st.chat_message(message["role"]):
-                    st.markdown(message["content"])
+    st.header("聊天機器人 (Chatbot)")
 
-        st.markdown("<div id='end-of-chat'></div>", unsafe_allow_html=True)
-        st.markdown("""
-        <script>
-        const endOfChat = document.querySelector('#end-of-chat');
-        if (endOfChat) {
-            endOfChat.scrollIntoView({ behavior: 'smooth' });
-        }
-        </script>
-        """, unsafe_allow_html=True)
-        if openai_apikey:
-            if prompt := st.chat_input("You:"):
-                if openai_apikey == '1':
-                    st.warning("Warning: Please do not share personal information.")
-                else:
-                    st.session_state.messages.append({"role": "user", "content": prompt})
-                    with st.chat_message("user"):
-                        st.markdown(prompt)
+    chat_container = st.container()
+    with chat_container:
+        for message in st.session_state.messages:
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
 
-                    with st.chat_message("assistant"):
-                        message_placeholder = st.empty()
-                        full_response = ""
-                        for response in client.chat.completions.create(
+    # 平滑滾動到聊天末尾
+    st.markdown("<div id='end-of-chat'></div>", unsafe_allow_html=True)
+    st.markdown("""
+    <script>
+    const endOfChat = document.querySelector('#end-of-chat');
+    if (endOfChat) {
+        endOfChat.scrollIntoView({ behavior: 'smooth' });
+    }
+    </script>
+    """, unsafe_allow_html=True)
+
+    # 檢查OpenAI API密鑰並處理用戶輸入
+    if openai_apikey:
+        if prompt := st.chat_input("You:"):
+            if openai_apikey == '1':  # 可選的佔位符檢查
+                st.warning("Warning: Please do not share personal information.")
+            else:
+                # 將用戶消息添加到session state
+                st.session_state.messages.append({"role": "user", "content": prompt})
+
+                # 在聊天中顯示用戶消息
+                with st.chat_message("user"):
+                    st.markdown(prompt)
+
+                # 創建助手回應的佔位符
+                with st.chat_message("assistant"):
+                    message_placeholder = st.empty()
+                    full_response = ""
+                    try:
+                        response = client.chat.completions.create(
                             model=st.session_state["openai_model"],
                             messages=[{"role": m["role"], "content": m["content"]} for m in st.session_state.messages],
-                            stream=True,
                             temperature=temperature
-                        ):
-                            full_response += (response.choices[0].delta.content or "")
-                            message_placeholder.markdown(full_response + "▌")
-                        message_placeholder.markdown(full_response)
-                    st.session_state.messages.append({"role": "assistant", "content": full_response})
-                    st.rerun()
+                        )
+                        full_response = response.choices[0].message.content
 
-        # Clear conversation button
-        if st.button('Clear Conversation'):
-            st.session_state.messages = []
+                        # 更新佔位符為最終回應
+                        message_placeholder.markdown(full_response)
+
+                        # 將助手的消息添加到session state
+                        st.session_state.messages.append({"role": "assistant", "content": full_response})
+                    except Exception as e:
+                        st.error(f"發生錯誤: {str(e)}")
+                        full_response = "很抱歉，生成回應時發生錯誤。請檢查您的API密鑰和網絡連接，然後重試。"
+                        message_placeholder.markdown(full_response)
+
+                # 重新運行應用以顯示更新的聊天
+                st.rerun()
+
+    # 清除對話按鈕
+    if st.button('Clear Conversation'):
+        st.session_state.messages = []
+        st.rerun()
 
 
 
