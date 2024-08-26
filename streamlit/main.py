@@ -15,9 +15,7 @@ import lightgbm as lgb
 import shap
 from openai import OpenAI
 
-# Streamlit Page Configuration
 st.set_page_config(page_title="@data_lemak", layout="wide")
-
 st.sidebar.title("設置")
 
 with st.sidebar.expander("OpenAI API Settings"):
@@ -49,11 +47,11 @@ sidebar_options = [
     "8. What-If 分析"
 ]
 selected_option = st.sidebar.radio("選擇步驟(Demo)", sidebar_options)
-st.title("📊 AI 驅動的用戶流失預測與互動聊天機器人")
+st.title("📊 用戶流失預測與AI-Chatbot")
 
 tab1, tab2 = st.tabs([ "用戶流失率預測系統","Chatbot"])
 with tab2:
-    st.header("聊天機器人 (Chatbot)")
+    st.header("Chatbot")
 
     # 創建一個容器來包含整個聊天機器人
     chat_container = st.container()
@@ -75,21 +73,14 @@ with tab2:
         }
         </script>
         """, unsafe_allow_html=True)
-
-        # 檢查OpenAI API密鑰並處理用戶輸入
         if openai_apikey:
             if prompt := st.chat_input("You:"):
-                if openai_apikey == '1':  # 可選的佔位符檢查
+                if openai_apikey == '1': 
                     st.warning("Warning: Please do not share personal information.")
                 else:
-                    # 將用戶消息添加到session state
                     st.session_state.messages.append({"role": "user", "content": prompt})
-
-                    # 在聊天中顯示用戶消息
                     with st.chat_message("user"):
                         st.markdown(prompt)
-
-                    # 創建助手回應的佔位符
                     with st.chat_message("assistant"):
                         message_placeholder = st.empty()
                         full_response = ""
@@ -100,21 +91,14 @@ with tab2:
                                 temperature=temperature
                             )
                             full_response = response.choices[0].message.content
-
-                            # 更新佔位符為最終回應
                             message_placeholder.markdown(full_response)
-
-                            # 將助手的消息添加到session state
                             st.session_state.messages.append({"role": "assistant", "content": full_response})
                         except Exception as e:
                             st.error(f"發生錯誤: {str(e)}")
                             full_response = "很抱歉，生成回應時發生錯誤。請檢查您的API密鑰和網絡連接，然後重試。"
                             message_placeholder.markdown(full_response)
-
-                    # 重新運行應用以顯示更新的聊天
                     st.rerun()
 
-        # 清除對話按鈕
         if st.button('清除對話'):
             st.session_state.messages = []
             st.rerun()
@@ -123,9 +107,7 @@ with tab2:
 
 
 with tab1:
-    st.header("用戶流失率預測系統")
-    
-        # Data Loading
+    st.title("用戶流失率預測系統")
     st.header("1. Data Loading")
     data_option = st.radio("選擇數據來源", ["上傳CSV文件", "隨機資料"])
 
@@ -160,7 +142,7 @@ with tab1:
 
     st.write(st.session_state.df.head())
 
-    # Data Exploration and Visualization
+
     st.header("2. Data Exploration and Visualization")
     with st.expander("展開以查看數據探索"):
         st.write("使用 PyGWalker 進行數據探索:")
@@ -172,8 +154,8 @@ with tab1:
         else:
             st.warning("Please load the data first! @data_lemak")
 
-    # Data Preprocessing
-    st.header("2. Data Preprocessing")
+
+    st.header("3. Data Preprocessing")
     with st.expander("展開以查看數據預處理"):
         st.write("Missing Value Imputation")
         fill_methods = {col: st.selectbox(f"選擇 {col} 的填補方式", ['mean', 'mode', '0'], key=f"fill_{col}") for col in st.session_state.df.columns}
@@ -199,7 +181,7 @@ with tab1:
             st.write(st.session_state.df.head())
 
     # Feature Engineering
-    st.header("3. Feature Engineering")
+    st.header("4. Feature Engineering")
     with st.expander("展開以查看特徵工程"):
         features_to_process = ['age', 'tenure', 'balance', 'num_products', 'has_credit_card', 'is_active_member', 'estimated_salary']
 
@@ -233,7 +215,7 @@ with tab1:
             st.write(st.session_state.df.head())
 
     # Select features
-    st.header("4. Select Features for Training")
+    st.header("5. Select Features for Training")
     features_for_model = st.multiselect(
         "選擇特徵",
         options=[col for col in st.session_state.df.columns if col.endswith('_processed') or col in features_to_process],
@@ -241,7 +223,7 @@ with tab1:
     )
 
     # Model Selection and Training
-    st.header("5. Model Selection and Training")
+    st.header("6. Model Selection and Training")
     tuning_method = st.radio("選擇超參數調優方法", ["手動調整", "GridSearchCV", "RandomizedSearchCV"])
     if tuning_method == "手動調整":
         n_splits = st.slider("K-Fold 交叉驗證折數", 2, 10, 5)
@@ -418,7 +400,7 @@ with tab1:
             st.success("Model training completed! You can proceed with model evaluation and interpretation. @data_lemak")
 
     # Model Evaluation
-    st.header("6. Model Evaluation")
+    st.header("7. Model Evaluation")
 
     if 'model' in st.session_state:
         if tuning_method == "手動調整":
@@ -507,7 +489,7 @@ with tab1:
         fig.update_layout(title_text='Confusion Matrix', xaxis_title='Predicted label', yaxis_title='True label')
         st.plotly_chart(fig)
 
-        # SHAP values for model interpretability
+        # SHAP values
         st.subheader("模型解釋性 (SHAP 值)")
         with st.spinner('計算 SHAP 值中...'):
             explainer = shap.TreeExplainer(st.session_state['model'])
@@ -515,13 +497,10 @@ with tab1:
             
             # 檢查 shap_values 的形狀
             if isinstance(shap_values, list):
-                # 對於二元分類，我們通常關注正類的 SHAP 值
                 shap_values = shap_values[1]
             elif len(shap_values.shape) == 3:
-                # 如果是三維數組，我們取最後一個維度（通常對應於正類）
                 shap_values = shap_values[:, :, 1]
             
-            # 現在 shap_values 應該是二維的了
             shap_df = pd.DataFrame(shap_values, columns=st.session_state['features'])
             shap_importance = shap_df.abs().mean().sort_values(ascending=False)
             
@@ -626,7 +605,7 @@ with tab1:
         st.warning("Please train the model first! @data_lemak")
 
     # Model Deployment Simulation
-    st.header("7. Model Deployment Simulation")
+    st.header("8. Model Deployment Simulation")
     st.write("輸入新的數據，看看模型的預測結果：")
 
     if 'features' in st.session_state:
@@ -655,7 +634,7 @@ with tab1:
         st.warning("Please train the model first! @data_lemak")
 
     # What-If Analysis
-    st.header("8. What-If Analysis")
+    st.header("9. What-If Analysis")
     st.write("調整特徵值，看看如何影響模型的預測：")
 
     if 'features' in st.session_state:
