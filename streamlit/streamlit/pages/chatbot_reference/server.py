@@ -4,7 +4,7 @@ import requests
 import json
 
 def askAI(data):
-    serviceAccountKey = 'references/kddr-demo-eb00eaada6d8.json'
+    # serviceAccountKey = 'references/kddr-demo-eb00eaada6d8.json'
     cloudFuncPath = 'https://us-central1-nongchunxiang-ga4.cloudfunctions.net/chatbot-for-nongchunxiang'
     
     try:
