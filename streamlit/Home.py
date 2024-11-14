@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 
-logo_url = 'pages/references/kdan-logo.png'
+logo_url = 'https://www.kdan.com/blog/wp-content/uploads/2024/06/KDAN_blog_Nav-Bar%E7%94%A8%E5%9C%96%EF%BC%88h80%EF%BC%89.png'
 st.logo(logo_url)
 st.set_page_config(
     page_title="Hello",
