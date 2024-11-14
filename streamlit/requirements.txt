@@ -8,7 +8,6 @@ google-auth
 google-auth-oauthlib
 streamlit
 sqlparse
-googletrans==4.0.0-rc1
 langfuse
 openai
 vacances_scolaires_france==0.10.0
