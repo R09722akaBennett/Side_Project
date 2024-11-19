@@ -113,98 +113,320 @@ def train_models(df_clean):
     
     return (model_new_users, model_revenue), (scaler_X_new, scaler_X_rev)
 
+def get_prediction_interval(model, X, y_mean, percentile=95):
+    """計算預測的信賴區間"""
+    predictions = []
+    for estimator in model.estimators_:
+        predictions.append(estimator.predict(X))
+    predictions = np.array(predictions)
+    
+    # 計算指定百分位數的信賴區間
+    lower_bound = np.percentile(predictions, (100 - percentile) / 2, axis=0)
+    upper_bound = np.percentile(predictions, 100 - (100 - percentile) / 2, axis=0)
+    
+    return lower_bound, upper_bound
+
 def predict_revenue(investment_plan, base_data, models, scalers):
-    """預測收益"""
+    """預測收益，考慮用戶細分"""
     results = []
     prev_investment = base_data['投遞金額（google ads）']
-    prev_users = base_data['新使用者']
     prev_active_users = base_data['活躍使用者']
     prev_arrpu = base_data['ARRPU']
+    retention_rate = base_data['月留存率']
+    
+    # 業務邏輯常數
+    NEW_USER_ACTIVE_RATE = 0.4  # 新用戶中活躍用戶的比例
     
     model_new_users, model_revenue = models
     scaler_X_new, scaler_X_rev = scalers
     
     for month in range(1, 13):
+        current_investment = investment_plan[month-1]
+        
         # 預測新使用者
-        X_new = np.array([[
-            investment_plan[month-1],
-            prev_investment,
-            month,
-            (month-1)//3 + 1
-        ]])
-        X_new_scaled = scaler_X_new.transform(X_new)
-        predicted_new_users = model_new_users.predict(X_new_scaled)[0]
+        if current_investment == 0:
+            predicted_new_users = 0
+            new_users_lower = 0
+            new_users_upper = 0
+        else:
+            X_new = np.array([[
+                current_investment,
+                prev_investment,
+                month,
+                (month-1)//3 + 1
+            ]])
+            X_new_scaled = scaler_X_new.transform(X_new)
+            predicted_new_users = max(0, model_new_users.predict(X_new_scaled)[0])
+            
+            # 計算新用戶預測的信賴區間
+            new_users_lower, new_users_upper = get_prediction_interval(
+                model_new_users, X_new_scaled, predicted_new_users
+            )
+            new_users_lower = max(0, new_users_lower[0])
+            new_users_upper = max(0, new_users_upper[0])
+        
+        # 計算新用戶中的活躍用戶
+        predicted_new_active_users = predicted_new_users * NEW_USER_ACTIVE_RATE
+        new_active_users_lower = new_users_lower * NEW_USER_ACTIVE_RATE
+        new_active_users_upper = new_users_upper * NEW_USER_ACTIVE_RATE
+        
+        # 計算預期活躍用戶數（考慮留存的舊用戶 + 新活躍用戶）
+        predicted_old_active_users = prev_active_users * retention_rate
+        predicted_active_users = predicted_old_active_users + predicted_new_active_users
+        
+        # 估算活躍用戶的信賴區間
+        old_users_std = predicted_old_active_users * 0.1  # 假設10%的標準差
+        active_users_lower = (predicted_old_active_users - 1.96 * old_users_std) + new_active_users_lower
+        active_users_upper = (predicted_old_active_users + 1.96 * old_users_std) + new_active_users_upper
         
         # 預測變現收益
         X_rev = np.array([[
             predicted_new_users,
-            prev_active_users,
+            predicted_active_users,
             prev_arrpu,
             month,
             (month-1)//3 + 1
         ]])
         X_rev_scaled = scaler_X_rev.transform(X_rev)
-        predicted_revenue = model_revenue.predict(X_rev_scaled)[0]
+        predicted_revenue = max(0, model_revenue.predict(X_rev_scaled)[0])
         
-        roi = predicted_revenue / investment_plan[month-1]
+        # 計算收益預測的信賴區間
+        revenue_lower, revenue_upper = get_prediction_interval(
+            model_revenue, X_rev_scaled, predicted_revenue
+        )
+        revenue_lower = max(0, revenue_lower[0])
+        revenue_upper = max(0, revenue_upper[0])
+        
+        # 計算ROI
+        roi = predicted_revenue / current_investment if current_investment > 0 else 0
+        roi_lower = revenue_lower / current_investment if current_investment > 0 else 0
+        roi_upper = revenue_upper / current_investment if current_investment > 0 else 0
         
         results.append({
             '月份': month,
-            '投資金額': investment_plan[month-1],
+            '投資金額': current_investment,
             '預測新使用者': predicted_new_users,
+            '預測新活躍使用者': predicted_new_active_users,
+            '新使用者下界': new_users_lower,
+            '新使用者上界': new_users_upper,
+            '預測舊活躍用戶': predicted_old_active_users,
+            '預測總活躍用戶': predicted_active_users,
+            '活躍用戶下界': active_users_lower,
+            '活躍用戶上界': active_users_upper,
             '預測收益': predicted_revenue,
-            '預測ROI': roi
+            '收益下界': revenue_lower,
+            '收益上界': revenue_upper,
+            '預測ROI': roi,
+            'ROI下界': roi_lower,
+            'ROI上界': roi_upper
         })
         
-        prev_investment = investment_plan[month-1]
-        prev_users = predicted_new_users
+        # 更新下個月的基礎數據
+        prev_investment = current_investment
+        prev_active_users = predicted_active_users
         
     return pd.DataFrame(results)
 
-def plot_results(results, title):
-    """繪製結果圖表"""
-    fig = make_subplots(rows=2, cols=2, 
-                        subplot_titles=('投資金額', '預測收益', 'ROI', '累計收益'))
+
+def get_model_formula(model, feature_names, scaler):
+    """獲取模型的近似線性公式"""
+    # 獲取特徵重要性
+    importances = model.feature_importances_
     
-    # 投資金額
+    # 獲取一個樣本點進行預測
+    sample_point = np.zeros((1, len(feature_names)))
+    
+    # 計算每個特徵的單位變化對預測的影響
+    feature_effects = []
+    for i in range(len(feature_names)):
+        # 創建兩個測試點，只改變當前特徵
+        test_point1 = sample_point.copy()
+        test_point2 = sample_point.copy()
+        
+        # 使用標準差為1的變化
+        test_point1[0, i] = -1
+        test_point2[0, i] = 1
+        
+        # 進行預測
+        pred1 = model.predict(test_point1)[0]
+        pred2 = model.predict(test_point2)[0]
+        
+        # 計算效應
+        effect = (pred2 - pred1) / 2
+        feature_effects.append(effect)
+    
+    # 生成公式字符串
+    formula_parts = []
+    for name, importance, effect in zip(feature_names, importances, feature_effects):
+        if importance > 0.05:  # 只顯示重要性大於5%的特徵
+            coefficient = effect
+            if coefficient > 0:
+                formula_parts.append(f"+{coefficient:.2f}×{name}")
+            else:
+                formula_parts.append(f"{coefficient:.2f}×{name}")
+    
+    formula = "預測值 = " + " ".join(formula_parts)
+    return formula, dict(zip(feature_names, importances))
+
+def plot_feature_importance(feature_importance, title):
+    """繪製特徵重要性圖表"""
+    features = list(feature_importance.keys())
+    importance_values = list(feature_importance.values())
+    
+    fig = go.Figure(data=[
+        go.Bar(x=features, y=importance_values)
+    ])
+    
+    fig.update_layout(
+        title=title,
+        xaxis_title="特徵",
+        yaxis_title="重要性",
+        height=400
+    )
+    
+    return fig
+
+def plot_results(results, title):
+    """繪製結果圖表，加入用戶細分視圖"""
+    # 創建子圖，指定類型
+    fig = make_subplots(
+        rows=3, cols=2,
+        specs=[
+            [{"type": "xy"}, {"type": "xy"}],
+            [{"type": "xy"}, {"type": "xy"}],
+            [{"type": "domain"}, {"type": "xy"}]  # 將第三行第一列設為 domain 類型，用於繪製餅圖
+        ],
+        subplot_titles=(
+            '投資金額與預測收益', '預測新使用者',
+            '活躍用戶組成', '預測ROI',
+            '新舊活躍用戶比例', '月度趨勢'
+        )
+    )
+    
+    # 投資金額與預測收益 (row=1, col=1)
     fig.add_trace(
         go.Scatter(x=results['月份'], y=results['投資金額'],
-                  name='投資金額', mode='lines+markers'),
+                  name='投資金額', mode='lines+markers', line=dict(color='blue')),
         row=1, col=1
     )
     
-    # 預測收益
     fig.add_trace(
         go.Scatter(x=results['月份'], y=results['預測收益'],
-                  name='預測收益', mode='lines+markers'),
+                  name='預測收益', mode='lines+markers', line=dict(color='red')),
+        row=1, col=1
+    )
+    
+    # 收益信賴區間
+    fig.add_trace(
+        go.Scatter(x=list(results['月份']) + list(results['月份'])[::-1],
+                  y=list(results['收益上界']) + list(results['收益下界'])[::-1],
+                  fill='toself', fillcolor='rgba(255,0,0,0.2)',
+                  line=dict(color='rgba(255,0,0,0)'),
+                  name='收益95%信賴區間'),
+        row=1, col=1
+    )
+    
+    # 預測新使用者 (row=1, col=2)
+    fig.add_trace(
+        go.Scatter(x=results['月份'], y=results['預測新使用者'],
+                  name='預測新使用者', mode='lines+markers', line=dict(color='green')),
         row=1, col=2
     )
     
-    # ROI
+    # 添加新使用者信賴區間
     fig.add_trace(
-        go.Scatter(x=results['月份'], y=results['預測ROI'],
-                  name='ROI', mode='lines+markers'),
+        go.Scatter(x=list(results['月份']) + list(results['月份'])[::-1],
+                  y=list(results['新使用者上界']) + list(results['新使用者下界'])[::-1],
+                  fill='toself', fillcolor='rgba(0,255,0,0.2)',
+                  line=dict(color='rgba(0,255,0,0)'),
+                  name='新使用者95%信賴區間'),
+        row=1, col=2
+    )
+    
+    # 活躍用戶組成堆疊圖 (row=2, col=1)
+    fig.add_trace(
+        go.Bar(x=results['月份'], y=results['預測新活躍使用者'],
+               name='新活躍用戶', marker_color='lightgreen'),
         row=2, col=1
     )
     
-    # 累計收益
     fig.add_trace(
-        go.Scatter(x=results['月份'], y=results['預測收益'].cumsum(),
-                  name='累計收益', mode='lines+markers'),
+        go.Bar(x=results['月份'], y=results['預測舊活躍用戶'],
+               name='舊活躍用戶', marker_color='darkgreen'),
+        row=2, col=1
+    )
+    
+    # ROI (row=2, col=2)
+    fig.add_trace(
+        go.Scatter(x=results['月份'], y=results['預測ROI'],
+                  name='預測ROI', mode='lines+markers', line=dict(color='orange')),
         row=2, col=2
     )
     
-    fig.update_layout(height=800, width=1200, title_text=title)
+    # ROI信賴區間
+    fig.add_trace(
+        go.Scatter(x=list(results['月份']) + list(results['月份'])[::-1],
+                  y=list(results['ROI上界']) + list(results['ROI下界'])[::-1],
+                  fill='toself', fillcolor='rgba(255,165,0,0.2)',
+                  line=dict(color='rgba(255,165,0,0)'),
+                  name='ROI95%信賴區間'),
+        row=2, col=2
+    )
+    
+    # 新舊活躍用戶比例餅圖 (row=3, col=1)
+    total_new_active = results['預測新活躍使用者'].sum()
+    total_old_active = results['預測舊活躍用戶'].sum()
+    fig.add_trace(
+        go.Pie(labels=['新活躍用戶', '舊活躍用戶'],
+               values=[total_new_active, total_old_active],
+               name='活躍用戶組成',
+               marker_colors=['lightgreen', 'darkgreen']),
+        row=3, col=1
+    )
+    
+    # 活躍用戶月度趨勢 (row=3, col=2)
+    fig.add_trace(
+        go.Scatter(x=results['月份'], 
+                  y=results['預測總活躍用戶'],
+                  name='總活躍用戶',
+                  mode='lines+markers',
+                  line=dict(color='purple')),
+        row=3, col=2
+    )
+    
+    # 更新布局
+    fig.update_layout(
+        height=1200,
+        width=1200,
+        title_text=title,
+        showlegend=True,
+        barmode='stack'
+    )
+    
+    # 更新子圖的橫軸標題
+    fig.update_xaxes(title_text="月份", row=1, col=1)
+    fig.update_xaxes(title_text="月份", row=1, col=2)
+    fig.update_xaxes(title_text="月份", row=2, col=1)
+    fig.update_xaxes(title_text="月份", row=2, col=2)
+    fig.update_xaxes(title_text="月份", row=3, col=2)
+    
+    # 更新子圖的縱軸標題
+    fig.update_yaxes(title_text="金額", row=1, col=1)
+    fig.update_yaxes(title_text="新使用者數", row=1, col=2)
+    fig.update_yaxes(title_text="活躍用戶數", row=2, col=1)
+    fig.update_yaxes(title_text="ROI", row=2, col=2)
+    fig.update_yaxes(title_text="活躍用戶數", row=3, col=2)
+    
     return fig
-
 
 def main():
     st.title('廣告變現收益預測')
     df = load_initial_data()
     monthly_budget = []  # 初始化每月預算列表
     st.sidebar.subheader("請設置每月預算")
-    monthly_budget = [float(st.sidebar.text_input(f'第 {month} 月預算', value='800000')) for month in range(1, 13)]
-    
+    default_budgets = {1: 496675.0, 2: 646544.0, 3: 631547.0, 4: 730672.0, 5: 1192148.0, 6: 813243.0, 7: 782203.0, 8: 780915.0, 9: 780966.0, 10: 794793.0, 11: 794793.0, 12: 794793.0}
+    monthly_budget = [float(st.sidebar.text_input(f'第 {month} 月預算', value=str(default_budgets[month]))) for month in range(1, 13)]
+
     
     # 選擇數據來源
     data_source = st.radio("選擇數據來源", ("使用預設資料", "上傳 CSV 文件"))
@@ -247,6 +469,36 @@ def main():
         file_name="prediction_results.csv",
         mime="text/csv"
     )
+    st.header("模型解釋")
+    
+    # 獲取新用戶模型的公式和特徵重要性
+    new_users_formula, new_users_importance = get_model_formula(
+        models[0], 
+        ['投遞金額', '上月投遞金額', '月份', '季度'],
+        scalers[0]
+    )
+    
+    # 獲取收益模型的公式和特徵重要性
+    revenue_formula, revenue_importance = get_model_formula(
+        models[1],
+        ['新使用者數', '活躍使用者數', 'ARPPU', '月份', '季度'],
+        scalers[1]
+    )
+    
+    # 顯示模型公式
+    st.subheader("預測模型近似公式")
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("**新用戶預測模型：**")
+        st.write(new_users_formula)
+        st.plotly_chart(plot_feature_importance(new_users_importance, "新用戶模型特徵重要性"))
+    
+    with col2:
+        st.markdown("**收益預測模型：**")
+        st.write(revenue_formula)
+        st.plotly_chart(plot_feature_importance(revenue_importance, "收益模型特徵重要性"))
+
 
     # 顯示主要指標
     col1, col2, col3, col4 = st.columns(4)
