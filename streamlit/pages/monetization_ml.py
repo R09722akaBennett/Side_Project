@@ -773,7 +773,7 @@ def main():
     else:
         df = load_initial_data()
         st.subheader("預設數據")
-        st.dataframe(df)
+        st.dataframe(df, use_container_width=True)
     
     # 準備數據並訓練模型
     df_prepared = prepare_data(df)
@@ -782,7 +782,7 @@ def main():
     # 預測結果
     st.subheader("預測結果")
     results, forecast = predict_revenue(model, monthly_budget, 12)
-    st.dataframe(results)
+    st.dataframe(results, use_container_width=True)
     
     # 下載按鈕
     csv = results.to_csv(index=False)
