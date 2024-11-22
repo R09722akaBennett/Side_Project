@@ -547,7 +547,53 @@ def load_initial_data():
             848311, 793719, 840042, 779230, 777497, 738903
         ]
     }
+    
     return pd.DataFrame(data)
+
+def prepare_data(df):
+    """準備Prophet所需的數據格式"""
+    # 確保日期格式正確
+    df['date'] = pd.to_datetime(df['date'])
+    
+    # 準備Prophet數據
+    prophet_df = df.rename(columns={
+        'date': 'ds',
+        'revenue': 'y'
+    }).copy()
+    
+    # 添加cost作為regressor
+    prophet_df['cost'] = df['cost']
+    
+    # 確保數據按日期排序
+    prophet_df = prophet_df.sort_values('ds').reset_index(drop=True)
+    
+    return prophet_df
+
+def train_model(df_prepared):
+    """訓練Prophet模型"""
+    model = Prophet(
+        seasonality_mode='additive',
+        yearly_seasonality=False,
+        weekly_seasonality=False,
+        daily_seasonality=False,
+        # changepoint_prior_scale=0.001,  # 減小趨勢變化的靈活性
+        # seasonality_prior_scale=0.1     # 適度的季節性
+    )
+    
+    # 添加月度季節性
+    model.add_seasonality(
+        name='monthly',
+        period=30.5,
+        fourier_order=3  # 減小order以避免過擬合
+    )
+    
+    # 添加cost作為regressor
+    model.add_regressor('cost', standardize=False)
+    
+    # 訓練模型
+    model.fit(df_prepared)
+    
+    return model
 
 def predict_revenue(model, future_costs, periods):
     """使用Prophet模型進行預測"""
@@ -578,64 +624,24 @@ def predict_revenue(model, future_costs, periods):
     
     # 準備結果DataFrame
     results = pd.DataFrame({
-        '月份': range(1, periods + 1),
-        '投資金額': future_costs[:periods],
-        '預測收益': forecast_results['yhat'],
-        '收益下界': forecast_results['yhat_lower'],
-        '收益上界': forecast_results['yhat_upper']
+        'date': range(1, periods + 1),
+        'cost': future_costs[:periods],
+        'predict_revenue': forecast_results['yhat'],
+        'lower_bound': forecast_results['yhat_lower'],
+        'upper_bound': forecast_results['yhat_upper']
     })
     
     # 計算ROI
-    results['預測ROI'] = results['預測收益'] / results['投資金額']
-    results['ROI下界'] = results['收益下界'] / results['投資金額']
-    results['ROI上界'] = results['收益上界'] / results['投資金額']
+    results['roi'] = results['predict_revenue'] / results['cost']
+    results['roi_lower'] = results['predict_revenue'] / results['cost']
+    results['roi_upper'] = results['predict_revenue'] / results['cost']
     
+    # 新增預測日期
+    last_date = pd.to_datetime(future_dates['ds'].iloc[-1]) 
+    results['date'] = pd.date_range(start=last_date + pd.DateOffset(months=1), periods=periods, freq='MS')
+    results['date'] = pd.to_datetime(results['date']).dt.strftime('%Y-%m-%d')
+
     return results, forecast
-
-def train_model(df_prepared):
-    """訓練Prophet模型"""
-    model = Prophet(
-        seasonality_mode='additive',
-        yearly_seasonality=False,
-        weekly_seasonality=False,
-        daily_seasonality=False,
-        # changepoint_prior_scale=0.001,  # 減小趨勢變化的靈活性
-        # seasonality_prior_scale=0.1     # 適度的季節性
-    )
-    
-    # 添加月度季節性
-    model.add_seasonality(
-        name='monthly',
-        period=30.5,
-        fourier_order=3  # 減小order以避免過擬合
-    )
-    
-    # 添加cost作為regressor
-    model.add_regressor('cost', standardize=False)
-    
-    # 訓練模型
-    model.fit(df_prepared)
-    
-    return model
-
-def prepare_data(df):
-    """準備Prophet所需的數據格式"""
-    # 確保日期格式正確
-    df['date'] = pd.to_datetime(df['date'])
-    
-    # 準備Prophet數據
-    prophet_df = df.rename(columns={
-        'date': 'ds',
-        'revenue': 'y'
-    }).copy()
-    
-    # 添加cost作為regressor
-    prophet_df['cost'] = df['cost']
-    
-    # 確保數據按日期排序
-    prophet_df = prophet_df.sort_values('ds').reset_index(drop=True)
-    
-    return prophet_df
 
 def plot_results(results, forecast, title):
     """繪製預測結果圖表"""
@@ -652,8 +658,8 @@ def plot_results(results, forecast, title):
     # 投資金額與預測收益
     fig.add_trace(
         go.Scatter(
-            x=results['月份'],
-            y=results['投資金額'],
+            x=results['date'],
+            y=results['cost'],
             name='投資金額',
             mode='lines+markers',
             line=dict(color='blue')
@@ -663,8 +669,8 @@ def plot_results(results, forecast, title):
     
     fig.add_trace(
         go.Scatter(
-            x=results['月份'],
-            y=results['預測收益'],
+            x=results['date'],
+            y=results['predict_revenue'],
             name='預測收益',
             mode='lines+markers',
             line=dict(color='red')
@@ -675,8 +681,8 @@ def plot_results(results, forecast, title):
     # 收益信賴區間
     fig.add_trace(
         go.Scatter(
-            x=list(results['月份']) + list(results['月份'])[::-1],
-            y=list(results['收益上界']) + list(results['收益下界'])[::-1],
+            x=list(results['date']) + list(results['date'])[::-1],
+            y=list(results['upper_bound']) + list(results['lower_bound'])[::-1],
             fill='toself',
             fillcolor='rgba(255,0,0,0.2)',
             line=dict(color='rgba(255,0,0,0)'),
@@ -688,8 +694,8 @@ def plot_results(results, forecast, title):
     # ROI
     fig.add_trace(
         go.Scatter(
-            x=results['月份'],
-            y=results['預測ROI'],
+            x=results['date'],
+            y=results['roi'],
             name='預測ROI',
             mode='lines+markers',
             line=dict(color='green')
@@ -700,8 +706,8 @@ def plot_results(results, forecast, title):
     # ROI信賴區間
     fig.add_trace(
         go.Scatter(
-            x=list(results['月份']) + list(results['月份'])[::-1],
-            y=list(results['ROI上界']) + list(results['ROI下界'])[::-1],
+            x=list(results['date']) + list(results['date'])[::-1],
+            y=list(results['roi_upper']) + list(results['roi_lower'])[::-1],
             fill='toself',
             fillcolor='rgba(0,255,0,0.2)',
             line=dict(color='rgba(0,255,0,0)'),
@@ -772,8 +778,12 @@ def main():
             st.dataframe(df)
     else:
         df = load_initial_data()
+        df_display = df.rename(columns={
+        'date': '預測日期',
+        'cost': '歷史投遞金額',
+        'revenue': '歷史變現收益'})
         st.subheader("預設數據")
-        st.dataframe(df, use_container_width=True)
+        st.dataframe(df_display, use_container_width=True)
     
     # 準備數據並訓練模型
     df_prepared = prepare_data(df)
@@ -782,7 +792,17 @@ def main():
     # 預測結果
     st.subheader("預測結果")
     results, forecast = predict_revenue(model, monthly_budget, 12)
-    st.dataframe(results, use_container_width=True)
+    df_results_display = results.rename(columns={
+        'date': '日期',
+        'cost': '預期投遞金額',
+        'lower_bound': '預測下限',
+        'predict_revenue': '預測變現收益',
+        'upper_bound': '預測上限',
+        'roi_lower': '預計ROAS下限',
+        'roi': '預計ROAS',
+        'roi_upper': '預計ROAS上限',
+        })
+    st.dataframe(df_results_display, use_container_width=True)
     
     # 下載按鈕
     csv = results.to_csv(index=False)
@@ -796,13 +816,13 @@ def main():
     # 顯示主要指標
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.metric("預計總投資", f"{results['投資金額'].sum():,.0f}")
+        st.metric("預計總投資", f"{results['cost'].sum():,.0f}")
     with col2:
-        st.metric("預計總收益", f"{results['預測收益'].sum():,.0f}")
+        st.metric("預計總收益", f"{results['predict_revenue'].sum():,.0f}")
     with col3:
-        st.metric("平均ROI", f"{results['預測ROI'].mean():.2f}")
+        st.metric("平均ROI", f"{results['roi'].mean():.2f}")
     with col4:
-        st.metric("ROI標準差", f"{results['預測ROI'].std():.2f}")
+        st.metric("ROI標準差", f"{results['roi'].std():.2f}")
     
     # 顯示圖表
     st.plotly_chart(plot_results(results, forecast, "預測結果分析"))
