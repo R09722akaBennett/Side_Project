@@ -637,9 +637,8 @@ def predict_revenue(model, future_costs, periods):
     results['roi_upper'] = results['predict_revenue'] / results['cost']
     
     # 新增預測日期
-    last_date = pd.to_datetime(future_dates['ds'].iloc[-1]) 
-    results['date'] = pd.date_range(start=last_date + pd.DateOffset(months=1), periods=periods, freq='MS')
-    results['date'] = pd.to_datetime(results['date']).dt.strftime('%Y-%m-%d')
+    results['date'] = pd.to_datetime(future_dates['ds']).dt.strftime('%Y-%m-%d') 
+    
 
     return results, forecast
 
