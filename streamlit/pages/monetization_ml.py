@@ -587,6 +587,11 @@ def prepare_data(df):
     # 確保日期格式正確
     df['date'] = pd.to_datetime(df['date'])
     
+    # 確保其他列為浮點數
+    df['revenue'] = df['revenue'].astype(float)
+    df['cost'] = df['cost'].astype(float)
+    df['active_user'] = df['active_user'].astype(float)
+        
     # 準備Prophet數據
     prophet_df = df.rename(columns={
         'date': 'ds',
@@ -757,13 +762,21 @@ def main():
         uploaded_file = st.file_uploader("上傳 CSV 文件", type=["csv"])
         if uploaded_file is not None:
             df = pd.read_csv(uploaded_file)
-            expected_columns = ['date', 'cost', 'revenue']
+            expected_columns = ['date', 'cost', 'revenue','active_user']
             if not all(col in df.columns for col in expected_columns):
                 st.error("上傳的文件格式不正確，請確保包含以下列: " + ", ".join(expected_columns))
                 return
             df['date'] = pd.to_datetime(df['date'])
             st.subheader("上傳的數據")
-            st.dataframe(df)
+            df_display = df.rename(columns={
+            'date': '預測日期',
+            'cost': '歷史投遞金額',
+            'active_user': '活躍用戶數',
+            'revenue': '歷史變現收益'
+            })
+            df_display['預測日期'] = pd.to_datetime(df_display['預測日期']).dt.strftime('%Y-%m')  
+
+            st.dataframe(df_display, use_container_width=True)
     else:
         df = load_initial_data()
         # 確保日期格式正確
@@ -863,7 +876,10 @@ def main():
     
     # 準備數據並訓練模型
     df_prepared = prepare_data(df)
+    st.write("Prepared DataFrame:", df_prepared)
     model = train_model(df_prepared)
+    
+
     # 預測結果
     st.subheader("預測結果")
     results, forecast = predict_revenue(model, monthly_budget, 12, df)
