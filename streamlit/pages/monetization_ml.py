@@ -537,18 +537,50 @@ st.set_page_config(page_title="廣告變現收益預測", layout="wide")
 @st.cache_data
 def load_initial_data():
     data = {
-        'date': ['2023-07-01','2023-08-01','2023-09-01','2023-10-01','2023-11-01','2023-12-01','2024-01-01','2024-02-01','2024-03-01','2024-04-01','2024-05-01','2024-06-01'],
+        'date': ['2022-01-01','2022-02-01','2022-03-01','2022-04-01','2022-05-01','2022-06-01','2022-07-01','2022-08-01','2022-09-01','2022-10-01','2022-11-01','2022-12-01','2023-01-01','2023-02-01','2023-03-01','2023-04-01','2023-05-01','2023-06-01','2023-07-01','2023-08-01','2023-09-01','2023-10-01','2023-11-01','2023-12-01'],
+
         'cost': [
-            727369, 494465, 382925, 353211, 509009, 506131,
-            496675, 636544, 631547, 730672, 1192148, 813243
+            704177, 762384, 812837, 904768, 1013294, 1217421,
+            1328718, 1530757, 1547773, 1548895, 1452694, 1095080,
+            897250, 842486, 1036517, 1154801, 1042375, 1263188,
+            727369, 494465, 382925, 353211, 509009, 506131
         ],
+
+        'active_user': [
+            1487546, 1468368, 1464235, 1402852, 1386879, 1369241, 1356332, 1364901, 1347618, 1294489, 1287219, 1199877, 1262118, 1188010, 1221980, 1135310, 1116841, 1099087, 944065, 969298, 946241, 892729, 823957, 759620
+        ],
+
         'revenue': [
-            1073448, 1023352, 848734, 749857, 749430, 792460,
-            848311, 793719, 840042, 779230, 777497, 738903
+            1665937, 1513545, 1831731, 1937624, 1874419, 1723995,
+            1979887, 1998035, 1746071, 1331042, 1258247, 1121431,
+            1059160, 999901, 1076458, 943998, 1077483, 1162024,
+            1073448, 1023352, 848734, 749857, 749430, 792460
         ]
     }
     
     return pd.DataFrame(data)
+
+def prepare_future_regressor(historical_data, column_name, forecast_periods, months=6):
+    """
+    使用最後6個月的平均值作為未來預測值，這種方法對於波動的活躍用戶數是合理的
+    """
+    last_6_months = historical_data[column_name].tail(months)
+    mean_value = last_6_months.mean()
+    
+    # 增加一些診斷信息
+    std_value = last_6_months.std()
+    cv = std_value / mean_value  # 變異係數
+    
+    # print(f"\n{column_name} 預測診斷：")
+    # print(f"過去{months}個月平均值: {mean_value:.2f}")
+    # print(f"標準差: {std_value:.2f}")
+    # print(f"變異係數: {cv:.2f}")
+    # print(f"最大值: {last_6_months.max():.2f}")
+    # print(f"最小值: {last_6_months.min():.2f}")
+    
+    return [mean_value] * forecast_periods
+
+
 
 def prepare_data(df):
     """準備Prophet所需的數據格式"""
@@ -561,41 +593,69 @@ def prepare_data(df):
         'revenue': 'y'
     }).copy()
     
-    # 添加cost作為regressor
+    # 添加regressors
     prophet_df['cost'] = df['cost']
+    prophet_df['active_user'] = df['active_user']
     
-    # 確保數據按日期排序
     prophet_df = prophet_df.sort_values('ds').reset_index(drop=True)
+    
+    min_cap = max(0, df['revenue'].min() * 0.5)  
+    max_cap = df['revenue'].max() * 1.5          
+    prophet_df['floor'] = min_cap
+    prophet_df['cap'] = max_cap
     
     return prophet_df
 
 def train_model(df_prepared):
     """訓練Prophet模型"""
-    model = Prophet(
-        seasonality_mode='additive',
-        yearly_seasonality=False,
-        weekly_seasonality=False,
-        daily_seasonality=False,
-        # changepoint_prior_scale=0.001,  # 減小趨勢變化的靈活性
-        # seasonality_prior_scale=0.1     # 適度的季節性
-    )
+    # 定義模型參數
+    model_params = {
+        'seasonality_mode': 'multiplicative',
+        'growth': 'logistic',
+        'yearly_seasonality': True,
+        'weekly_seasonality': False,
+        'daily_seasonality': False,
+        'changepoint_prior_scale': 0.0005,
+        'seasonality_prior_scale': 0.01,
+        'interval_width': 0.67,
+        'n_changepoints': 6
+    }
+    
+    # 初始化模型
+    model = Prophet(**model_params)
     
     # 添加月度季節性
     model.add_seasonality(
         name='monthly',
         period=30.5,
-        fourier_order=3  # 減小order以避免過擬合
+        fourier_order=2,
+        prior_scale=0.01
     )
     
-    # 添加cost作為regressor
-    model.add_regressor('cost', standardize=False)
+    # 添加regressors
+    regressors = {
+        'cost': {
+            'prior_scale': 0.25,
+            'mode': 'additive'
+        },
+        'active_user': {
+            'prior_scale': 0.95,
+            'mode': 'additive'
+        }
+    }
+    
+    # 添加regressor
+    for regressor_name, params in regressors.items():
+        if regressor_name in df_prepared.columns:
+            model.add_regressor(regressor_name, **params)
     
     # 訓練模型
     model.fit(df_prepared)
     
     return model
 
-def predict_revenue(model, future_costs, periods):
+
+def predict_revenue(model, future_costs, periods, historical_data):
     """使用Prophet模型進行預測"""
     # 創建未來日期DataFrame
     future_dates = model.make_future_dataframe(
@@ -612,9 +672,20 @@ def predict_revenue(model, future_costs, periods):
         pd.Series(future_costs[:periods])  # 確保只使用需要的預測期數的成本
     ]).reset_index(drop=True)
     
+    # 確保active_user的未來預測值也被添加
+    future_user_values = prepare_future_regressor(historical_data, 'active_user', len(future_dates))  # Use the length of future_dates
+
+    future_dates['active_user'] = future_user_values  # Assign the correct length
+
+    # 添加 floor 和 cap 列
+    min_cap = max(0, historical_data['revenue'].min() * 0.5)  
+    max_cap = historical_data['revenue'].max() * 1.5          
+    future_dates['floor'] = min_cap
+    future_dates['cap'] = max_cap
+
     # 確保沒有NaN值
-    if future_dates['cost'].isna().any():
-        raise ValueError("成本數據中存在缺失值，請確保所有時間點都有對應的成本數據")
+    if future_dates['cost'].isna().any() or future_dates['active_user'].isna().any():
+        raise ValueError("成本或活躍用戶數據中存在缺失值，請確保所有時間點都有對應的數據")
     
     # 進行預測
     forecast = model.predict(future_dates)
@@ -632,127 +703,45 @@ def predict_revenue(model, future_costs, periods):
     })
     
     # 計算ROI
-    results['roi'] = results['predict_revenue'] / results['cost']
     results['roi_lower'] = results['predict_revenue'] / results['cost']
-    results['roi_upper'] = results['predict_revenue'] / results['cost']
+    results['roi_upper'] = results['upper_bound'] / results['cost']
     
     # 新增預測日期
-    results['date'] = pd.to_datetime(future_dates['ds']).dt.strftime('%Y-%m-%d') 
-    
+    results['date'] = pd.to_datetime(future_dates['ds']).dt.strftime('%Y-%m') 
 
     return results, forecast
 
-def plot_results(results, forecast, title):
-    """繪製預測結果圖表"""
-    fig = make_subplots(
-        rows=2, cols=2,
-        subplot_titles=(
-            '投資金額與預測收益',
-            '預測ROI',
-            '趨勢分解',
-            '月度季節性'
-        )
-    )
-    
-    # 投資金額與預測收益
-    fig.add_trace(
-        go.Scatter(
-            x=results['date'],
-            y=results['cost'],
-            name='投資金額',
-            mode='lines+markers',
-            line=dict(color='blue')
-        ),
-        row=1, col=1
-    )
-    
-    fig.add_trace(
-        go.Scatter(
-            x=results['date'],
-            y=results['predict_revenue'],
-            name='預測收益',
-            mode='lines+markers',
-            line=dict(color='red')
-        ),
-        row=1, col=1
-    )
-    
-    # 收益信賴區間
-    fig.add_trace(
-        go.Scatter(
-            x=list(results['date']) + list(results['date'])[::-1],
-            y=list(results['upper_bound']) + list(results['lower_bound'])[::-1],
-            fill='toself',
-            fillcolor='rgba(255,0,0,0.2)',
-            line=dict(color='rgba(255,0,0,0)'),
-            name='收益95%信賴區間'
-        ),
-        row=1, col=1
-    )
-    
-    # ROI
-    fig.add_trace(
-        go.Scatter(
-            x=results['date'],
-            y=results['roi'],
-            name='預測ROI',
-            mode='lines+markers',
-            line=dict(color='green')
-        ),
-        row=1, col=2
-    )
-    
-    # ROI信賴區間
-    fig.add_trace(
-        go.Scatter(
-            x=list(results['date']) + list(results['date'])[::-1],
-            y=list(results['roi_upper']) + list(results['roi_lower'])[::-1],
-            fill='toself',
-            fillcolor='rgba(0,255,0,0.2)',
-            line=dict(color='rgba(0,255,0,0)'),
-            name='ROI95%信賴區間'
-        ),
-        row=1, col=2
-    )
-    
-    # 趨勢
-    fig.add_trace(
-        go.Scatter(
-            x=list(range(len(forecast))),  # 將range轉換為列表
-            y=forecast['trend'],
-            name='趨勢',
-            line=dict(color='purple')
-        ),
-        row=2, col=1
-    )
 
+# def calculate_diagnostics(forecast, historical_data):
+#     """計算預測診斷指標"""
+#     # 只取歷史數據部分的預測
+#     historical_predictions = forecast[forecast['ds'].isin(historical_data['date'])]
+#     actual_values = historical_data['revenue'].values
+#     predicted_values = historical_predictions['yhat'].values
     
-    # 更新布局
-    fig.update_layout(
-        height=800,
-        title_text=title,
-        showlegend=True
-    )
+#     # 計算各種誤差指標
+#     mape = np.mean(np.abs((actual_values - predicted_values) / actual_values)) * 100
+#     rmse = np.sqrt(np.mean((actual_values - predicted_values) ** 2))
+#     mae = np.mean(np.abs(actual_values - predicted_values))
     
-    # 更新軸標籤
-    fig.update_xaxes(title_text="月份", row=1, col=1)
-    fig.update_xaxes(title_text="月份", row=1, col=2)
-    fig.update_xaxes(title_text="時間序列", row=2, col=1)
-    fig.update_xaxes(title_text="時間序列", row=2, col=2)
+#     # 計算預測區間覆蓋率
+#     in_interval = np.sum((actual_values >= historical_predictions['yhat_lower']) & 
+#                         (actual_values <= historical_predictions['yhat_upper']))
+#     coverage = in_interval / len(actual_values) * 100
     
-    fig.update_yaxes(title_text="金額", row=1, col=1)
-    fig.update_yaxes(title_text="ROI", row=1, col=2)
-    fig.update_yaxes(title_text="趨勢值", row=2, col=1)
-    fig.update_yaxes(title_text="季節性", row=2, col=2)
-    
-    return fig
+#     return {
+#         'MAPE': round(mape, 2),
+#         'RMSE': round(rmse, 2),
+#         'MAE': round(mae, 2),
+#         'Coverage': round(coverage, 2)
+#     }
 
 def main():
     st.title('收入預測分析')
     
     # 設置側邊欄的預算輸入
     st.sidebar.subheader("請設置每月預算")
-    default_budgets = {1: 782203.0, 2: 780915.0, 3: 780966.0, 4: 794793.0, 5: 794793.0, 6: 794793.0, 7: 794793.0, 8: 794793.0, 9: 794793.0, 10: 794793.0, 11: 794793.0, 12: 794793.0}
+    default_budgets = {1: 496675.0, 2: 646544.0, 3: 631547.0, 4: 730672.0, 5: 1192148.0, 6: 813243.0, 7: 782203.0, 8: 780915.0, 9: 780966.0, 10: 794793.0, 11: 794793.0, 12: 794793.0}
     monthly_budget = [
         float(st.sidebar.text_input(
             f'第 {month} 月預算',
@@ -777,54 +766,225 @@ def main():
             st.dataframe(df)
     else:
         df = load_initial_data()
+        # 確保日期格式正確
+        df['date'] = pd.to_datetime(df['date'])
+        
+        # 確保數值類型
+        df['cost'] = pd.to_numeric(df['cost'], errors='coerce')
+        df['revenue'] = pd.to_numeric(df['revenue'], errors='coerce')
+        df['active_user'] = pd.to_numeric(df['active_user'], errors='coerce')
+
         df_display = df.rename(columns={
-        'date': '預測日期',
-        'cost': '歷史投遞金額',
-        'revenue': '歷史變現收益'})
+            'date': '預測日期',
+            'cost': '歷史投遞金額',
+            'active_user': '活躍用戶數',
+            'revenue': '歷史變現收益'
+        })
+        df_display['預測日期'] = pd.to_datetime(df_display['預測日期']).dt.strftime('%Y-%m')  
         st.subheader("預設數據")
         st.dataframe(df_display, use_container_width=True)
+
+        # 按年份統計資料
+        # 按年份統計資料
+        st.subheader("年度統計資料")
+        df['year'] = df['date'].dt.strftime('%Y')
+
+        # 計算統計量並轉置
+        yearly_stats = pd.DataFrame({
+        '指標': ['總額', '平均', '標準差', '最小值', '最大值'],
+        '2022年變現收益': [
+            df[df['year']=='2022']['revenue'].sum().round(2),
+            df[df['year']=='2022']['revenue'].mean().round(2),
+            df[df['year']=='2022']['revenue'].std().round(2),
+            df[df['year']=='2022']['revenue'].min().round(2),
+            df[df['year']=='2022']['revenue'].max().round(2)
+        ],
+        '2023年變現收益': [
+            df[df['year']=='2023']['revenue'].sum().round(2),
+            df[df['year']=='2023']['revenue'].mean().round(2),
+            df[df['year']=='2023']['revenue'].std().round(2),
+            df[df['year']=='2023']['revenue'].min().round(2),
+            df[df['year']=='2023']['revenue'].max().round(2)
+        ],
+        '2022年投遞金額': [
+            df[df['year']=='2022']['cost'].sum().round(2),
+            df[df['year']=='2022']['cost'].mean().round(2),
+            df[df['year']=='2022']['cost'].std().round(2),
+            df[df['year']=='2022']['cost'].min().round(2),
+            df[df['year']=='2022']['cost'].max().round(2)
+        ],
+        '2023年投遞金額': [
+            df[df['year']=='2023']['cost'].sum().round(2),
+            df[df['year']=='2023']['cost'].mean().round(2),
+            df[df['year']=='2023']['cost'].std().round(2),
+            df[df['year']=='2023']['cost'].min().round(2),
+            df[df['year']=='2023']['cost'].max().round(2)
+        ],
+        '2022年活躍用戶': [
+            df[df['year']=='2022']['active_user'].mean().round(2),  # 活躍用戶用平均值替代總和
+            df[df['year']=='2022']['active_user'].mean().round(2),
+            df[df['year']=='2022']['active_user'].std().round(2),
+            df[df['year']=='2022']['active_user'].min().round(2),
+            df[df['year']=='2022']['active_user'].max().round(2)
+        ],
+        '2023年活躍用戶': [
+            df[df['year']=='2023']['active_user'].mean().round(2),  # 活躍用戶用平均值替代總和
+            df[df['year']=='2023']['active_user'].mean().round(2),
+            df[df['year']=='2023']['active_user'].std().round(2),
+            df[df['year']=='2023']['active_user'].min().round(2),
+            df[df['year']=='2023']['active_user'].max().round(2)
+        ]
+        }).set_index('指標')
+
+        st.dataframe(yearly_stats, use_container_width=True)
+        
+        # 計算年度變化趨勢
+        st.subheader("年度變化趨勢")
+        yearly_trends = df.groupby('year').agg({
+            'revenue': 'sum',
+            'cost': 'sum',
+            'active_user': 'mean'
+        }).reset_index()
+        
+        # 計算變化率
+        yearly_trends['revenue_pct'] = yearly_trends['revenue'].pct_change() * 100
+        yearly_trends['cost_pct'] = yearly_trends['cost'].pct_change() * 100
+        yearly_trends['active_user_pct'] = yearly_trends['active_user'].pct_change() * 100
+        
+        # 創建趨勢表格
+        trend_table = pd.DataFrame({
+            '年份': yearly_trends['year'],
+            '變現收益變化率(%)': yearly_trends['revenue_pct'].round(2),
+            '投遞金額變化率(%)': yearly_trends['cost_pct'].round(2),
+            '活躍用戶變化率(%)': yearly_trends['active_user_pct'].round(2)
+        })
+        
+        st.dataframe(trend_table, use_container_width=True)
     
     # 準備數據並訓練模型
     df_prepared = prepare_data(df)
     model = train_model(df_prepared)
-    
     # 預測結果
     st.subheader("預測結果")
-    results, forecast = predict_revenue(model, monthly_budget, 12)
-    df_results_display = results.rename(columns={
-        'date': '日期',
-        'cost': '預期投遞金額',
-        'lower_bound': '預測下限',
-        'predict_revenue': '預測變現收益',
-        'upper_bound': '預測上限',
-        'roi_lower': '預計ROAS下限',
-        'roi': '預計ROAS',
-        'roi_upper': '預計ROAS上限',
-        })
-    st.dataframe(df_results_display, use_container_width=True)
+    results, forecast = predict_revenue(model, monthly_budget, 12, df)
+    results_display = results[['date', 'cost', 'predict_revenue', 'upper_bound', 'roi_lower', 'roi_upper']].rename(columns={
+        'date': '預測日期',
+        'cost': '預期預算',
+        'predict_revenue':'預測下限',
+        'upper_bound':'預測上限',
+        'roi_lower': 'ROAS下限',
+        'roi_upper': "ROAS上限"})   
+    st.dataframe(results_display, use_container_width=True) 
+    # # 顯示診斷信息
+    # diagnostics = calculate_diagnostics(forecast, df)
     
-    # 下載按鈕
-    csv = results.to_csv(index=False)
-    st.download_button(
-        label="下載預測結果",
-        data=csv,
-        file_name="prediction_results.csv",
-        mime="text/csv"
+    # # 使用列來顯示診斷指標
+    # col1, col2, col3, col4 = st.columns(4)
+    # col1.metric("MAPE (%)", diagnostics['MAPE'])
+    # col2.metric("RMSE", int(diagnostics['RMSE']))
+    # col3.metric("MAE", int(diagnostics['MAE']))
+    # col4.metric("預測區間覆蓋率 (%)", diagnostics['Coverage'])
+    future_active_user = prepare_future_regressor(df, 'active_user', 12)
+    st.metric("預測活躍用戶數",int(future_active_user[0].round(0)))
+    st.write("使用最近6個月平均活躍用戶為估值")
+    
+    components = ['trend', 'seasonal', 'cost', 'active_user']
+    component_importance = {}
+    for comp in components:
+        if comp in forecast.columns:
+            component_importance[comp] = abs(forecast[comp]).mean()
+    st.write("各變數平均影響力：")
+    st.bar_chart(component_importance)
+        # 1. 收入預測圖
+    # 1. 收入預測圖
+    st.markdown("### 收入預測圖")
+    st.markdown("此圖顯示了歷史收入數據以及未來預測的收入範圍。紅色虛線表示預測的下限，橙色虛線表示預測的上限，紅色區域顯示了預測的信賴區間(0.95)。")
+    
+    fig1 = make_subplots(rows=1, cols=1, subplot_titles=("收入預測圖",))
+    fig1.add_trace(
+        go.Scatter(x=df['date'], y=df['revenue'], name='歷史收入', line=dict(color='blue', width=2)),
     )
+    fig1.add_trace(
+          go.Scatter(
+            x=df['date'], 
+            y=df['active_user'], 
+            name='活躍使用者', 
+            line=dict(color='green', width=2),
+            hovertemplate='活躍使用者: %{y:.2f}<br>日期: %{x}<extra></extra>'
+        ),
+    )
+    fig1.add_trace(
+        go.Scatter(
+            x=results['date'], 
+            y=results['predict_revenue'], 
+            name='預測下限', 
+            line=dict(color='red', dash='dash', width=2),
+            hovertemplate='預測下限: %{y:.2f}<br>日期: %{x}<extra></extra>'
+        ),
+    )
+    fig1.add_trace(
+        go.Scatter(
+            x=results['date'], 
+            y=results['upper_bound'], 
+            name='預測上限', 
+            line=dict(color='orange', dash='dash', width=2),
+            hovertemplate='預測上限: %{y:.2f}<br>日期: %{x}<extra></extra>'
+        ),
+    )
+    fig1.add_trace(
+        go.Scatter(
+            x=pd.concat([results['date'], results['date'][::-1]]), 
+            y=pd.concat([results['upper_bound'], results['predict_revenue'][::-1]]), 
+            fill='toself', 
+            fillcolor='rgba(255,0,0,0.2)', 
+            name='預測區間', 
+            line=dict(color='rgba(255,0,0,0)'),
+            hovertemplate='預測區間: %{y:.2f}<br>日期: %{x}<extra></extra>'
+        )
+    )
+    fig1.update_layout(
+        title='收入預測與歷史數據比較',
+        xaxis_title='日期',
+        yaxis_title='收入',
+        legend_title='圖例',
+        template='plotly_white'
+    )
+    st.plotly_chart(fig1)
+
+    # 2. ROAS 分析
+    st.markdown("### ROAS 分析")
+    st.markdown("此圖顯示了預測的投資回報率（ROAS）。ROAS 是預測收入與預算的比率，幫助評估投資的效益。")
     
-    # 顯示主要指標
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        st.metric("預計總投資", f"{results['cost'].sum():,.0f}")
-    with col2:
-        st.metric("預計總收益", f"{results['predict_revenue'].sum():,.0f}")
-    with col3:
-        st.metric("平均ROI", f"{results['roi'].mean():.2f}")
-    with col4:
-        st.metric("ROI標準差", f"{results['roi'].std():.2f}")
+    fig2 = make_subplots(rows=1, cols=1, subplot_titles=("ROAS 分析",))
+    fig2.add_trace(
+        go.Scatter(x=results['date'], y=results['roi_lower'], name='預測 ROAS', line=dict(color='purple', width=2),
+                   hovertemplate='日期: %{x}<br>預測 ROAS: %{y:.2f}<extra></extra>'),
+    )
+    fig2.update_layout(
+        title='預測 ROAS 分析',
+        xaxis_title='日期',
+        yaxis_title='ROAS',
+        legend_title='圖例',
+        template='plotly_white'
+    )
+    st.plotly_chart(fig2)
+
+    # 3. 趨勢分解
+    st.markdown("### 趨勢分解")
+    st.markdown("此圖顯示了預測模型中的趨勢成分，幫助理解收入隨時間的變化趨勢。")
     
-    # 顯示圖表
-    st.plotly_chart(plot_results(results, forecast, "預測結果分析"))
+    fig3 = make_subplots(rows=1, cols=1, subplot_titles=("趨勢分解",))
+    fig3.add_trace(
+        go.Scatter(x=forecast['ds'], y=forecast['trend'], name='趨勢', line=dict(color='blue', width=2)),
+    )
+    fig3.update_layout(
+        title='趨勢分解',
+        xaxis_title='日期',
+        yaxis_title='趨勢',
+        legend_title='圖例',
+        template='plotly_white'
+    )
+    st.plotly_chart(fig3)
 
 if __name__ == "__main__":
     main()
