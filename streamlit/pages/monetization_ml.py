@@ -758,25 +758,77 @@ def main():
     # 選擇數據來源
     data_source = st.radio("選擇數據來源", ("使用預設資料", "上傳 CSV 文件"))
     
+    # ... existing code ...
+
     if data_source == "上傳 CSV 文件":
         uploaded_file = st.file_uploader("上傳 CSV 文件", type=["csv"])
         if uploaded_file is not None:
             df = pd.read_csv(uploaded_file)
-            expected_columns = ['date', 'cost', 'revenue','active_user']
+            expected_columns = ['date', 'cost', 'revenue', 'active_user']
             if not all(col in df.columns for col in expected_columns):
                 st.error("上傳的文件格式不正確，請確保包含以下列: " + ", ".join(expected_columns))
                 return
             df['date'] = pd.to_datetime(df['date'])
             st.subheader("上傳的數據")
             df_display = df.rename(columns={
-            'date': '預測日期',
-            'cost': '歷史投遞金額',
-            'active_user': '活躍用戶數',
-            'revenue': '歷史變現收益'
+                'date': '預測日期',
+                'cost': '歷史投遞金額',
+                'active_user': '活躍用戶數',
+                'revenue': '歷史變現收益'
             })
-            df_display['預測日期'] = pd.to_datetime(df_display['預測日期']).dt.strftime('%Y-%m')  
-
+            df_display['預測日期'] = pd.to_datetime(df_display['預測日期']).dt.strftime('%Y-%m')
             st.dataframe(df_display, use_container_width=True)
+
+            st.subheader("年度統計資料")
+            df['year'] = df['date'].dt.year
+
+            yearly_stats = pd.DataFrame({
+                '指標': ['總額', '平均', '標準差', '最小值', '最大值'],
+                '變現收益': [
+                    df.groupby('year')['revenue'].sum().round(2),
+                    df.groupby('year')['revenue'].mean().round(2),
+                    df.groupby('year')['revenue'].std().round(2),
+                    df.groupby('year')['revenue'].min().round(2),
+                    df.groupby('year')['revenue'].max().round(2)
+                ],
+                '投遞金額': [
+                    df.groupby('year')['cost'].sum().round(2),
+                    df.groupby('year')['cost'].mean().round(2),
+                    df.groupby('year')['cost'].std().round(2),
+                    df.groupby('year')['cost'].min().round(2),
+                    df.groupby('year')['cost'].max().round(2)
+                ],
+                '活躍用戶': [
+                    df.groupby('year')['active_user'].mean().round(2),
+                    df.groupby('year')['active_user'].mean().round(2),
+                    df.groupby('year')['active_user'].std().round(2),
+                    df.groupby('year')['active_user'].min().round(2),
+                    df.groupby('year')['active_user'].max().round(2)
+                ]
+            }).set_index('指標')
+
+            st.dataframe(yearly_stats, use_container_width=True)
+
+            st.subheader("年度變化趨勢")
+            yearly_trends = df.groupby('year').agg({
+                'revenue': 'sum',
+                'cost': 'sum',
+                'active_user': 'mean'
+            }).reset_index()
+
+            yearly_trends['revenue_pct'] = yearly_trends['revenue'].pct_change() * 100
+            yearly_trends['cost_pct'] = yearly_trends['cost'].pct_change() * 100
+            yearly_trends['active_user_pct'] = yearly_trends['active_user'].pct_change() * 100
+
+            trend_table = pd.DataFrame({
+                '年份': yearly_trends['year'],
+                '變現收益變化率(%)': yearly_trends['revenue_pct'].round(2),
+                '投遞金額變化率(%)': yearly_trends['cost_pct'].round(2),
+                '活躍用戶變化率(%)': yearly_trends['active_user_pct'].round(2)
+            })
+
+            st.dataframe(trend_table, use_container_width=True)
+
     else:
         df = load_initial_data()
         # 確保日期格式正確
@@ -882,6 +934,7 @@ def main():
 
     # 預測結果
     st.subheader("預測結果")
+    
     results, forecast = predict_revenue(model, monthly_budget, 12, df)
     results_display = results[['date', 'cost', 'predict_revenue', 'upper_bound', 'roi_lower', 'roi_upper']].rename(columns={
         'date': '預測日期',
@@ -890,6 +943,20 @@ def main():
         'upper_bound':'預測上限',
         'roi_lower': 'ROAS下限',
         'roi_upper': "ROAS上限"})   
+    metrics = [
+        ("未來12個月預測總預算", results['cost'].sum().round(0)),
+        ("未來12個月預測總收益（下限）", results['predict_revenue'].sum().round(0)),
+        ("未來12個月預測總收益（上限）", results['upper_bound'].sum().round(0)),
+        ("未來12個月預測總ROAS（下限）", results['roi_lower'].mean().round(2)),
+        ("未來12個月預測總ROAS（上限）", results['roi_upper'].mean().round(2))
+    ]
+    col1, col2, col3, col4, col5 = st.columns(5)
+    col1.metric("未來12個月預測總預算", int(metrics[0][1]))
+    col2.metric("未來12個月預測總收益（下限）", int(metrics[1][1]))
+    col3.metric("未來12個月預測總收益（上限）", int(metrics[2][1]))
+    col4.metric("未來12個月預測總ROAS（下限）", float(metrics[3][1]))
+    col5.metric("未來12個月預測總ROAS（上限）", float(metrics[4][1]))
+
     st.dataframe(results_display, use_container_width=True) 
     # # 顯示診斷信息
     # diagnostics = calculate_diagnostics(forecast, df)
