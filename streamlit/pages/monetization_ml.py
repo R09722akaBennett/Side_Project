@@ -535,29 +535,56 @@ st.set_page_config(page_title="廣告變現收益預測", layout="wide")
 
 # 初始數據
 @st.cache_data
-def load_initial_data():
-    data = {
-        'date': ['2022-01-01','2022-02-01','2022-03-01','2022-04-01','2022-05-01','2022-06-01','2022-07-01','2022-08-01','2022-09-01','2022-10-01','2022-11-01','2022-12-01','2023-01-01','2023-02-01','2023-03-01','2023-04-01','2023-05-01','2023-06-01','2023-07-01','2023-08-01','2023-09-01','2023-10-01','2023-11-01','2023-12-01'],
+def load_initial_data(dataset_name="kdan_android"):
+    if dataset_name == "kdan_android":
+        data = {
+            'date': ['2022-01-01','2022-02-01','2022-03-01','2022-04-01','2022-05-01','2022-06-01','2022-07-01','2022-08-01','2022-09-01','2022-10-01','2022-11-01','2022-12-01','2023-01-01','2023-02-01','2023-03-01','2023-04-01','2023-05-01','2023-06-01','2023-07-01','2023-08-01','2023-09-01','2023-10-01','2023-11-01','2023-12-01'],
+            'cost': [
+                704177, 762384, 812837, 904768, 1013294, 1217421,
+                1328718, 1530757, 1547773, 1548895, 1452694, 1095080,
+                897250, 842486, 1036517, 1154801, 1042375, 1263188,
+                727369, 494465, 382925, 353211, 509009, 506131
+            ],
+            'active_user': [
+                1487546, 1468368, 1464235, 1402852, 1386879, 1369241, 1356332, 1364901, 1347618, 1294489, 1287219, 1199877, 1262118, 1188010, 1221980, 1135310, 1116841, 1099087, 944065, 969298, 946241, 892729, 823957, 759620
+            ],
+            'revenue': [
+                1665937, 1513545, 1831731, 1937624, 1874419, 1723995,
+                1979887, 1998035, 1746071, 1331042, 1258247, 1121431,
+                1059160, 999901, 1076458, 943998, 1077483, 1162024,
+                1073448, 1023352, 848734, 749857, 749430, 792460
+            ]
+        }
+    elif dataset_name == "cs_android":
+        data = {
+    'date': [
+        '2022-01-01', '2022-02-01', '2022-03-01', '2022-04-01', '2022-05-01', '2022-06-01',
+        '2022-07-01', '2022-08-01', '2022-09-01', '2022-10-01', '2022-11-01', '2022-12-01',
+        '2023-01-01', '2023-02-01', '2023-03-01', '2023-04-01', '2023-05-01', '2023-06-01',
+        '2023-07-01', '2023-08-01', '2023-09-01', '2023-10-01', '2023-11-01', '2023-12-01'
+    ],
+    'cost': [
+        411166.0, 459678.0, 467154.0, 358090.0, 321809.0, 375642.0,
+        516304.0, 389143.0, 325003.0, 286079.0, 356050.0, 293915.0,
+        112422.0, 109266.0, 113934.0, 139135.0, 129609.0, 141700.0,
+        172153.0, 198878.0, 159169.0, 173970.0, 194594.0, 181865.0
+    ],
+    'active_user': [
+        780453.0, 869452.0, 938582.0, 794291.0, 794872.0, 751335.0,
+        747692.0, 769719.0, 790245.0, 778229.0, 798234.0, 698742.0,
+        618280.0, 586202.0, 583201.0, 561235.0, 548519.0, 512903.0,
+        500318.0, 496642.0, 482258.0, 489265.0, 476973.0, 450954.0
+    ],
+    'revenue': [
+        233243.0, 265104.0, 345975.0, 307883.0, 309512.0, 296876.0,
+        307495.0, 285060.0, 276729.0, 132227.0, 174468.0, 141109.0,
+        95627.0, 70130.0, 65817.0, 53972.0, 54981.0, 102854.0,
+        115993.0, 104805.0, 103678.0, 94063.0, 91066.0, 56464.0
+    ]
+}
+    else:
+        raise ValueError("Unknown dataset name")
 
-        'cost': [
-            704177, 762384, 812837, 904768, 1013294, 1217421,
-            1328718, 1530757, 1547773, 1548895, 1452694, 1095080,
-            897250, 842486, 1036517, 1154801, 1042375, 1263188,
-            727369, 494465, 382925, 353211, 509009, 506131
-        ],
-
-        'active_user': [
-            1487546, 1468368, 1464235, 1402852, 1386879, 1369241, 1356332, 1364901, 1347618, 1294489, 1287219, 1199877, 1262118, 1188010, 1221980, 1135310, 1116841, 1099087, 944065, 969298, 946241, 892729, 823957, 759620
-        ],
-
-        'revenue': [
-            1665937, 1513545, 1831731, 1937624, 1874419, 1723995,
-            1979887, 1998035, 1746071, 1331042, 1258247, 1121431,
-            1059160, 999901, 1076458, 943998, 1077483, 1162024,
-            1073448, 1023352, 848734, 749857, 749430, 792460
-        ]
-    }
-    
     return pd.DataFrame(data)
 
 def prepare_future_regressor(historical_data, column_name, forecast_periods, months=6):
@@ -610,47 +637,193 @@ def prepare_data(df):
     prophet_df['cap'] = max_cap
     
     return prophet_df
-
-def train_model(df_prepared):
-    """訓練Prophet模型"""
-    # 定義模型參數
-    model_params = {
-        'seasonality_mode': 'multiplicative',
-        'growth': 'logistic',
-        'yearly_seasonality': True,
-        'weekly_seasonality': False,
-        'daily_seasonality': False,
-        'changepoint_prior_scale': 0.0005,
-        'seasonality_prior_scale': 0.01,
-        'interval_width': 0.67,
-        'n_changepoints': 6
+def get_model_parameters(model_name="model_kdan_android"):
+    """取得不同模型的參數配置"""
+    model_configs = {
+        "model_kdan_android": {
+            "model_params": {
+                'seasonality_mode': 'multiplicative',
+                'growth': 'logistic',
+                'yearly_seasonality': True,
+                'weekly_seasonality': False,
+                'daily_seasonality': False,
+                'changepoint_prior_scale': 0.0005,
+                'seasonality_prior_scale': 0.01,
+                'interval_width': 0.67,
+                'n_changepoints': 6
+            },
+            "seasonality_params": {
+                'period': 30.5,
+                'fourier_order': 2,
+                'prior_scale': 0.01
+            },
+            "regressor_params": {
+                'cost': {
+                    'prior_scale': 0.25,
+                    'mode': 'additive'
+                },
+                'active_user': {
+                    'prior_scale': 0.95,
+                    'mode': 'additive'
+                }
+            }
+        },
+        "custom": {
+            "model_params": {
+                'seasonality_mode': 'multiplicative',
+                'growth': 'logistic',
+                'yearly_seasonality': True,
+                'weekly_seasonality': False,
+                'daily_seasonality': False,
+                'changepoint_prior_scale': 0.001,
+                'seasonality_prior_scale': 0.1,
+                'interval_width': 0.95,
+                'n_changepoints': 10
+            },
+            "seasonality_params": {
+                'period': 30.5,
+                'fourier_order': 3,
+                'prior_scale': 0.1
+            },
+            "regressor_params": {
+                'cost': {
+                    'prior_scale': 0.5,
+                    'mode': 'additive'
+                },
+                'active_user': {
+                    'prior_scale': 0.5,
+                    'mode': 'additive'
+                }
+            }
+        },
+        "model_cs_android": {
+            "model_params": {
+                'seasonality_mode': 'multiplicative',
+                'growth': 'logistic',
+                'yearly_seasonality': True,
+                'weekly_seasonality': False,
+                'daily_seasonality': False,
+                'changepoint_prior_scale': 0.0003,
+                'seasonality_prior_scale': 0.005,
+                'interval_width': 0.58,
+                'n_changepoints': 8
+            },
+            "seasonality_params": {
+                'period': 30.5,
+                'fourier_order': 3,
+                'prior_scale': 0.02
+            },
+            "regressor_params": {
+                'cost': {
+                    'prior_scale': 0.4,
+                    'mode': 'multiplicative'
+                },
+                'active_user': {
+                    'prior_scale': 0.85,
+                    'mode': 'multiplicative'
+                }
+            }
+        }
     }
     
-    # 初始化模型
+    return model_configs.get(model_name)
+
+def customize_model_parameters(st, base_params):
+    """允許使用者自定義模型參數"""
+    st.markdown("### 模型參數設置")
+    
+    with st.expander("基本參數設置"):
+        model_params = base_params["model_params"].copy()
+        model_params['seasonality_mode'] = st.selectbox(
+            "季節性模式",
+            ['multiplicative', 'additive'],
+            index=0 if model_params['seasonality_mode'] == 'multiplicative' else 1
+        )
+        model_params['growth'] = st.selectbox(
+            "成長模式",
+            ['logistic', 'linear', 'flat'],
+            index=0 if model_params['growth'] == 'logistic' else 1
+        )
+        model_params['changepoint_prior_scale'] = st.number_input(
+            "變點先驗尺度",
+            min_value=0.0001,
+            max_value=0.5,
+            value=float(model_params['changepoint_prior_scale']),
+            format='%f'
+        )
+        model_params['seasonality_prior_scale'] = st.number_input(
+            "季節性先驗尺度",
+            min_value=0.01,
+            max_value=10.0,
+            value=float(model_params['seasonality_prior_scale']),
+            format='%f'
+        )
+        model_params['interval_width'] = st.slider(
+            "預測區間寬度",
+            min_value=0.5,
+            max_value=0.95,
+            value=float(model_params['interval_width'])
+        )
+        model_params['n_changepoints'] = st.slider(
+            "變點數量",
+            min_value=1,
+            max_value=20,
+            value=int(model_params['n_changepoints'])
+        )
+    
+    with st.expander("季節性參數設置"):
+        seasonality_params = base_params["seasonality_params"].copy()
+        seasonality_params['fourier_order'] = st.slider(
+            "傅立葉階數",
+            min_value=1,
+            max_value=10,
+            value=int(seasonality_params['fourier_order'])
+        )
+        seasonality_params['prior_scale'] = st.number_input(
+            "季節性先驗尺度",
+            min_value=0.01,
+            max_value=10.0,
+            value=float(seasonality_params['prior_scale']),
+            format='%f'
+        )
+    
+    with st.expander("Regressor 參數設置"):
+        regressor_params = base_params["regressor_params"].copy()
+        for regressor in ['cost', 'active_user']:
+            st.markdown(f"#### {regressor} 設置")
+            regressor_params[regressor]['prior_scale'] = st.number_input(
+                f"{regressor} 先驗尺度",
+                min_value=0.01,
+                max_value=10.0,
+                value=float(regressor_params[regressor]['prior_scale']),
+                format='%f',
+                key=f"{regressor}_prior_scale"
+            )
+            regressor_params[regressor]['mode'] = st.selectbox(
+                f"{regressor} 模式",
+                ['additive', 'multiplicative'],
+                index=0 if regressor_params[regressor]['mode'] == 'additive' else 1,
+                key=f"{regressor}_mode"
+            )
+    
+    return {
+        "model_params": model_params,
+        "seasonality_params": seasonality_params,
+        "regressor_params": regressor_params
+    }
+
+def train_model(df_prepared, model_params, seasonality_params, regressor_params):
+    """使用指定參數訓練Prophet模型"""
     model = Prophet(**model_params)
     
     # 添加月度季節性
     model.add_seasonality(
         name='monthly',
-        period=30.5,
-        fourier_order=2,
-        prior_scale=0.01
+        **seasonality_params
     )
     
     # 添加regressors
-    regressors = {
-        'cost': {
-            'prior_scale': 0.25,
-            'mode': 'additive'
-        },
-        'active_user': {
-            'prior_scale': 0.95,
-            'mode': 'additive'
-        }
-    }
-    
-    # 添加regressor
-    for regressor_name, params in regressors.items():
+    for regressor_name, params in regressor_params.items():
         if regressor_name in df_prepared.columns:
             model.add_regressor(regressor_name, **params)
     
@@ -741,12 +914,456 @@ def predict_revenue(model, future_costs, periods, historical_data):
 #         'Coverage': round(coverage, 2)
 #     }
 
+# def main():
+#     st.title('收入預測分析')
+    
+#     # 設置側邊欄的預算輸入
+#     st.sidebar.subheader("選擇預設預算")
+#     budget_choice = st.sidebar.radio(
+#         "選擇預算類型",
+#         ["kdan_android", "cs_android"]
+#     )
+
+#     # Define default budgets for each type
+#     default_budgets_kdan = {
+#         1: 496675.0, 
+#         2: 646544.0, 
+#         3: 631547.0, 
+#         4: 730672.0, 
+#         5: 1192148.0, 
+#         6: 813243.0, 
+#         7: 782203.0, 
+#         8: 780915.0, 
+#         9: 780966.0, 
+#         10: 794793.0, 
+#         11: 794793.0, 
+#         12: 794793.0}
+#     default_budgets_cs = {
+#         1: 26584.0, 
+#         2: 27790.0, 
+#         3: 33841.0, 
+#         4: 43701.0, 
+#         5: 38353.0, 
+#         6: 33748.0, 
+#         7: 46247.0, 
+#         8: 47568.0, 
+#         9: 49241.0, 
+#         10: 60630.0,
+#         11: 60630.0,
+#         12: 60630.0
+#     }
+
+#     st.sidebar.subheader("選擇數據集")
+#     dataset_choice = st.sidebar.radio(
+#         "選擇數據集",
+#         ["kdan_android", "cs_android"]
+#     )
+    
+#     # Set default budgets based on dataset choice
+#     if dataset_choice == "kdan_android":
+#         default_budgets = default_budgets_kdan
+#     else:
+#         default_budgets = default_budgets_cs
+
+#     # Set monthly budgets based on the selected default
+#     monthly_budget = [
+#         float(st.sidebar.text_input(
+#             f'第 {month} 月預算',
+#             value=str(default_budgets[month])
+#         ))
+#         for month in range(1, 13)
+#     ]
+#     df = load_initial_data(dataset_choice)
+    
+#     # 選擇數據來源
+#     data_source = st.radio("選擇數據來源", ("使用預設資料", "上傳 CSV 文件"))
+#     if data_source == "上傳 CSV 文件":
+#         uploaded_file = st.file_uploader("上傳 CSV 文件", type=["csv"])
+#         if uploaded_file is not None:
+#             df = pd.read_csv(uploaded_file)
+#             expected_columns = ['date', 'cost', 'revenue', 'active_user']
+#             if not all(col in df.columns for col in expected_columns):
+#                 st.error("上傳的文件格式不正確，請確保包含以下列: " + ", ".join(expected_columns))
+#                 return
+#             df['date'] = pd.to_datetime(df['date'])
+#             st.subheader("上傳的數據")
+#             df_display = df.rename(columns={
+#                 'date': '預測日期',
+#                 'cost': '歷史投遞金額',
+#                 'active_user': '活躍用戶數',
+#                 'revenue': '歷史變現收益'
+#             })
+#             df_display['預測日期'] = pd.to_datetime(df_display['預測日期']).dt.strftime('%Y-%m')
+#             st.dataframe(df_display, use_container_width=True)
+
+#             st.subheader("年度統計資料")
+#             df['year'] = df['date'].dt.year
+
+#             yearly_stats = pd.DataFrame({
+#                 '指標': ['總額', '平均', '標準差', '最小值', '最大值'],
+#                 '變現收益': [
+#                     df.groupby('year')['revenue'].sum().round(2),
+#                     df.groupby('year')['revenue'].mean().round(2),
+#                     df.groupby('year')['revenue'].std().round(2),
+#                     df.groupby('year')['revenue'].min().round(2),
+#                     df.groupby('year')['revenue'].max().round(2)
+#                 ],
+#                 '投遞金額': [
+#                     df.groupby('year')['cost'].sum().round(2),
+#                     df.groupby('year')['cost'].mean().round(2),
+#                     df.groupby('year')['cost'].std().round(2),
+#                     df.groupby('year')['cost'].min().round(2),
+#                     df.groupby('year')['cost'].max().round(2)
+#                 ],
+#                 '活躍用戶': [
+#                     df.groupby('year')['active_user'].mean().round(2),
+#                     df.groupby('year')['active_user'].mean().round(2),
+#                     df.groupby('year')['active_user'].std().round(2),
+#                     df.groupby('year')['active_user'].min().round(2),
+#                     df.groupby('year')['active_user'].max().round(2)
+#                 ]
+#             }).set_index('指標')
+
+#             st.dataframe(yearly_stats, use_container_width=True)
+
+#             st.subheader("年度變化趨勢")
+#             yearly_trends = df.groupby('year').agg({
+#                 'revenue': 'sum',
+#                 'cost': 'sum',
+#                 'active_user': 'mean'
+#             }).reset_index()
+
+#             yearly_trends['revenue_pct'] = yearly_trends['revenue'].pct_change() * 100
+#             yearly_trends['cost_pct'] = yearly_trends['cost'].pct_change() * 100
+#             yearly_trends['active_user_pct'] = yearly_trends['active_user'].pct_change() * 100
+
+#             trend_table = pd.DataFrame({
+#                 '年份': yearly_trends['year'],
+#                 '變現收益變化率(%)': yearly_trends['revenue_pct'].round(2),
+#                 '投遞金額變化率(%)': yearly_trends['cost_pct'].round(2),
+#                 '活躍用戶變化率(%)': yearly_trends['active_user_pct'].round(2)
+#             })
+
+#             st.dataframe(trend_table, use_container_width=True)
+
+#     else:
+#         dataset_choice = st.radio("選擇預設數據集", ("kdan_android", "cs_android"))
+#         df = load_initial_data(dataset_name=dataset_choice)
+#         df['date'] = pd.to_datetime(df['date'])
+        
+#         df['cost'] = pd.to_numeric(df['cost'], errors='coerce')
+#         df['revenue'] = pd.to_numeric(df['revenue'], errors='coerce')
+#         df['active_user'] = pd.to_numeric(df['active_user'], errors='coerce')
+
+#         df_display = df.rename(columns={
+#             'date': '預測日期',
+#             'cost': '歷史投遞金額',
+#             'active_user': '活躍用戶數',
+#             'revenue': '歷史變現收益'
+#         })
+#         df_display['預測日期'] = pd.to_datetime(df_display['預測日期']).dt.strftime('%Y-%m')  
+#         st.subheader("預設數據")
+#         st.dataframe(df_display, use_container_width=True)
+
+#         # 按年份統計資料
+#         # 按年份統計資料
+#         st.subheader("年度統計資料")
+#         df['year'] = df['date'].dt.strftime('%Y')
+
+#         # 計算統計量並轉置
+#         yearly_stats = pd.DataFrame({
+#         '指標': ['總額', '平均', '標準差', '最小值', '最大值'],
+#         '2022年變現收益': [
+#             df[df['year']=='2022']['revenue'].sum().round(2),
+#             df[df['year']=='2022']['revenue'].mean().round(2),
+#             df[df['year']=='2022']['revenue'].std().round(2),
+#             df[df['year']=='2022']['revenue'].min().round(2),
+#             df[df['year']=='2022']['revenue'].max().round(2)
+#         ],
+#         '2023年變現收益': [
+#             df[df['year']=='2023']['revenue'].sum().round(2),
+#             df[df['year']=='2023']['revenue'].mean().round(2),
+#             df[df['year']=='2023']['revenue'].std().round(2),
+#             df[df['year']=='2023']['revenue'].min().round(2),
+#             df[df['year']=='2023']['revenue'].max().round(2)
+#         ],
+#         '2022年投遞金額': [
+#             df[df['year']=='2022']['cost'].sum().round(2),
+#             df[df['year']=='2022']['cost'].mean().round(2),
+#             df[df['year']=='2022']['cost'].std().round(2),
+#             df[df['year']=='2022']['cost'].min().round(2),
+#             df[df['year']=='2022']['cost'].max().round(2)
+#         ],
+#         '2023年投遞金額': [
+#             df[df['year']=='2023']['cost'].sum().round(2),
+#             df[df['year']=='2023']['cost'].mean().round(2),
+#             df[df['year']=='2023']['cost'].std().round(2),
+#             df[df['year']=='2023']['cost'].min().round(2),
+#             df[df['year']=='2023']['cost'].max().round(2)
+#         ],
+#         '2022年活躍用戶': [
+#             df[df['year']=='2022']['active_user'].mean().round(2),  # 活躍用戶用平均值替代總和
+#             df[df['year']=='2022']['active_user'].mean().round(2),
+#             df[df['year']=='2022']['active_user'].std().round(2),
+#             df[df['year']=='2022']['active_user'].min().round(2),
+#             df[df['year']=='2022']['active_user'].max().round(2)
+#         ],
+#         '2023年活躍用戶': [
+#             df[df['year']=='2023']['active_user'].mean().round(2),  # 活躍用戶用平均值替代總和
+#             df[df['year']=='2023']['active_user'].mean().round(2),
+#             df[df['year']=='2023']['active_user'].std().round(2),
+#             df[df['year']=='2023']['active_user'].min().round(2),
+#             df[df['year']=='2023']['active_user'].max().round(2)
+#         ]
+#         }).set_index('指標')
+
+#         st.dataframe(yearly_stats, use_container_width=True)
+        
+#         # 計算年度變化趨勢
+#         st.subheader("年度變化趨勢")
+#         yearly_trends = df.groupby('year').agg({
+#             'revenue': 'sum',
+#             'cost': 'sum',
+#             'active_user': 'mean'
+#         }).reset_index()
+        
+#         # 計算變化率
+#         yearly_trends['revenue_pct'] = yearly_trends['revenue'].pct_change() * 100
+#         yearly_trends['cost_pct'] = yearly_trends['cost'].pct_change() * 100
+#         yearly_trends['active_user_pct'] = yearly_trends['active_user'].pct_change() * 100
+        
+#         # 創建趨勢表格
+#         trend_table = pd.DataFrame({
+#             '年份': yearly_trends['year'],
+#             '變現收益變化率(%)': yearly_trends['revenue_pct'].round(2),
+#             '投遞金額變化率(%)': yearly_trends['cost_pct'].round(2),
+#             '活躍用戶變化率(%)': yearly_trends['active_user_pct'].round(2)
+#         })
+        
+#         st.dataframe(trend_table, use_container_width=True)
+    
+#     st.sidebar.subheader("模型設置")
+#     model_choice = st.sidebar.radio(
+#         "選擇模型參數",
+#         ["model_kdan_android", "model_cs_android"]
+#     )
+    
+#     if model_choice == "model_kdan_android":
+#         selected_params = get_model_parameters("model_kdan_android")
+#     else:
+#         selected_params = get_model_parameters("model_cs_android")
+    
+#     # 準備數據並訓練模型
+#     df_prepared = prepare_data(df)
+#     model = train_model(
+#         df_prepared, 
+#         selected_params["model_params"],
+#         selected_params["seasonality_params"],
+#         selected_params["regressor_params"]
+#     )
+    
+#     # 顯示選擇的模型參數
+#     st.subheader("使用的模型參數")
+#     params_df = pd.DataFrame([
+#         {'參數類型': param_type, '參數名稱': param_name, '參數值': str(param_value)}
+#         for param_type, params in [
+#             ('基本參數', selected_params["model_params"].items()),
+#             ('季節性參數', selected_params["seasonality_params"].items()),
+#             ('Cost參數', selected_params["regressor_params"]['cost'].items()),
+#             ('Active User參數', selected_params["regressor_params"]['active_user'].items())
+#         ]
+#         for param_name, param_value in params
+#     ])
+#     st.dataframe(params_df, use_container_width=True)
+    
+
+#     # 預測結果
+#     st.subheader("預測結果")
+    
+#     results, forecast = predict_revenue(model, monthly_budget, 12, df)
+#     results_display = results[['date', 'cost', 'predict_revenue', 'upper_bound', 'roi_lower', 'roi_upper']].rename(columns={
+#         'date': '預測日期',
+#         'cost': '預期預算',
+#         'predict_revenue':'預測下限',
+#         'upper_bound':'預測上限',
+#         'roi_lower': 'ROAS下限',
+#         'roi_upper': "ROAS上限"})   
+#     metrics = [
+#         ("未來12個月預測總預算", results['cost'].sum().round(0)),
+#         ("未來12個月預測總收益（下限）", results['predict_revenue'].sum().round(0)),
+#         ("未來12個月預測總收益（上限）", results['upper_bound'].sum().round(0)),
+#         ("未來12個月預測總ROAS（下限）", results['roi_lower'].mean().round(2)),
+#         ("未來12個月預測總ROAS（上限）", results['roi_upper'].mean().round(2))
+#     ]
+#     col1, col2, col3, col4, col5 = st.columns(5)
+#     col1.metric("未來12個月預測總預算", int(metrics[0][1]))
+#     col2.metric("未來12個月預測總收益（下限）", int(metrics[1][1]))
+#     col3.metric("未來12個月預測總收益（上限）", int(metrics[2][1]))
+#     col4.metric("未來12個月預測總ROAS（下限）", float(metrics[3][1]))
+#     col5.metric("未來12個月預測總ROAS（上限）", float(metrics[4][1]))
+
+#     st.dataframe(results_display, use_container_width=True) 
+#     # # 顯示診斷信息
+#     # diagnostics = calculate_diagnostics(forecast, df)
+    
+#     # # 使用列來顯示診斷指標
+#     # col1, col2, col3, col4 = st.columns(4)
+#     # col1.metric("MAPE (%)", diagnostics['MAPE'])
+#     # col2.metric("RMSE", int(diagnostics['RMSE']))
+#     # col3.metric("MAE", int(diagnostics['MAE']))
+#     # col4.metric("預測區間覆蓋率 (%)", diagnostics['Coverage'])
+#     future_active_user = prepare_future_regressor(df, 'active_user', 12)
+#     st.metric("預測活躍用戶數",int(future_active_user[0].round(0)))
+#     st.write("使用最近6個月平均活躍用戶為估值")
+    
+#     components = ['trend', 'seasonal', 'cost', 'active_user']
+#     component_importance = {}
+#     for comp in components:
+#         if comp in forecast.columns:
+#             component_importance[comp] = abs(forecast[comp]).mean()
+#     st.write("各變數平均影響力：")
+#     st.bar_chart(component_importance)
+#         # 1. 收入預測圖
+#     # 1. 收入預測圖
+#     st.markdown("### 收入預測圖")
+#     st.markdown("此圖顯示了歷史收入數據以及未來預測的收入範圍。紅色虛線表示預測的下限，橙色虛線表示預測的上限，紅色區域顯示了預測的信賴區間(0.95)。")
+    
+#     fig1 = make_subplots(rows=1, cols=1, subplot_titles=("收入預測圖",))
+#     fig1.add_trace(
+#         go.Scatter(x=df['date'], y=df['revenue'], name='歷史收入', line=dict(color='blue', width=2)),
+#     )
+#     fig1.add_trace(
+#           go.Scatter(
+#             x=df['date'], 
+#             y=df['active_user'], 
+#             name='活躍使用者', 
+#             line=dict(color='green', width=2),
+#             hovertemplate='活躍使用者: %{y:.2f}<br>日期: %{x}<extra></extra>'
+#         ),
+#     )
+#     fig1.add_trace(
+#         go.Scatter(
+#             x=results['date'], 
+#             y=results['predict_revenue'], 
+#             name='預測下限', 
+#             line=dict(color='red', dash='dash', width=2),
+#             hovertemplate='預測下限: %{y:.2f}<br>日期: %{x}<extra></extra>'
+#         ),
+#     )
+#     fig1.add_trace(
+#         go.Scatter(
+#             x=results['date'], 
+#             y=results['upper_bound'], 
+#             name='預測上限', 
+#             line=dict(color='orange', dash='dash', width=2),
+#             hovertemplate='預測上限: %{y:.2f}<br>日期: %{x}<extra></extra>'
+#         ),
+#     )
+#     fig1.add_trace(
+#         go.Scatter(
+#             x=pd.concat([results['date'], results['date'][::-1]]), 
+#             y=pd.concat([results['upper_bound'], results['predict_revenue'][::-1]]), 
+#             fill='toself', 
+#             fillcolor='rgba(255,0,0,0.2)', 
+#             name='預測區間', 
+#             line=dict(color='rgba(255,0,0,0)'),
+#             hovertemplate='預測區間: %{y:.2f}<br>日期: %{x}<extra></extra>'
+#         )
+#     )
+#     fig1.update_layout(
+#         title='收入預測與歷史數據比較',
+#         xaxis_title='日期',
+#         yaxis_title='收入',
+#         legend_title='圖例',
+#         template='plotly_white'
+#     )
+#     st.plotly_chart(fig1)
+
+#     # 2. ROAS 分析
+#     st.markdown("### ROAS 分析")
+#     st.markdown("此圖顯示了預測的投資回報率（ROAS）。ROAS 是預測收入與預算的比率，幫助評估投資的效益。")
+    
+#     fig2 = make_subplots(rows=1, cols=1, subplot_titles=("ROAS 分析",))
+#     fig2.add_trace(
+#         go.Scatter(x=results['date'], y=results['roi_lower'], name='預測 ROAS', line=dict(color='purple', width=2),
+#                    hovertemplate='日期: %{x}<br>預測 ROAS: %{y:.2f}<extra></extra>'),
+#     )
+#     fig2.update_layout(
+#         title='預測 ROAS 分析',
+#         xaxis_title='日期',
+#         yaxis_title='ROAS',
+#         legend_title='圖例',
+#         template='plotly_white'
+#     )
+#     st.plotly_chart(fig2)
+
+#     # 3. 趨勢分解
+#     st.markdown("### 趨勢分解")
+#     st.markdown("此圖顯示了預測模型中的趨勢成分，幫助理解收入隨時間的變化趨勢。")
+    
+#     fig3 = make_subplots(rows=1, cols=1, subplot_titles=("趨勢分解",))
+#     fig3.add_trace(
+#         go.Scatter(x=forecast['ds'], y=forecast['trend'], name='趨勢', line=dict(color='blue', width=2)),
+#     )
+#     fig3.update_layout(
+#         title='趨勢分解',
+#         xaxis_title='日期',
+#         yaxis_title='趨勢',
+#         legend_title='圖例',
+#         template='plotly_white'
+#     )
+#     st.plotly_chart(fig3)
+
+# if __name__ == "__main__":
+#     main()
+
 def main():
     st.title('收入預測分析')
     
-    # 設置側邊欄的預算輸入
-    st.sidebar.subheader("請設置每月預算")
-    default_budgets = {1: 496675.0, 2: 646544.0, 3: 631547.0, 4: 730672.0, 5: 1192148.0, 6: 813243.0, 7: 782203.0, 8: 780915.0, 9: 780966.0, 10: 794793.0, 11: 794793.0, 12: 794793.0}
+    # 設置側邊欄的預算和數據集選擇
+    st.sidebar.subheader("選擇數據集和預算")
+    dataset_choice = st.sidebar.radio(
+        "選擇數據集",
+        ["kdan_android", "cs_android"]
+    )
+
+    # Define default budgets for each type
+    default_budgets_kdan = {
+        1: 496675.0, 
+        2: 646544.0, 
+        3: 631547.0, 
+        4: 730672.0, 
+        5: 1192148.0, 
+        6: 813243.0, 
+        7: 782203.0, 
+        8: 780915.0, 
+        9: 780966.0, 
+        10: 794793.0, 
+        11: 794793.0, 
+        12: 794793.0
+    }
+    default_budgets_cs = {
+        1: 26584.0, 
+        2: 27790.0, 
+        3: 33841.0, 
+        4: 43701.0, 
+        5: 38353.0, 
+        6: 33748.0, 
+        7: 46247.0, 
+        8: 47568.0, 
+        9: 49241.0, 
+        10: 60630.0,
+        11: 60630.0,
+        12: 60630.0
+    }
+
+    # Set default budgets based on dataset choice
+    if dataset_choice == "kdan_android":
+        default_budgets = default_budgets_kdan
+    else:
+        default_budgets = default_budgets_cs
+
+    # Set monthly budgets based on the selected default
     monthly_budget = [
         float(st.sidebar.text_input(
             f'第 {month} 月預算',
@@ -755,11 +1372,11 @@ def main():
         for month in range(1, 13)
     ]
     
+    # Load initial data based on dataset choice
+    df = load_initial_data(dataset_choice)
+    
     # 選擇數據來源
     data_source = st.radio("選擇數據來源", ("使用預設資料", "上傳 CSV 文件"))
-    
-    # ... existing code ...
-
     if data_source == "上傳 CSV 文件":
         uploaded_file = st.file_uploader("上傳 CSV 文件", type=["csv"])
         if uploaded_file is not None:
@@ -830,11 +1447,8 @@ def main():
             st.dataframe(trend_table, use_container_width=True)
 
     else:
-        df = load_initial_data()
-        # 確保日期格式正確
         df['date'] = pd.to_datetime(df['date'])
         
-        # 確保數值類型
         df['cost'] = pd.to_numeric(df['cost'], errors='coerce')
         df['revenue'] = pd.to_numeric(df['revenue'], errors='coerce')
         df['active_user'] = pd.to_numeric(df['active_user'], errors='coerce')
@@ -845,93 +1459,39 @@ def main():
             'active_user': '活躍用戶數',
             'revenue': '歷史變現收益'
         })
-        df_display['預測日期'] = pd.to_datetime(df_display['預測日期']).dt.strftime('%Y-%m')  
-        st.subheader("預設數據")
         st.dataframe(df_display, use_container_width=True)
 
-        # 按年份統計資料
-        # 按年份統計資料
-        st.subheader("年度統計資料")
-        df['year'] = df['date'].dt.strftime('%Y')
+    # 選擇模型參數
+    st.sidebar.subheader("選擇模型參數")
+    model_param_choice = st.sidebar.radio(
+        "選擇模型參數",
+        ["kdan_android", "cs_android"]
+    )
 
-        # 計算統計量並轉置
-        yearly_stats = pd.DataFrame({
-        '指標': ['總額', '平均', '標準差', '最小值', '最大值'],
-        '2022年變現收益': [
-            df[df['year']=='2022']['revenue'].sum().round(2),
-            df[df['year']=='2022']['revenue'].mean().round(2),
-            df[df['year']=='2022']['revenue'].std().round(2),
-            df[df['year']=='2022']['revenue'].min().round(2),
-            df[df['year']=='2022']['revenue'].max().round(2)
-        ],
-        '2023年變現收益': [
-            df[df['year']=='2023']['revenue'].sum().round(2),
-            df[df['year']=='2023']['revenue'].mean().round(2),
-            df[df['year']=='2023']['revenue'].std().round(2),
-            df[df['year']=='2023']['revenue'].min().round(2),
-            df[df['year']=='2023']['revenue'].max().round(2)
-        ],
-        '2022年投遞金額': [
-            df[df['year']=='2022']['cost'].sum().round(2),
-            df[df['year']=='2022']['cost'].mean().round(2),
-            df[df['year']=='2022']['cost'].std().round(2),
-            df[df['year']=='2022']['cost'].min().round(2),
-            df[df['year']=='2022']['cost'].max().round(2)
-        ],
-        '2023年投遞金額': [
-            df[df['year']=='2023']['cost'].sum().round(2),
-            df[df['year']=='2023']['cost'].mean().round(2),
-            df[df['year']=='2023']['cost'].std().round(2),
-            df[df['year']=='2023']['cost'].min().round(2),
-            df[df['year']=='2023']['cost'].max().round(2)
-        ],
-        '2022年活躍用戶': [
-            df[df['year']=='2022']['active_user'].mean().round(2),  # 活躍用戶用平均值替代總和
-            df[df['year']=='2022']['active_user'].mean().round(2),
-            df[df['year']=='2022']['active_user'].std().round(2),
-            df[df['year']=='2022']['active_user'].min().round(2),
-            df[df['year']=='2022']['active_user'].max().round(2)
-        ],
-        '2023年活躍用戶': [
-            df[df['year']=='2023']['active_user'].mean().round(2),  # 活躍用戶用平均值替代總和
-            df[df['year']=='2023']['active_user'].mean().round(2),
-            df[df['year']=='2023']['active_user'].std().round(2),
-            df[df['year']=='2023']['active_user'].min().round(2),
-            df[df['year']=='2023']['active_user'].max().round(2)
-        ]
-        }).set_index('指標')
-
-        st.dataframe(yearly_stats, use_container_width=True)
-        
-        # 計算年度變化趨勢
-        st.subheader("年度變化趨勢")
-        yearly_trends = df.groupby('year').agg({
-            'revenue': 'sum',
-            'cost': 'sum',
-            'active_user': 'mean'
-        }).reset_index()
-        
-        # 計算變化率
-        yearly_trends['revenue_pct'] = yearly_trends['revenue'].pct_change() * 100
-        yearly_trends['cost_pct'] = yearly_trends['cost'].pct_change() * 100
-        yearly_trends['active_user_pct'] = yearly_trends['active_user'].pct_change() * 100
-        
-        # 創建趨勢表格
-        trend_table = pd.DataFrame({
-            '年份': yearly_trends['year'],
-            '變現收益變化率(%)': yearly_trends['revenue_pct'].round(2),
-            '投遞金額變化率(%)': yearly_trends['cost_pct'].round(2),
-            '活躍用戶變化率(%)': yearly_trends['active_user_pct'].round(2)
-        })
-        
-        st.dataframe(trend_table, use_container_width=True)
-    
-    # 準備數據並訓練模型
+    # Prepare data and train model
     df_prepared = prepare_data(df)
-    st.write("Prepared DataFrame:", df_prepared)
-    model = train_model(df_prepared)
+    selected_params = get_model_parameters(f"model_{model_param_choice}")
+    model = train_model(
+        df_prepared, 
+        selected_params["model_params"],
+        selected_params["seasonality_params"],
+        selected_params["regressor_params"]
+    )
     
-
+    # Display selected model parameters
+    st.subheader("使用的模型參數")
+    params_df = pd.DataFrame([
+        {'參數類型': param_type, '參數名稱': param_name, '參數值': str(param_value)}
+        for param_type, params in [
+            ('基本參數', selected_params["model_params"].items()),
+            ('季節性參數', selected_params["seasonality_params"].items()),
+            ('Cost參數', selected_params["regressor_params"]['cost'].items()),
+            ('Active User參數', selected_params["regressor_params"]['active_user'].items())
+        ]
+        for param_name, param_value in params
+    ])
+    st.dataframe(params_df, use_container_width=True)
+    
     # 預測結果
     st.subheader("預測結果")
     
@@ -978,7 +1538,7 @@ def main():
             component_importance[comp] = abs(forecast[comp]).mean()
     st.write("各變數平均影響力：")
     st.bar_chart(component_importance)
-        # 1. 收入預測圖
+    
     # 1. 收入預測圖
     st.markdown("### 收入預測圖")
     st.markdown("此圖顯示了歷史收入數據以及未來預測的收入範圍。紅色虛線表示預測的下限，橙色虛線表示預測的上限，紅色區域顯示了預測的信賴區間(0.95)。")
