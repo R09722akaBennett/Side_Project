@@ -881,12 +881,15 @@ def predict_revenue(model, future_costs, periods, historical_data):
     })
     
     # 計算ROI
-    results['roi_lower'] = results['predict_revenue'] / results['cost']
-    results['roi_upper'] = results['upper_bound'] / results['cost']
     
+    results['roi_lower'] = round(results['predict_revenue'] / results['cost'],2)
+    results['roi_upper'] = round(results['upper_bound'] / results['cost'],2)
+    
+    results['predict_revenue'] = round(results['predict_revenue'],2)
+    results['upper_bound'] = round(results['upper_bound'],2)
     # 新增預測日期
     results['date'] = pd.to_datetime(future_dates['ds']).dt.strftime('%Y-%m') 
-
+    print(results)
     return results, forecast
 
 
