@@ -1382,6 +1382,12 @@ def main():
     data_source = st.radio("選擇數據來源", ("使用預設資料", "上傳 CSV 文件"))
     if data_source == "上傳 CSV 文件":
         uploaded_file = st.file_uploader("上傳 CSV 文件", type=["csv"])
+        st.markdown("**文件格式要求:**")
+        st.markdown("上傳的 CSV 文件必須包含以下四個欄位: ")
+        st.markdown("- `date`: 日期，格式為 `YYYY-MM-DD`")
+        st.markdown("- `cost`: 歷史投遞金額")
+        st.markdown("- `revenue`: 歷史變現收益")
+        st.markdown("- `active_user`: 歷史活躍用戶數")
         if uploaded_file is not None:
             df = pd.read_csv(uploaded_file)
             expected_columns = ['date', 'cost', 'revenue', 'active_user']
