@@ -1321,7 +1321,7 @@ def predict_revenue(model, future_costs, periods, historical_data):
 #     main()
 
 def main():
-    st.title('收入預測分析')
+    st.title('廣告變現收益預測')
     
     # 設置側邊欄的預算和數據集選擇
     st.sidebar.subheader("選擇數據集和預算")
@@ -1391,9 +1391,9 @@ def main():
             df['date'] = pd.to_datetime(df['date'])
             st.subheader("上傳的數據")
             df_display = df.rename(columns={
-                'date': '預測日期',
+                'date': '日期',
                 'cost': '歷史投遞金額',
-                'active_user': '活躍用戶數',
+                'active_user': '歷史活躍用戶數',
                 'revenue': '歷史變現收益'
             })
             df_display['預測日期'] = pd.to_datetime(df_display['預測日期']).dt.strftime('%Y-%m')
@@ -1457,9 +1457,9 @@ def main():
         df['active_user'] = pd.to_numeric(df['active_user'], errors='coerce')
 
         df_display = df.rename(columns={
-            'date': '預測日期',
+            'date': '日期',
             'cost': '歷史投遞金額',
-            'active_user': '活躍用戶數',
+            'active_user': '歷史活躍用戶數',
             'revenue': '歷史變現收益'
         })
         st.dataframe(df_display, use_container_width=True)
