@@ -612,12 +612,21 @@ def prepare_future_regressor(historical_data, column_name, forecast_periods, mon
 def prepare_data(df):
     """準備Prophet所需的數據格式"""
     # 確保日期格式正確
-    df['date'] = pd.to_datetime(df['date'])
+    try:
+        df['date'] = pd.to_datetime(df['date'])
+    except Exception as e:
+        raise ValueError(f"Error converting 'date' column to datetime: {e}")
     
-    # 確保其他列為浮點數
-    df['revenue'] = df['revenue'].astype(float)
-    df['cost'] = df['cost'].astype(float)
-    df['active_user'] = df['active_user'].astype(float)
+    # 確保其他列為浮點數，處理可能的逗號分隔符
+    for column in ['revenue', 'cost', 'active_user']:
+        try:
+            df[column] = pd.to_numeric(df[column].str.replace(',', ''), errors='coerce')
+        except Exception as e:
+            raise ValueError(f"Error converting '{column}' column to float: {e}")
+    
+    # 檢查是否有任何NaN值
+    if df[['date', 'revenue', 'cost', 'active_user']].isnull().any().any():
+        raise ValueError("Data contains NaN values after conversion. Please check your data for invalid entries.")
         
     # 準備Prophet數據
     prophet_df = df.rename(columns={
@@ -637,6 +646,7 @@ def prepare_data(df):
     prophet_df['cap'] = max_cap
     
     return prophet_df
+
 def get_model_parameters(model_name="model_kdan_android"):
     """取得不同模型的參數配置"""
     model_configs = {
@@ -1402,66 +1412,12 @@ def main():
                 'active_user': '歷史活躍用戶數',
                 'revenue': '歷史變現收益'
             })
-            df_display['預測日期'] = pd.to_datetime(df_display['預測日期']).dt.strftime('%Y-%m')
+            df_display['日期'] = pd.to_datetime(df_display['日期']).dt.strftime('%Y-%m')
             st.dataframe(df_display, use_container_width=True)
-
-            st.subheader("年度統計資料")
-            df['year'] = df['date'].dt.year
-
-            yearly_stats = pd.DataFrame({
-                '指標': ['總額', '平均', '標準差', '最小值', '最大值'],
-                '變現收益': [
-                    df.groupby('year')['revenue'].sum().round(2),
-                    df.groupby('year')['revenue'].mean().round(2),
-                    df.groupby('year')['revenue'].std().round(2),
-                    df.groupby('year')['revenue'].min().round(2),
-                    df.groupby('year')['revenue'].max().round(2)
-                ],
-                '投遞金額': [
-                    df.groupby('year')['cost'].sum().round(2),
-                    df.groupby('year')['cost'].mean().round(2),
-                    df.groupby('year')['cost'].std().round(2),
-                    df.groupby('year')['cost'].min().round(2),
-                    df.groupby('year')['cost'].max().round(2)
-                ],
-                '活躍用戶': [
-                    df.groupby('year')['active_user'].mean().round(2),
-                    df.groupby('year')['active_user'].mean().round(2),
-                    df.groupby('year')['active_user'].std().round(2),
-                    df.groupby('year')['active_user'].min().round(2),
-                    df.groupby('year')['active_user'].max().round(2)
-                ]
-            }).set_index('指標')
-
-            st.dataframe(yearly_stats, use_container_width=True)
-
-            st.subheader("年度變化趨勢")
-            yearly_trends = df.groupby('year').agg({
-                'revenue': 'sum',
-                'cost': 'sum',
-                'active_user': 'mean'
-            }).reset_index()
-
-            yearly_trends['revenue_pct'] = yearly_trends['revenue'].pct_change() * 100
-            yearly_trends['cost_pct'] = yearly_trends['cost'].pct_change() * 100
-            yearly_trends['active_user_pct'] = yearly_trends['active_user'].pct_change() * 100
-
-            trend_table = pd.DataFrame({
-                '年份': yearly_trends['year'],
-                '變現收益變化率(%)': yearly_trends['revenue_pct'].round(2),
-                '投遞金額變化率(%)': yearly_trends['cost_pct'].round(2),
-                '活躍用戶變化率(%)': yearly_trends['active_user_pct'].round(2)
-            })
-
-            st.dataframe(trend_table, use_container_width=True)
 
     else:
         df['date'] = pd.to_datetime(df['date'])
         
-        df['cost'] = pd.to_numeric(df['cost'], errors='coerce')
-        df['revenue'] = pd.to_numeric(df['revenue'], errors='coerce')
-        df['active_user'] = pd.to_numeric(df['active_user'], errors='coerce')
-
         df_display = df.rename(columns={
             'date': '日期',
             'cost': '歷史投遞金額',
@@ -1476,7 +1432,6 @@ def main():
         "選擇模型參數",
         ["kdan_android", "cs_android"]
     )
-
     # Prepare data and train model
     df_prepared = prepare_data(df)
     selected_params = get_model_parameters(f"model_{model_param_choice}")
