@@ -20,7 +20,8 @@ Women Shoes
 Customer segmentation models are often used for dividing a company’s clients into different user groups. Customers in each group display shared characteristics that distinguish them from other users.
 
 # Result
-## VIP Persona
+## VIP Persona 
+\to fix (Dashboard not exist)
 https://datastudio.google.com/reporting/bd02af85-2c91-4945-ae02-4d33c6658e1f
 
 Gender : Mostly are Female <br>
