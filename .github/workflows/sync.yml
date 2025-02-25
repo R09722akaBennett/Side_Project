@@ -12,5 +12,6 @@ jobs:
       - name: Push Streamlit to Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          GOOGLE_CREDENTIALS_KDAN_IT_PLAYGROUND: ${{ secrets.GOOGLE_CREDENTIALS_KDAN_IT_PLAYGROUND }}
         run: |
           git subtree push --prefix=streamlit https://R09722050akaB04a01361:$HF_TOKEN@huggingface.co/spaces/R09722050akaB04a01361/st_playground main

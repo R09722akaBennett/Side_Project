@@ -8,7 +8,7 @@ import numpy as np
 import mimetypes
 import tempfile
 
-DEFAULT_SA_KEY = os.getenv("GOOGLE_CREDENTIALS")
+DEFAULT_SA_KEY = os.getenv("GOOGLE_CREDENTIALS_KDAN_IT_PLAYGROUND")
 if DEFAULT_SA_KEY:
     DEFAULT_SA_KEY = json.loads(DEFAULT_SA_KEY)
 else:
