@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 load_dotenv()
 GOOGLE_CREDENTIALS = os.getenv("GOOGLE_CREDENTIALS_KDAN_IT_PLAYGROUND")
 
-
+# 判斷是本地還是正式環境
 if os.path.isfile(".env") or os.getenv("ENV") == "dev":  
     if GOOGLE_CREDENTIALS and os.path.isfile(GOOGLE_CREDENTIALS):
         with open(GOOGLE_CREDENTIALS, "r") as f:
@@ -20,24 +20,24 @@ if os.path.isfile(".env") or os.getenv("ENV") == "dev":
     else:
         st.error("本地環境：請在 .env 中設定 GOOGLE_CREDENTIALS_KDAN_IT_PLAYGROUND 為有效 JSON 檔案路徑")
         DEFAULT_SA_KEY = None
-else:  # 正式環境
+else:  # 正式環境（如 Streamlit Cloud）
     if GOOGLE_CREDENTIALS:
         try:
-            DEFAULT_SA_KEY = json.loads(GOOGLE_CREDENTIALS)  # 假設是 JSON 字串
+            DEFAULT_SA_KEY = json.loads(GOOGLE_CREDENTIALS)  # 解析 JSON 字串
         except json.JSONDecodeError:
             st.error("正式環境：GOOGLE_CREDENTIALS_KDAN_IT_PLAYGROUND 必須是有效的 JSON 字串")
             DEFAULT_SA_KEY = None
     else:
         DEFAULT_SA_KEY = None
 
-# 設置 GOOGLE_APPLICATION_CREDENTIALS
+
 if DEFAULT_SA_KEY:
     with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode='w') as tmp_file:
         json.dump(DEFAULT_SA_KEY, tmp_file)
         tmp_file.flush()
-        os.environ["正式環境：GOOGLE_CREDENTIALS_KDAN_IT_PLAYGROUND"] = tmp_file.name
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = tmp_file.name  # 使用正確的環境變數名稱
 else:
-    if not os.getenv("正式環境：GOOGLE_CREDENTIALS_KDAN_IT_PLAYGROUND"):
+    if not os.getenv("GOOGLE_APPLICATION_CREDENTIALS"):
         st.error("未找到有效的 Google Cloud 憑證，請檢查環境設定")
 
 st.title("Document AI: Signature Field Detection")
@@ -79,7 +79,7 @@ uploaded_file = st.file_uploader("SELECT FILE", type=["pdf", "jpg", "jpeg", "png
 if st.button("Clear"):
     st.session_state.uploaded_file = None
     st.session_state.boxes = None
-    st.rerun()  # 更新為 st.rerun()
+    st.rerun()
 
 if uploaded_file:
     st.session_state.uploaded_file = uploaded_file
