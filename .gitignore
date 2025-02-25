@@ -1,3 +1,4 @@
 contract/
 notebook/
 **/.venv/
+**/.env
