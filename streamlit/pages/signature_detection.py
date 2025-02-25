@@ -8,36 +8,50 @@ import numpy as np
 import mimetypes
 import tempfile
 
-DEFAULT_SA_KEY = {
+# 從環境變數獲取憑證，若無則設為 None
+DEFAULT_SA_KEY = os.getenv("GOOGLE_CREDENTIALS")
+if DEFAULT_SA_KEY:
+    DEFAULT_SA_KEY = json.loads(DEFAULT_SA_KEY)
+else:
+    DEFAULT_SA_KEY = None
 
-}
+# 初始化時檢查憑證並設置 GOOGLE_APPLICATION_CREDENTIALS
+if DEFAULT_SA_KEY:
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode='w') as tmp_file:
+        json.dump(DEFAULT_SA_KEY, tmp_file)
+        tmp_file.flush()
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = tmp_file.name
+else:
+    if not os.getenv("GOOGLE_APPLICATION_CREDENTIALS"):
+        st.error("未找到 Google Cloud 憑證，請上傳 JSON 金鑰或設定環境變數 GOOGLE_CREDENTIALS。")
 
-
-
-with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode='w') as tmp_file:
-    json.dump(DEFAULT_SA_KEY, tmp_file)
-    tmp_file.flush()
-    # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = tmp_file.name
-
-
-st.title("Document AI:")
-st.title("Signature Field Detection")
+st.title("Document AI: Signature Field Detection")
 st.markdown("**Kdan Bennett**")
 st.markdown("Extract the signature field from your doc")
+
+# 側邊欄允許上傳自訂憑證
 st.sidebar.subheader("Upload GCP JSON Key (Optional)")
 st.sidebar.write("Default credentials are in use. Upload your own JSON key to override.")
 sa_key = st.sidebar.file_uploader("Upload JSON 文件", type=["json"], key="sa_key")
 
 if sa_key:
+    custom_key = json.load(sa_key)
     with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode='w') as tmp_file:
-        json.dump(DEFAULT_SA_KEY, tmp_file)
+        json.dump(custom_key, tmp_file)
         tmp_file.flush()
         os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = tmp_file.name
     st.sidebar.success("JSON KEY HAS BEEN UPLOADED (Overriding default)")
 
-client = documentai.DocumentProcessorServiceClient()
+# 初始化 Document AI 客戶端
+try:
+    client = documentai.DocumentProcessorServiceClient()
+except Exception as e:
+    st.error(f"無法初始化 Document AI 客戶端，請檢查憑證設定：{e}")
+    st.stop()
+
 processor_name = "projects/962438265955/locations/us/processors/f69f1e73163aad4a"
 
+# 初始化 session state
 if 'uploaded_file' not in st.session_state:
     st.session_state.uploaded_file = None
 if 'boxes' not in st.session_state:
@@ -50,18 +64,15 @@ uploaded_file = st.file_uploader("SELECT FILE", type=["pdf", "jpg", "jpeg", "png
 if st.button("Clear"):
     st.session_state.uploaded_file = None
     st.session_state.boxes = None
-    st.experimental_rerun()  
-
+    st.rerun()
 
 if uploaded_file:
     st.session_state.uploaded_file = uploaded_file
-
 
 if st.session_state.uploaded_file:
     with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(st.session_state.uploaded_file.name)[1]) as tmp_file:
         tmp_file.write(st.session_state.uploaded_file.read())
         file_path = tmp_file.name
-
 
     def detect_signature_boxes(file_path):
         try:
@@ -96,11 +107,10 @@ if st.session_state.uploaded_file:
             st.error(f"detect_signature_boxes ERROR: {e}")
             return []
 
-
     def visualize_boxes(file_path, boxes):
         mime_type, _ = mimetypes.guess_type(file_path)
         if mime_type == "application/pdf":
-            images = convert_from_path(file_path, dpi=200)  
+            images = convert_from_path(file_path, dpi=200)
         elif mime_type in ["image/jpeg", "image/png", "image/jpg"]:
             images = [cv2.imread(file_path)]
         else:
@@ -109,7 +119,7 @@ if st.session_state.uploaded_file:
 
         for i, img in enumerate(images):
             if mime_type in ["image/jpeg", "image/png", "image/jpg"]:
-                img_cv = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+                img_cv = cv2.cvtColor(img, COLOR_BGR2RGB)
             else:
                 img_cv = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
             
@@ -126,7 +136,6 @@ if st.session_state.uploaded_file:
                 cv2.putText(img_cv, label, (x_min, y_min - 10), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 255), 2)  # 紅色標籤
             
             st.image(cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB), caption=f"第 {page_num + 1} 頁", use_container_width=True)
-
 
     with st.spinner("ANALYSING..."):
         boxes = detect_signature_boxes(file_path)
