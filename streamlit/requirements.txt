@@ -21,3 +21,4 @@ pdf2image
 opencv-python
 matplotlib
 watchdog
+python-dotenv
