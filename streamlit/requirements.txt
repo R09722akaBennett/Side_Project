@@ -19,6 +19,7 @@ plotly
 google-cloud-documentai
 pdf2image
 opencv-python
+opencv-python-headless
 matplotlib
 watchdog
 python-dotenv
