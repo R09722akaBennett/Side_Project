@@ -1,6 +1,0 @@
-streamlit
-google-cloud-documentai
-pdf2image
-opencv-python
-matplotlib
-watchdog
