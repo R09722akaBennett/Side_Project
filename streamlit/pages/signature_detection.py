@@ -13,7 +13,7 @@ load_dotenv()
 GOOGLE_CREDENTIALS = os.getenv("GOOGLE_CREDENTIALS_KDAN_IT_PLAYGROUND")
 
 
-if os.path.isfile(".env") or os.getenv("ENV") == "local":  
+if os.path.isfile(".env") or os.getenv("ENV") == "dev":  
     if GOOGLE_CREDENTIALS and os.path.isfile(GOOGLE_CREDENTIALS):
         with open(GOOGLE_CREDENTIALS, "r") as f:
             DEFAULT_SA_KEY = json.load(f)
@@ -35,9 +35,9 @@ if DEFAULT_SA_KEY:
     with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode='w') as tmp_file:
         json.dump(DEFAULT_SA_KEY, tmp_file)
         tmp_file.flush()
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = tmp_file.name
+        os.environ["正式環境：GOOGLE_CREDENTIALS_KDAN_IT_PLAYGROUND"] = tmp_file.name
 else:
-    if not os.getenv("GOOGLE_APPLICATION_CREDENTIALS"):
+    if not os.getenv("正式環境：GOOGLE_CREDENTIALS_KDAN_IT_PLAYGROUND"):
         st.error("未找到有效的 Google Cloud 憑證，請檢查環境設定")
 
 st.title("Document AI: Signature Field Detection")
