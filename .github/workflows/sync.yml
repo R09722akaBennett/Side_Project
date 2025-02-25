@@ -1,16 +1,16 @@
-# name: Sync Streamlit to Space
-# on:
-#   push:
-#     branches: [master]
-#     paths:
-#       - 'streamlit/**'  # 只在 streamlit 資料夾變更時觸發
-# jobs:
-#   sync:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v3
-#       - name: Push Streamlit to Space
-#         env:
-#           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-#         run: |
-#           git subtree push --prefix=streamlit https://R09722050akaB04a01361:$HF_TOKEN@huggingface.co/spaces/R09722050akaB04a01361/st_playground main
+name: Sync Streamlit to Space
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'streamlit/**'  # 只在 streamlit 資料夾變更時觸發
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Push Streamlit to Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git subtree push --prefix=streamlit https://R09722050akaB04a01361:$HF_TOKEN@huggingface.co/spaces/R09722050akaB04a01361/st_playground main

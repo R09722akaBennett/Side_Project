@@ -8,16 +8,18 @@ import numpy as np
 import mimetypes
 import tempfile
 
-DEFAULT_SA_KEY = {
-
-}
+DEFAULT_SA_KEY = os.getenv("GOOGLE_CREDENTIALS")
+if DEFAULT_SA_KEY:
+    DEFAULT_SA_KEY = json.loads(DEFAULT_SA_KEY)
+else:
+    DEFAULT_SA_KEY = None
 
 
 
 with tempfile.NamedTemporaryFile(delete=False, suffix=".json", mode='w') as tmp_file:
     json.dump(DEFAULT_SA_KEY, tmp_file)
     tmp_file.flush()
-    # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = tmp_file.name
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = tmp_file.name
 
 
 st.title("Document AI:")
