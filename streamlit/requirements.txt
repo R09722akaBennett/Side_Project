@@ -16,3 +16,8 @@ prophet
 scipy==1.14.0
 scikit-learn
 plotly
+google-cloud-documentai
+pdf2image
+opencv-python
+matplotlib
+watchdog
