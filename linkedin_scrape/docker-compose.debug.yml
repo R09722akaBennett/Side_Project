@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  debug:
+    image: python:3.10-slim
+    container_name: linkedin-debug
+    volumes:
+      - ./:/project
+    working_dir: /project
+    command: ["tail", "-f", "/dev/null"]
+    restart: "no"
