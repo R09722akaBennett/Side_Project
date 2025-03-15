@@ -20,6 +20,8 @@ class LinkedInJob(Base):
     employment_type = Column(String(255), nullable=True)
     job_function = Column(String(255), nullable=True)
     industries = Column(String(255), nullable=True)
+    job_scrape = Column(String(255), nullable=True)  # 搜尋關鍵字
+    location = Column(String(255), nullable=True)   # 搜尋地點
     scrape_date = Column(DateTime, default=func.now())
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())

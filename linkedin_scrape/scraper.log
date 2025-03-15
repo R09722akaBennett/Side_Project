@@ -7,3 +7,38 @@
 2025-03-15 17:06:33,587 - linkedin_app - INFO - 資料庫初始化完成: postgresql://postgres:***@db:5432/linkedin_jobs
 2025-03-15 17:07:38,697 - linkedin_app - INFO - 開始執行爬蟲...
 2025-03-15 17:12:56,722 - linkedin_app - INFO - 爬蟲完成，共取得 69 筆職缺資料
+2025-03-15 17:34:07,383 - linkedin_app - INFO - 升級資料庫...
+2025-03-15 17:34:07,415 - linkedin_app - INFO - 資料庫升級完成
+2025-03-15 17:34:14,426 - linkedin_app - INFO - 開始執行爬蟲...
+2025-03-15 17:38:17,610 - linkedin_app - INFO - 爬蟲完成，共取得 49 筆職缺資料
+2025-03-15 17:41:30,903 - linkedin_scraper - INFO - 開始執行所有搜索配置 - 2025-03-15 17:41:30.903846
+2025-03-15 17:41:30,911 - linkedin_scraper - INFO - 找到 4 個活躍配置，開始依序執行
+2025-03-15 17:41:30,911 - linkedin_scraper - INFO - 執行配置 'AI Engineer in Taiwan': AI Engineer 在 Taiwan
+2025-03-15 17:48:03,513 - linkedin_scraper - INFO - 配置 'AI Engineer in Taiwan' 完成，共取得 70 筆職缺
+2025-03-15 17:48:33,557 - linkedin_scraper - INFO - 執行配置 'Data Scientist in Taiwan': Data Scientist 在 Taiwan
+2025-03-15 17:56:11,839 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0xffff763385b0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/b2a514e08d5b0c12114aa26496d3586d
+2025-03-15 17:56:11,842 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0xffff75d48eb0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/b2a514e08d5b0c12114aa26496d3586d
+2025-03-15 17:56:11,843 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0xffff75d48d30>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/b2a514e08d5b0c12114aa26496d3586d
+2025-03-15 17:56:33,754 - linkedin_app - INFO - 啟動排程器...
+2025-03-15 17:56:33,754 - linkedin_scraper - INFO - 啟動排程器，設置為每天中午12點執行所有搜索配置
+2025-03-15 17:56:33,755 - linkedin_scraper - INFO - 今天的執行時間已過，將在明天中午12點執行
+2025-03-15 17:59:11,975 - linkedin_app - INFO - 收到終止信號，停止應用程式...
+2025-03-15 18:01:23,852 - linkedin_app - INFO - 啟動排程器...
+2025-03-15 18:01:23,853 - linkedin_scraper - INFO - 啟動排程器，設置為每天中午12點執行所有搜索配置
+2025-03-15 18:01:23,853 - linkedin_scraper - INFO - 今天的執行時間已過，將在明天中午12點執行
+2025-03-15 18:02:18,308 - linkedin_scraper - INFO - 開始執行所有搜索配置 - 2025-03-15 18:02:18.308566
+2025-03-15 18:02:18,323 - linkedin_scraper - INFO - 找到 6 個活躍配置，開始依序執行
+2025-03-15 18:02:18,323 - linkedin_scraper - INFO - 執行配置 'AI Engineer in Taiwan': AI Engineer 在 Taiwan
+2025-03-15 18:04:26,766 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0xffff8597edd0>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/6655fb2bcffb737f740e80d9b848b032
+2025-03-15 18:04:26,776 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0xffff8597f010>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/6655fb2bcffb737f740e80d9b848b032
+2025-03-15 18:04:26,784 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0xffff8597f160>: Failed to establish a new connection: [Errno 111] Connection refused')': /session/6655fb2bcffb737f740e80d9b848b032
+2025-03-15 18:04:36,566 - linkedin_app - INFO - 初始化資料庫...
+2025-03-15 18:04:36,577 - linkedin_app - INFO - 資料庫初始化完成: postgresql://postgres:***@db:5432/linkedin_jobs
+2025-03-15 18:07:29,794 - linkedin_scraper - INFO - 開始執行所有搜索配置 - 2025-03-15 18:07:29.794362
+2025-03-15 18:07:29,802 - linkedin_scraper - INFO - 找到 6 個活躍配置，開始依序執行
+2025-03-15 18:07:29,802 - linkedin_scraper - INFO - 執行配置 'AI Engineer in Taiwan': AI Engineer 在 Taiwan
+2025-03-15 18:07:40,407 - linkedin_app - INFO - 啟動排程器...
+2025-03-15 18:07:40,407 - linkedin_scraper - INFO - 啟動排程器，設置為每天中午12點執行所有搜索配置
+2025-03-15 18:07:40,407 - linkedin_scraper - INFO - 今天的執行時間已過，將在明天中午12點執行
+2025-03-15 18:09:10,327 - linkedin_scraper - INFO - 配置 'AI Engineer in Taiwan' 完成，共取得 17 筆職缺
+2025-03-15 18:09:40,373 - linkedin_scraper - INFO - 執行配置 'Data Scientist in Taiwan': Data Scientist 在 Taiwan

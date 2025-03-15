@@ -9,6 +9,7 @@ from app.database.operations import (
     update_search_config, 
     delete_search_config
 )
+from app.database.upgrade_db import upgrade_database
 from app.config import DEFAULT_KEYWORD, DEFAULT_LOCATION, DEFAULT_TIME_FILTER, DEFAULT_MAX_PAGES
 
 # 設置日誌
@@ -43,6 +44,7 @@ def main():
     
     # 原有的參數
     parser.add_argument('--init', action='store_true', help='初始化資料庫')
+    parser.add_argument('--upgrade', action='store_true', help='升級資料庫 (添加新欄位)')
     parser.add_argument('--scrape', action='store_true', help='立即執行爬蟲')
     parser.add_argument('--schedule', action='store_true', help='啟動排程器')
     parser.add_argument('--keyword', type=str, default=DEFAULT_KEYWORD, help='搜尋關鍵字')
@@ -88,6 +90,14 @@ def main():
         logger.info("初始化資料庫...")
         engine = init_db()
         logger.info(f"資料庫初始化完成: {engine.url}")
+    
+    # 升級資料庫
+    if args.upgrade:
+        logger.info("升級資料庫...")
+        if upgrade_database():
+            logger.info("資料庫升級完成")
+        else:
+            logger.error("資料庫升級失敗")
     
     # 處理搜索配置命令
     if args.command == 'list-configs':

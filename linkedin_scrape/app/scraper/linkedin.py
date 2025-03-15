@@ -87,7 +87,7 @@ class LinkedInScraper:
                     break
 
                 # 爬取職缺詳細資訊
-                page_jobs = self._scrape_job_details(driver, job_links, job_datetimes)
+                page_jobs = self._scrape_job_details(driver, job_links, job_datetimes, keyword, location)
                 all_job_data.extend(page_jobs)
 
                 time.sleep(5)  # 頁面間延遲
@@ -102,11 +102,6 @@ class LinkedInScraper:
         if save_to_db and not df.empty:
             save_jobs_to_db(df)
             print(f"成功儲存 {len(df)} 個職缺到資料庫")
-            
-        # 可同時儲存為 CSV 作為備份
-        timestamp = generate_timestamp()
-        csv_filename = f'linkedin_jobs_{timestamp}.csv'
-        df.to_csv(csv_filename, index=False, encoding='utf-8-sig')
         
         return df
     
@@ -152,7 +147,7 @@ class LinkedInScraper:
 
         return job_links, job_datetimes, new_jobs_found
     
-    def _scrape_job_details(self, driver, job_links, job_datetimes):
+    def _scrape_job_details(self, driver, job_links, job_datetimes, keyword, location):
         """爬取職缺詳細資訊"""
         job_details = []
         
@@ -191,7 +186,9 @@ class LinkedInScraper:
                     'Employment Type': employment_type,
                     'Job Function': job_function,
                     'Industries': industries,
-                    'Scrape Date': datetime.now().isoformat()
+                    'Scrape Date': datetime.now().isoformat(),
+                    'Job Scrape': keyword,
+                    'Location': location
                 })
 
                 print(f"已爬取: {job_title} at {company_name} (發布: {job_datetimes[i]})")
@@ -238,7 +235,9 @@ class LinkedInScraper:
             'Employment Type': '未找到',
             'Job Function': '未找到',
             'Industries': '未找到',
-            'Scrape Date': datetime.now().isoformat()
+            'Scrape Date': datetime.now().isoformat(),
+            'Job Scrape': '未找到',
+            'Location': '未找到'
         }
     
     def _create_error_job_record(self, link, datetime_str, error):
@@ -253,5 +252,7 @@ class LinkedInScraper:
             'Employment Type': '錯誤',
             'Job Function': '錯誤',
             'Industries': '錯誤',
-            'Scrape Date': datetime.now().isoformat()
+            'Scrape Date': datetime.now().isoformat(),
+            'Job Scrape': '錯誤',
+            'Location': '錯誤'
         } 

@@ -37,6 +37,8 @@ def save_jobs_to_db(jobs_df):
                     employment_type=row['Employment Type'],
                     job_function=row['Job Function'],
                     industries=row['Industries'],
+                    job_scrape=row['Job Scrape'] if 'Job Scrape' in row else None,
+                    location=row['Location'] if 'Location' in row else None,
                     scrape_date=datetime.now() if 'Scrape Date' not in row else row['Scrape Date']
                 )
                 session.add(job)
