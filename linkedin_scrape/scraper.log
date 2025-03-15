@@ -42,3 +42,7 @@
 2025-03-15 18:07:40,407 - linkedin_scraper - INFO - 今天的執行時間已過，將在明天中午12點執行
 2025-03-15 18:09:10,327 - linkedin_scraper - INFO - 配置 'AI Engineer in Taiwan' 完成，共取得 17 筆職缺
 2025-03-15 18:09:40,373 - linkedin_scraper - INFO - 執行配置 'Data Scientist in Taiwan': Data Scientist 在 Taiwan
+2025-03-15 18:15:12,103 - linkedin_scraper - INFO - 配置 'Data Scientist in Taiwan' 完成，共取得 47 筆職缺
+2025-03-15 18:15:42,147 - linkedin_scraper - INFO - 執行配置 'AI Engineer in Singapore': AI Engineer 在 Singapore
+2025-03-15 18:17:21,746 - linkedin_scraper - INFO - 配置 'AI Engineer in Singapore' 完成，共取得 17 筆職缺
+2025-03-15 18:17:51,786 - linkedin_scraper - INFO - 執行配置 'Data Scientist in Singapore': Data Scientist 在 Singapore

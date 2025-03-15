@@ -1,162 +1,141 @@
 # LinkedIn Job Scraper
 
-A modular Python application for scraping job listings from LinkedIn.
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Python Version](https://img.shields.io/badge/python-3.9%2B-green.svg)
+![Docker](https://img.shields.io/badge/docker-ready-brightgreen.svg)
 
-## Features
+A powerful LinkedIn job scraping system for automatically collecting, analyzing, and monitoring job opportunities on LinkedIn.
 
-- Search for jobs by keyword and location
-- Filter jobs by time period
-- Extract detailed job information including:
-  - Company name
-  - Job title
-  - Job description
-  - Seniority level
-  - Employment type
-  - Job function
-  - Industries
-  - Posting date
-  - Job Search Keyword
-  - Location Search Parameter
+(一個強大的LinkedIn職缺爬蟲系統，用於自動收集、分析和監控LinkedIn上的工作機會。)
 
-## Directory Structure
+## 📌 Project Overview | 專案概述
+
+The LinkedIn Job Scraper automatically retrieves job information from LinkedIn based on specified keywords and locations, storing them in a database for analysis. This system is particularly useful for job seekers, HR professionals, and market analysts monitoring employment market trends.
+
+(LinkedIn職缺爬蟲系統能自動從LinkedIn獲取指定關鍵字和地點的職缺資訊，並存入資料庫以供分析。本系統特別適合求職者、人力資源專業人員和市場分析師監控就業市場趨勢。)
+
+### 🌟 Core Features | 核心功能
+
+- **Automated Job Scraping**: Scrape LinkedIn jobs by keyword, location, and time range
+  (自動化職缺爬取：依關鍵字、地點和時間範圍爬取LinkedIn職缺)
+- **Flexible Search Configurations**: Create and manage multiple search criteria
+  (彈性搜尋配置：建立和管理多個搜尋條件，按需執行)
+- **Scheduled Execution**: Set up timed schedules for automatic execution
+  (排程自動執行：設定定時排程，自動執行爬蟲任務)
+- **Data Persistence**: Store scraped data in PostgreSQL database, avoiding duplicates
+  (資料持久化：將爬取資料存入PostgreSQL資料庫，避免重複)
+- **Detailed Job Information**: Collect complete job information including title, company, description
+  (詳細職缺資訊：收集職缺標題、公司、描述、資歷要求等完整資訊)
+- **Docker Containerization**: Simplify deployment and environment management
+  (Docker容器化：簡化部署和環境管理)
+- **Health Monitoring**: System status monitoring and logging
+  (健康監控：系統運行狀態監控和日誌記錄)
+
+## 🏗 System Architecture | 系統架構
+
+```mermaid
+graph TD
+    User[User/使用者] --> CLI[Command Line Interface/命令行介面]
+    CLI --> Scheduler[Scheduler/排程器]
+    CLI --> Scraper[Scraper Engine/爬蟲引擎]
+    Scheduler --> Scraper
+    Scraper --> Database[(PostgreSQL Database/資料庫)]
+    Setup[Setup Tool/設定工具] --> Database
+    Config[Search Configurations/搜尋配置] <--> Database
+    Health[Health Monitoring/健康監控] --> Scheduler
+    Health --> Scraper
+    Health --> Database
+```
+
+## 📁 Project Structure | 專案結構
 
 ```
-linkedin_scraper/
-├── config/             # Configuration settings
-├── scrapers/           # Job scraping modules
-├── utils/              # Utility functions
-├── __init__.py         # Package initialization
-├── main.py             # Main entry point
-output/                 # Output directory for CSV files
-requirements.txt        # Project dependencies
-README.md               # This file
+linkedin-scraper/
+├── app/                  # Application main directory | 應用程式主目錄
+│   ├── api/              # API services | API服務
+│   ├── config/           # Configuration settings | 配置設定
+│   ├── database/         # Database models and operations | 資料庫模型與操作
+│   │   ├── models.py     # Data models | 資料模型
+│   │   ├── operations.py # Database operations | 資料庫操作
+│   │   └── upgrade_db.py # Database upgrade script | 資料庫升級腳本
+│   ├── scraper/          # Scraper core components | 爬蟲核心組件
+│   │   ├── linkedin.py   # LinkedIn scraper implementation | LinkedIn爬蟲實現
+│   │   └── utils.py      # Scraper utility functions | 爬蟲工具函數
+│   ├── monitoring/       # Monitoring components | 監控組件
+│   ├── scheduler/        # Scheduler components | 排程組件
+│   ├── utils/            # General utilities | 通用工具
+│   ├── main.py           # Main program entry | 主程式入口
+│   └── setup.py          # Setup script | 設置腳本
+├── docker/               # Docker related files | Docker相關文件
+│   ├── Dockerfile        # Container definition | 容器定義
+│   └── docker-compose.yml # Container orchestration | 容器編排
+├── scripts/              # Script files | 腳本文件
+├── requirements.txt      # Python dependencies | Python依賴
+├── migration.md          # GCP migration guide | GCP遷移指南
+└── README.md             # This file | 本文件
 ```
 
-## Installation
+## 🚀 Quick Start | 快速開始
 
-1. Clone this repository
-2. Install dependencies:
+### Prerequisites | 前置需求
+
+- Docker and Docker Compose | Docker與Docker Compose
+- Python 3.9+ (for local development | 本地開發)
+- PostgreSQL (for local development, included in Docker | 本地開發，Docker中已包含)
+
+### Running with Docker (Recommended) | 使用Docker運行（推薦）
+
+1. **Clone the project | 複製專案**
+   ```bash
+   git clone https://github.com/yourusername/linkedin-scraper.git
+   cd linkedin-scraper
    ```
+
+2. **Start Docker container | 啟動Docker容器**
+   ```bash
+   docker-compose up -d
+   ```
+
+3. **Initialize database | 初始化資料庫**
+   ```bash
+   docker exec -it linkedin-scraper python -m app.main --init
+   ```
+
+4. **Upgrade database** (if adding new fields | 如需添加新欄位)
+   ```bash
+   docker exec -it linkedin-scraper python -m app.main --upgrade
+   ```
+
+### Local Development Environment Setup | 本地開發環境設置
+
+1. **Install dependencies | 安裝依賴**
+   ```bash
    pip install -r requirements.txt
    ```
 
-## Usage
-
-Run the main script with:
-
-```python
-python linkedin_scraper/main.py
-```
-
-Or import and use the scraper in your own code:
-
-```python
-from linkedin_scraper.scrapers.linkedin import LinkedInJobScraper
-
-scraper = LinkedInJobScraper()
-jobs_df = scraper.scrape(
-    input_keyword='AI Engineer',
-    location='Taiwan',
-    time_filter='r86400',
-    max_pages=5
-)
-jobs_df.to_csv('output/linkedin_jobs.csv', index=False)
-```
-
-## Configuration
-
-Edit `linkedin_scraper/config/settings.py` to modify default parameters. 
-
-## Service Initialization
-
-To initialize the scraping service, ensure that your environment variables are set correctly in the `.env` file. This includes setting up your LinkedIn credentials and any other necessary API keys.
-
-## Database Setup
-
-1. Ensure your database is running and accessible.
-2. Initialize the database by running the following command:
+2. **Set environment variables | 設置環境變數**
    ```bash
-   python linkedin_scraper/init_db.py
+   export DATABASE_URL=postgresql://postgres:postgres@localhost:5432/linkedin
    ```
 
-## Pulling Data from the Database
+3. **Initialize database | 初始化資料庫**
+   ```bash
+   python -m app.main --init
+   ```
 
-To retrieve data from the database, you can use the following script:
+## 💻 Usage Guide | 使用指南
 
-```python
-from linkedin_scraper.database import Database
+### 1. Managing Search Configurations | 管理搜尋配置
 
-db = Database()
-jobs_data = db.get_all_jobs()
-print(jobs_data)
-```
+The LinkedIn scraper supports two ways to manage configurations: direct command line and setup.py.
 
-This will fetch all job listings stored in the database and print them to the console.
+(LinkedIn爬蟲支持兩種管理配置的方式：直接命令行和setup.py。)
 
-## Docker Deployment
+#### Using setup.py (Recommended) | 使用setup.py管理（推薦）
 
-To deploy the application using Docker, use the provided `docker-compose.yml` file. Run the following command to start the services:
+Edit the `default_configs` list in the `app/setup.py` file:
 
-```bash
-docker-compose up --build
-```
-
-Ensure that your Docker environment is set up correctly and that all necessary environment variables are configured in the `.env` file.
-
-## 資料存儲與維護
-
-### 增量爬取與資料儲存
-
-本系統設計確保每次爬蟲執行時：
-1. 所有新爬取的職缺會**自動儲存**到資料庫中
-2. 系統使用職缺 URL 作為**唯一識別符**，確保不會儲存重複的職缺
-3. 每次爬蟲執行時**只會新增**資料庫中尚未存在的職缺，不會覆蓋既有資料
-
-這意味著您可以安全地多次執行爬蟲，包括使用排程器每天自動執行，系統會不斷累積新的職缺資訊，而不會丟失之前的資料。
-
-### 資料庫重置與初始化
-
-如果您需要重新初始化資料庫或清空特定資料，可以使用 `app/reset.py` 工具：
-
-```bash
-# 列出所有可用選項
-docker exec -it linkedin-scraper python -m app.reset --help
-
-# 清空職缺資料但保留搜索配置
-docker exec -it linkedin-scraper python -m app.reset --clear-jobs
-
-# 重置資料庫但保留搜索配置
-docker exec -it linkedin-scraper python -m app.reset --reset-db
-
-# 完全重置資料庫（包括所有配置和職缺資料）
-docker exec -it linkedin-scraper python -m app.reset --reset-all
-
-# 重置後，重新設置預設配置
-docker exec -it linkedin-scraper python -m app.reset --reset-all --setup
-```
-
-### 定期維護建議
-
-為了維持系統的效能和資料庫的健康，建議：
-
-1. **定期備份**：每月備份資料庫，避免資料遺失
-2. **定期清理**：每 3-6 個月清理過舊的職缺資料，保持資料庫輕量
-3. **監控日誌**：定期檢查 `scraper.log` 和 `reset.log`，確保系統正常運行
-
-您可以設置定期任務來執行這些維護工作：
-
-```bash
-# 例如，每月第一天清理超過 6 個月的職缺資料
-0 0 1 * * docker exec -it linkedin-scraper python -m app.database.clean --older-than=180
-```
-
-## 使用 setup.py 管理爬取內容
-
-`app/setup.py` 是一個方便的管理工具，用於設置、更新和執行職缺搜索配置。您可以在此文件中集中管理您要爬取的職缺內容，並且能夠輕鬆地同步更新到資料庫。
-
-### 編輯爬取配置
-
-打開 `app/setup.py` 文件，在 `default_configs` 列表中添加或修改配置：
+(編輯`app/setup.py`文件的`default_configs`列表：)
 
 ```python
 default_configs = [
@@ -164,247 +143,187 @@ default_configs = [
         "name": "AI Engineer in Taiwan",
         "keyword": "AI Engineer",
         "location": "Taiwan",
-        "time_filter": "r604800",  # 一週內
+        "time_filter": "r604800",  # Within one week | 一週內
         "max_pages": 5
     },
-    # 在此添加更多配置...
+    # Add more configurations... | 添加更多配置...
 ]
 ```
 
-每個配置包含以下參數：
-- `name`: 配置的唯一名稱
-- `keyword`: 要搜索的職缺關鍵字
-- `location`: 地點
-- `time_filter`: 時間過濾器 (r86400=24小時內, r604800=一週內)
-- `max_pages`: 爬取的最大頁數
+Then run the following command to update configurations:
 
-### 命令行工具
-
-`setup.py` 支持多種命令行參數，讓您能夠方便地管理配置：
-
-1. **列出所有配置**：
-   ```bash
-   docker exec -it linkedin-scraper python -m app.setup --list
-   ```
-
-2. **設置新配置** (不更新已存在的同名配置)：
-   ```bash
-   docker exec -it linkedin-scraper python -m app.setup --setup
-   ```
-
-3. **更新所有配置** (更新已存在的同名配置)：
-   ```bash
-   docker exec -it linkedin-scraper python -m app.setup --update
-   ```
-
-4. **執行特定配置** (按名稱執行一個或多個配置)：
-   ```bash
-   docker exec -it linkedin-scraper python -m app.setup --run "AI Engineer in Taiwan" "Data Scientist in Singapore"
-   ```
-
-### 使用流程
-
-典型的使用流程如下：
-
-1. 修改 `app/setup.py` 中的 `default_configs` 列表，添加您需要的職缺搜索條件
-2. 運行 `--update` 命令同步更新配置到資料庫
-3. 使用 `--list` 命令確認配置已正確更新
-4. 使用 `--run` 命令執行特定配置，或使用 `main.py` 的 `run-all-configs` 命令執行所有啟用的配置
-
-### 與一般爬蟲命令的區別
-
-相比於直接使用 `main.py --scrape` 命令，`setup.py` 提供了以下優勢：
-- 在一個文件中集中管理多個搜索配置
-- 批量添加或更新配置
-- 能夠使用名稱來選擇執行特定配置
-- 便於維護和版本控制配置
-
-## 調整爬取職缺的方法
-
-您有多種方式可以調整爬取職缺的設定：
-
-### 1. 透過命令行直接爬取
-
-您可以使用以下命令直接執行爬蟲，並指定所需參數：
+(然後運行以下命令更新配置：)
 
 ```bash
-docker exec -it linkedin-scraper python -m app.main --scrape --keyword="您的關鍵字" --location="地點" --time-filter="時間過濾器" --max-pages=頁數
+docker exec -it linkedin-scraper python -m app.setup --update
 ```
 
-參數說明：
-- `--keyword`：搜尋關鍵字，例如 "Data Analyst"、"Software Engineer"
-- `--location`：搜尋地點，例如 "Taiwan"、"Taipei"、"Remote"
-- `--time-filter`：時間過濾器，例如 `r86400`（24小時內）、`r604800`（一週內）
-- `--max-pages`：最大爬取頁數，每頁約 25 個職缺
+List all configurations:
+(列出所有配置：)
+```bash
+docker exec -it linkedin-scraper python -m app.setup --list
+```
 
-範例：
+Run specific configurations:
+(運行特定配置：)
+```bash
+docker exec -it linkedin-scraper python -m app.setup --run "AI Engineer in Taiwan"
+```
+
+#### Using Command Line | 使用命令行管理
+
+List all configurations:
+(列出所有配置：)
+```bash
+docker exec -it linkedin-scraper python -m app.main list-configs
+```
+
+Add new configuration:
+(添加新配置：)
+```bash
+docker exec -it linkedin-scraper python -m app.main add-config --name "Data Scientist" --keyword "Data Scientist" --location "Taiwan" --max-pages 3
+```
+
+Update configuration:
+(更新配置：)
+```bash
+docker exec -it linkedin-scraper python -m app.main update-config --id 1 --keyword "ML Engineer" --location "Remote"
+```
+
+Delete configuration:
+(刪除配置：)
+```bash
+docker exec -it linkedin-scraper python -m app.main delete-config --id 1
+```
+
+### 2. Running the Scraper | 執行爬蟲
+
+#### Direct Execution for Specific Search | 直接執行特定搜尋
+
 ```bash
 docker exec -it linkedin-scraper python -m app.main --scrape --keyword="Data Analyst" --location="Taiwan" --max-pages=3
 ```
 
-### 2. 透過搜索配置管理
-
-您可以創建、更新和管理搜索配置，這樣就可以一次設定好搜索條件，之後重複使用：
-
-- **列出所有配置**：
-  ```bash
-  docker exec -it linkedin-scraper python -m app.main list-configs
-  ```
-
-- **添加新配置**：
-  ```bash
-  docker exec -it linkedin-scraper python -m app.main add-config --name "配置名稱" --keyword "關鍵字" --location "地點" --time-filter "時間過濾器" --max-pages 頁數
-  ```
-
-- **更新配置**：
-  ```bash
-  docker exec -it linkedin-scraper python -m app.main update-config --id 配置ID --keyword "新關鍵字" --location "新地點"
-  ```
-
-- **刪除配置**：
-  ```bash
-  docker exec -it linkedin-scraper python -m app.main delete-config --id 配置ID
-  ```
-
-- **執行所有配置**：
-  ```bash
-  docker exec -it linkedin-scraper python -m app.main run-all-configs
-  ```
-
-### 3. 啟動排程器自動執行
-
-您可以啟動排程器，它會按照設定的時間自動執行所有啟用狀態的配置：
+#### Run All Enabled Configurations | 執行所有啟用的配置
 
 ```bash
-docker exec -it linkedin-scraper python -m app.main --schedule
+docker exec -it linkedin-scraper python -m app.main run-all-configs
 ```
 
-## 執行流程說明
-
-以下是整個系統的執行流程：
-
-```
-+-------------------+     +-------------------+     +-------------------+
-| 初始化資料庫       | --> | 添加搜索配置       | --> | 執行爬蟲           |
-| (--init)          |     | (add-config)      |     | (--scrape 或      |
-+-------------------+     +-------------------+     |  run-all-configs) |
-                                                   +-------------------+
-                                                           |
-                                                           v
-+-------------------+     +-------------------+     +-------------------+
-| 結果儲存到資料庫   | <-- | 爬取職缺詳細資訊   | <-- | 爬取搜索結果頁面   |
-| (自動處理)        |     | (自動處理)        |     | (自動處理)        |
-+-------------------+     +-------------------+     +-------------------+
-        |
-        v
-+-------------------+     +-------------------+
-| 查詢資料           | --> | 數據分析和報表     |
-| (另外實作)        |     | (另外實作)        |
-+-------------------+     +-------------------+
-```
-
-### 完整流程說明：
-
-1. **初始化資料庫**：首次使用前，初始化資料庫結構
-   ```bash
-   docker exec -it linkedin-scraper python -m app.main --init
-   ```
-
-2. **添加搜索配置**：設定您想要搜索的職缺條件
-   ```bash
-   docker exec -it linkedin-scraper python -m app.main add-config --name "數據分析師" --keyword "Data Analyst" --location "Taiwan"
-   ```
-
-3. **執行爬蟲**：有兩種方式
-   - 直接執行特定搜索：
-     ```bash
-     docker exec -it linkedin-scraper python -m app.main --scrape --keyword="Data Analyst" --location="Taiwan"
-     ```
-   - 執行所有已保存的配置：
-     ```bash
-     docker exec -it linkedin-scraper python -m app.main run-all-configs
-     ```
-
-4. **自動化排程**：設定自動化執行
-   ```bash
-   docker exec -it linkedin-scraper python -m app.main --schedule
-   ```
-
-5. **數據查詢**：您可以自行開發查詢界面或直接使用資料庫工具來查詢已收集的職缺資訊。
-
-### 升級資料庫（如需添加新欄位）：
-
-如果您需要升級資料庫結構，可以使用以下命令：
-```bash
-docker exec -it linkedin-scraper python -m app.main --upgrade
-```
-
-## Local Deployment with Scheduled Scraping
-
-You can deploy this application locally and set it to run automatically at 12:00 PM (noon) every day.
-
-### For Linux/Mac Users:
-
-1. Make the startup script executable:
-   ```bash
-   chmod +x start_local_scheduler.sh
-   chmod +x stop_scheduler.sh
-   ```
-
-2. Start the scheduler:
-   ```bash
-   ./start_local_scheduler.sh
-   ```
-
-3. To stop the scheduler:
-   ```bash
-   ./stop_scheduler.sh
-   ```
-
-### For Windows Users:
-
-1. Open PowerShell as Administrator.
-
-2. If you haven't already, you may need to set the execution policy to allow running scripts:
-   ```powershell
-   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-   ```
-
-3. Run the startup script:
-   ```powershell
-   .\start_local_scheduler.ps1
-   ```
-
-4. To stop the scheduler:
-   ```powershell
-   .\stop_scheduler.ps1
-   ```
-
-### Checking Logs
-
-The scheduler logs are saved to `scheduler.log`. You can view them by running:
-```bash
-tail -f scheduler.log  # Linux/Mac
-```
-Or on Windows:
-```powershell
-Get-Content scheduler.log -Wait
-```
-
-### Managing Search Configurations
-
-Before the scheduler can run effectively, you need to add at least one search configuration:
+#### Start Scheduler for Automatic Execution | 啟動排程自動執行
 
 ```bash
-python -m app.main add-config --name "Data Science Jobs" --keyword "Data Scientist" --location "Taiwan" --max-pages 5
+docker exec -d linkedin-scraper python -m app.main --schedule
 ```
 
-You can list all configurations:
-```bash
-python -m app.main list-configs
+### 3. Parameter Explanation | 參數說明
+
+- `--keyword`: Search keyword, e.g., "Data Analyst", "Software Engineer"
+  (搜尋關鍵字，例如 "Data Analyst"、"Software Engineer")
+- `--location`: Search location, e.g., "Taiwan", "Taipei", "Remote"
+  (搜尋地點，例如 "Taiwan"、"Taipei"、"Remote")
+- `--time-filter`: Time filter
+  (時間過濾器)
+  - `r86400`: Within 24 hours | 24小時內
+  - `r604800`: Within one week | 一週內
+  - `r2592000`: Within one month | 一個月內
+- `--max-pages`: Maximum pages to scrape, each page contains about 25 jobs
+  (最大爬取頁數，每頁約25個職缺)
+
+## 📊 Execution Flow | 執行流程
+
+```mermaid
+sequenceDiagram
+    participant U as User/使用者
+    participant C as Command Line/命令行
+    participant S as Scheduler/排程器
+    participant SC as Scraper Engine/爬蟲引擎
+    participant DB as Database/資料庫
+
+    Note over U,DB: Initialization Phase/初始化階段
+    U->>C: Initialize database/初始化資料庫 (--init)
+    C->>DB: Create table structure/創建資料表結構
+    DB-->>C: Initialization complete/初始化完成
+    
+    Note over U,DB: Configuration Phase/配置階段
+    U->>C: Add search configuration/添加搜索配置
+    C->>DB: Store configuration/存儲配置
+    
+    Note over U,DB: Execution Phase/執行階段
+    U->>C: Run scraper/執行爬蟲 (--scrape or run-all-configs)
+    C->>SC: Start scraping task/啟動爬蟲任務
+    SC->>SC: Scrape LinkedIn search results/爬取LinkedIn搜索結果
+    SC->>SC: Parse job details/解析職缺詳情
+    SC->>DB: Store job data/存儲職缺數據
+    
+    Note over U,DB: Scheduling Phase/排程階段
+    U->>C: Start scheduler/啟動排程器 (--schedule)
+    C->>S: Initialize scheduler/初始化排程器
+    S->>S: Wait for scheduled time/等待排程時間
+    S->>SC: Trigger scraping task/觸發爬蟲任務
+    SC->>DB: Store new jobs/存儲新職缺
+    
+    Note over U,DB: Query Phase/查詢階段
+    U->>DB: Query collected job data/查詢收集的職缺數據
 ```
 
-And remove configurations you no longer need:
+## 🔍 Monitoring System | 監控系統
+
+### Checking Running Status | 檢查運行狀態
+
 ```bash
-python -m app.main delete-config --id <config_id>
-``` 
+# Check container status | 查看容器狀態
+docker ps | grep linkedin-scraper
+
+# View logs | 查看日誌
+docker logs -f linkedin-scraper
+
+# Check recently scraped jobs count | 查看最近爬取的職缺數量
+docker exec -it linkedin-scraper python -c "
+from app.database.operations import get_db_session
+from app.database.models import LinkedInJob
+from datetime import datetime, timedelta
+import sqlalchemy
+
+session = get_db_session()
+yesterday = datetime.now() - timedelta(days=1)
+recent_jobs = session.query(LinkedInJob).filter(LinkedInJob.scrape_date >= yesterday).count()
+print(f'Jobs scraped in the last 24 hours | 過去24小時內爬取的職缺數量: {recent_jobs}')
+session.close()
+"
+```
+
+## ☁️ Cloud Deployment | 雲端部署
+
+This system can be deployed to Google Cloud Platform. See the [GCP Migration Guide](migration.md) for detailed steps.
+
+(本系統可以部署到Google Cloud Platform，詳細步驟請查看[GCP遷移指南](migration.md)。)
+
+## ⚠️ Notes | 注意事項
+
+1. **Scraping Frequency**: Do not set too high a scraping frequency to avoid being restricted by LinkedIn
+   (爬蟲執行頻率：請勿設置過高的爬取頻率，以避免被LinkedIn限制)
+2. **Resource Usage**: The scraper will consume certain CPU and memory resources during execution
+   (資源使用：爬蟲執行時會消耗一定CPU和記憶體資源)
+3. **Network Connection**: Ensure the system has a stable network connection
+   (網絡連接：確保系統有穩定的網絡連接)
+4. **Data Retention**: The system automatically deduplicates data, only adding new jobs without deleting old data
+   (資料保留：系統會自動去重，只添加新職缺，不會刪除舊資料)
+
+## 🤝 Contribution Guide | 貢獻指南
+
+Contributions of code, issue reports, or improvement suggestions are welcome. Please follow these steps:
+
+(歡迎貢獻代碼、報告問題或提出改進建議。請遵循以下步驟：)
+
+1. Fork the project | Fork專案
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License | 許可證
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+(本專案採用MIT許可證 - 查看[LICENSE](LICENSE)文件了解更多詳情。)
