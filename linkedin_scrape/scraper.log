@@ -46,3 +46,1019 @@
 2025-03-15 18:15:42,147 - linkedin_scraper - INFO - 執行配置 'AI Engineer in Singapore': AI Engineer 在 Singapore
 2025-03-15 18:17:21,746 - linkedin_scraper - INFO - 配置 'AI Engineer in Singapore' 完成，共取得 17 筆職缺
 2025-03-15 18:17:51,786 - linkedin_scraper - INFO - 執行配置 'Data Scientist in Singapore': Data Scientist 在 Singapore
+2025-03-15 18:24:26,664 - linkedin_scraper - INFO - 配置 'Data Scientist in Singapore' 完成，共取得 68 筆職缺
+2025-03-15 18:24:56,705 - linkedin_scraper - INFO - 執行配置 'Machine Learning Engineer in Taiwan': Machine Learning Engineer 在 Taiwan
+2025-03-15 18:26:17,300 - linkedin_scraper - INFO - 配置 'Machine Learning Engineer in Taiwan' 完成，共取得 14 筆職缺
+2025-03-15 18:26:47,338 - linkedin_scraper - INFO - 執行配置 'Machine Learning Engineer in Singapore': Machine Learning Engineer 在 Singapore
+2025-03-15 18:29:26,334 - linkedin_scraper - INFO - 配置 'Machine Learning Engineer in Singapore' 完成，共取得 30 筆職缺
+2025-03-15 19:24:43,958 - linkedin_app - INFO - 開始執行職缺資料去重...
+2025-03-15 19:24:43,989 - linkedin_app - INFO - 去重完成: 已刪除 0 條重複記錄，保留 193 條唯一記錄
+2025-03-15 19:27:10,635 - linkedin_app - INFO - 啟動排程器...
+2025-03-15 19:27:10,636 - linkedin_scraper - INFO - 啟動排程器，設置為每天中午12點執行所有搜索配置
+2025-03-15 19:27:10,636 - linkedin_scraper - INFO - 今天的執行時間已過，將在明天中午12點執行
+2025-03-16 01:53:23,130 - linkedin_app - INFO - 啟動排程器...
+2025-03-16 01:53:23,131 - linkedin_scraper - INFO - 啟動排程器，設置為每72小時(3天)中午12點執行爬蟲，每日中午12點執行資料去重
+2025-03-16 01:53:23,131 - linkedin_scraper - INFO - 爬蟲首次執行時間: 2025-03-16 12:00:00+08:00, 延遲: 2.11 小時
+2025-03-16 06:26:51,091 - linkedin_app - INFO - 升級資料庫...
+2025-03-16 06:26:51,114 - linkedin_app - INFO - 資料庫升級完成
+2025-03-16 06:27:04,488 - linkedin_app - INFO - 開始執行 AI 職缺分析，處理最近 24 小時的資料...
+2025-03-16 06:27:04,489 - linkedin_job_analyzer - INFO - 開始執行職缺分析，處理 24 小時前的資料
+2025-03-16 06:27:04,490 - linkedin_job_analyzer - ERROR - 獲取未處理職缺時發生錯誤: Textual SQL expression '\n        SELECT j.* \n    ...' should be explicitly declared as text('\n        SELECT j.* \n    ...')
+2025-03-16 06:27:04,490 - linkedin_job_analyzer - INFO - 沒有找到需要處理的新職缺資料
+2025-03-16 06:27:04,490 - linkedin_app - INFO - AI 職缺分析完成
+2025-03-16 06:27:45,133 - linkedin_app - INFO - 開始執行 AI 職缺分析，處理最近 24 小時的資料...
+2025-03-16 06:27:45,133 - linkedin_job_analyzer - INFO - 開始執行職缺分析，處理 24 小時前的資料
+2025-03-16 06:27:45,158 - linkedin_job_analyzer - INFO - 找到 193 筆未處理的職缺資料
+2025-03-16 06:27:45,196 - linkedin_job_analyzer - INFO - 處理 1/193: LITEON Technology - Data Scientist
+2025-03-16 06:27:45,465 - openai._base_client - INFO - Retrying request to /chat/completions in 0.498431 seconds
+2025-03-16 06:27:46,061 - openai._base_client - INFO - Retrying request to /chat/completions in 0.841907 seconds
+2025-03-16 06:27:46,997 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:27:47,004 - linkedin_job_analyzer - INFO - 處理 2/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:27:47,102 - openai._base_client - INFO - Retrying request to /chat/completions in 0.455333 seconds
+2025-03-16 06:27:47,649 - openai._base_client - INFO - Retrying request to /chat/completions in 0.900781 seconds
+2025-03-16 06:27:48,663 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:27:48,672 - linkedin_job_analyzer - INFO - 處理 3/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:27:48,770 - openai._base_client - INFO - Retrying request to /chat/completions in 0.395107 seconds
+2025-03-16 06:27:49,254 - openai._base_client - INFO - Retrying request to /chat/completions in 0.948505 seconds
+2025-03-16 06:27:50,298 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:27:50,304 - linkedin_job_analyzer - INFO - 處理 4/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:27:50,396 - openai._base_client - INFO - Retrying request to /chat/completions in 0.398696 seconds
+2025-03-16 06:27:50,886 - openai._base_client - INFO - Retrying request to /chat/completions in 0.921736 seconds
+2025-03-16 06:27:51,935 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:27:51,937 - linkedin_job_analyzer - INFO - 處理 5/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:27:52,025 - openai._base_client - INFO - Retrying request to /chat/completions in 0.462824 seconds
+2025-03-16 06:27:52,579 - openai._base_client - INFO - Retrying request to /chat/completions in 0.828183 seconds
+2025-03-16 06:27:53,512 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:27:53,514 - linkedin_job_analyzer - INFO - 處理 6/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:27:53,609 - openai._base_client - INFO - Retrying request to /chat/completions in 0.488549 seconds
+2025-03-16 06:27:54,186 - openai._base_client - INFO - Retrying request to /chat/completions in 0.767320 seconds
+2025-03-16 06:27:55,048 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:27:55,051 - linkedin_job_analyzer - INFO - 處理 7/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:27:55,145 - openai._base_client - INFO - Retrying request to /chat/completions in 0.390429 seconds
+2025-03-16 06:27:55,623 - openai._base_client - INFO - Retrying request to /chat/completions in 0.761744 seconds
+2025-03-16 06:27:56,516 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:27:56,529 - linkedin_job_analyzer - INFO - 處理 8/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:27:56,629 - openai._base_client - INFO - Retrying request to /chat/completions in 0.427050 seconds
+2025-03-16 06:27:57,155 - openai._base_client - INFO - Retrying request to /chat/completions in 0.927617 seconds
+2025-03-16 06:27:58,190 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:27:58,196 - linkedin_job_analyzer - INFO - 處理 9/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:27:58,295 - openai._base_client - INFO - Retrying request to /chat/completions in 0.457577 seconds
+2025-03-16 06:27:58,854 - openai._base_client - INFO - Retrying request to /chat/completions in 0.835514 seconds
+2025-03-16 06:27:59,785 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:27:59,787 - linkedin_job_analyzer - INFO - 處理 10/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:27:59,875 - openai._base_client - INFO - Retrying request to /chat/completions in 0.499558 seconds
+2025-03-16 06:28:00,460 - openai._base_client - INFO - Retrying request to /chat/completions in 0.849727 seconds
+2025-03-16 06:28:01,404 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:01,406 - linkedin_job_analyzer - INFO - 處理 11/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:01,501 - openai._base_client - INFO - Retrying request to /chat/completions in 0.497956 seconds
+2025-03-16 06:28:02,092 - openai._base_client - INFO - Retrying request to /chat/completions in 0.994673 seconds
+2025-03-16 06:28:03,191 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:03,200 - linkedin_job_analyzer - INFO - 處理 12/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:03,294 - openai._base_client - INFO - Retrying request to /chat/completions in 0.403179 seconds
+2025-03-16 06:28:03,787 - openai._base_client - INFO - Retrying request to /chat/completions in 0.952731 seconds
+2025-03-16 06:28:04,831 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:04,833 - linkedin_job_analyzer - INFO - 處理 13/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:04,920 - openai._base_client - INFO - Retrying request to /chat/completions in 0.459810 seconds
+2025-03-16 06:28:05,472 - openai._base_client - INFO - Retrying request to /chat/completions in 0.974538 seconds
+2025-03-16 06:28:06,536 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:06,540 - linkedin_job_analyzer - INFO - 處理 14/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:06,626 - openai._base_client - INFO - Retrying request to /chat/completions in 0.398383 seconds
+2025-03-16 06:28:07,121 - openai._base_client - INFO - Retrying request to /chat/completions in 0.987691 seconds
+2025-03-16 06:28:08,212 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:08,216 - linkedin_job_analyzer - INFO - 處理 15/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:08,302 - openai._base_client - INFO - Retrying request to /chat/completions in 0.420830 seconds
+2025-03-16 06:28:08,817 - openai._base_client - INFO - Retrying request to /chat/completions in 0.780448 seconds
+2025-03-16 06:28:09,692 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:09,693 - linkedin_job_analyzer - INFO - 處理 16/193: NVIDIA - Senior Memory Engineer
+2025-03-16 06:28:09,782 - openai._base_client - INFO - Retrying request to /chat/completions in 0.430510 seconds
+2025-03-16 06:28:10,363 - openai._base_client - INFO - Retrying request to /chat/completions in 0.987557 seconds
+2025-03-16 06:28:11,444 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:11,452 - linkedin_job_analyzer - INFO - 處理 17/193: NVIDIA - Senior Memory Engineer
+2025-03-16 06:28:11,542 - openai._base_client - INFO - Retrying request to /chat/completions in 0.433151 seconds
+2025-03-16 06:28:12,061 - openai._base_client - INFO - Retrying request to /chat/completions in 0.835630 seconds
+2025-03-16 06:28:13,015 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:13,019 - linkedin_job_analyzer - INFO - 處理 18/193: LITEON Technology - Data Scientist
+2025-03-16 06:28:13,108 - openai._base_client - INFO - Retrying request to /chat/completions in 0.449470 seconds
+2025-03-16 06:28:13,650 - openai._base_client - INFO - Retrying request to /chat/completions in 0.858717 seconds
+2025-03-16 06:28:14,606 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:14,611 - linkedin_job_analyzer - INFO - 處理 19/193: NVIDIA - Research Scientist - Design Automation
+2025-03-16 06:28:14,700 - openai._base_client - INFO - Retrying request to /chat/completions in 0.402457 seconds
+2025-03-16 06:28:15,204 - openai._base_client - INFO - Retrying request to /chat/completions in 0.772679 seconds
+2025-03-16 06:28:16,074 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:16,075 - linkedin_job_analyzer - INFO - 處理 20/193: thingnario - [RD] 資深全端工程師 Senior Full Stack Engineer ( hybrid )
+2025-03-16 06:28:16,158 - openai._base_client - INFO - Retrying request to /chat/completions in 0.475652 seconds
+2025-03-16 06:28:16,728 - openai._base_client - INFO - Retrying request to /chat/completions in 0.879211 seconds
+2025-03-16 06:28:17,704 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:17,707 - linkedin_job_analyzer - INFO - 處理 21/193: Google - Embedded System Software Engineer, Pixel Watch
+2025-03-16 06:28:17,795 - openai._base_client - INFO - Retrying request to /chat/completions in 0.423673 seconds
+2025-03-16 06:28:18,312 - openai._base_client - INFO - Retrying request to /chat/completions in 0.752527 seconds
+2025-03-16 06:28:19,161 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:19,164 - linkedin_job_analyzer - INFO - 處理 22/193: Synopsys Inc - R&D Engineering, Staff Engineer
+2025-03-16 06:28:19,267 - openai._base_client - INFO - Retrying request to /chat/completions in 0.453423 seconds
+2025-03-16 06:28:19,814 - openai._base_client - INFO - Retrying request to /chat/completions in 0.980587 seconds
+2025-03-16 06:28:20,888 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:20,891 - linkedin_job_analyzer - INFO - 處理 23/193: Google - Software Engineer Ⅲ, Quality, Google Cloud Platform
+2025-03-16 06:28:20,990 - openai._base_client - INFO - Retrying request to /chat/completions in 0.491968 seconds
+2025-03-16 06:28:21,572 - openai._base_client - INFO - Retrying request to /chat/completions in 0.946951 seconds
+2025-03-16 06:28:22,612 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:22,614 - linkedin_job_analyzer - INFO - 處理 24/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:22,706 - openai._base_client - INFO - Retrying request to /chat/completions in 0.497594 seconds
+2025-03-16 06:28:23,296 - openai._base_client - INFO - Retrying request to /chat/completions in 0.873017 seconds
+2025-03-16 06:28:24,259 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:24,262 - linkedin_job_analyzer - INFO - 處理 25/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:24,352 - openai._base_client - INFO - Retrying request to /chat/completions in 0.489446 seconds
+2025-03-16 06:28:24,935 - openai._base_client - INFO - Retrying request to /chat/completions in 0.922977 seconds
+2025-03-16 06:28:25,950 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:25,952 - linkedin_job_analyzer - INFO - 處理 26/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:26,044 - openai._base_client - INFO - Retrying request to /chat/completions in 0.450325 seconds
+2025-03-16 06:28:26,583 - openai._base_client - INFO - Retrying request to /chat/completions in 0.847180 seconds
+2025-03-16 06:28:27,525 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:27,528 - linkedin_job_analyzer - INFO - 處理 27/193: Uber - Partner Engineer II
+2025-03-16 06:28:27,618 - openai._base_client - INFO - Retrying request to /chat/completions in 0.421992 seconds
+2025-03-16 06:28:28,139 - openai._base_client - INFO - Retrying request to /chat/completions in 0.784947 seconds
+2025-03-16 06:28:29,015 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:29,020 - linkedin_job_analyzer - INFO - 處理 28/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:29,118 - openai._base_client - INFO - Retrying request to /chat/completions in 0.414178 seconds
+2025-03-16 06:28:29,628 - openai._base_client - INFO - Retrying request to /chat/completions in 0.986077 seconds
+2025-03-16 06:28:30,702 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:30,704 - linkedin_job_analyzer - INFO - 處理 29/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:30,795 - openai._base_client - INFO - Retrying request to /chat/completions in 0.387488 seconds
+2025-03-16 06:28:31,276 - openai._base_client - INFO - Retrying request to /chat/completions in 0.825266 seconds
+2025-03-16 06:28:32,193 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:32,196 - linkedin_job_analyzer - INFO - 處理 30/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:32,299 - openai._base_client - INFO - Retrying request to /chat/completions in 0.439106 seconds
+2025-03-16 06:28:32,840 - openai._base_client - INFO - Retrying request to /chat/completions in 0.837206 seconds
+2025-03-16 06:28:33,766 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:33,768 - linkedin_job_analyzer - INFO - 處理 31/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:33,859 - openai._base_client - INFO - Retrying request to /chat/completions in 0.442186 seconds
+2025-03-16 06:28:34,402 - openai._base_client - INFO - Retrying request to /chat/completions in 0.922235 seconds
+2025-03-16 06:28:35,424 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:35,433 - linkedin_job_analyzer - INFO - 處理 32/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:35,534 - openai._base_client - INFO - Retrying request to /chat/completions in 0.406742 seconds
+2025-03-16 06:28:36,052 - openai._base_client - INFO - Retrying request to /chat/completions in 0.881577 seconds
+2025-03-16 06:28:37,028 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:37,029 - linkedin_job_analyzer - INFO - 處理 33/193: Qualcomm - Automotive- Infotainment Software Customer Engineer, up to Staff – Platform/BSP
+2025-03-16 06:28:37,115 - openai._base_client - INFO - Retrying request to /chat/completions in 0.392892 seconds
+2025-03-16 06:28:37,601 - openai._base_client - INFO - Retrying request to /chat/completions in 0.903708 seconds
+2025-03-16 06:28:38,593 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:38,595 - linkedin_job_analyzer - INFO - 處理 34/193: The Shanghai Commercial & Savings Bank - 軟體工程師
+2025-03-16 06:28:38,687 - openai._base_client - INFO - Retrying request to /chat/completions in 0.435426 seconds
+2025-03-16 06:28:39,217 - openai._base_client - INFO - Retrying request to /chat/completions in 0.814257 seconds
+2025-03-16 06:28:40,124 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:40,127 - linkedin_job_analyzer - INFO - 處理 35/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:40,218 - openai._base_client - INFO - Retrying request to /chat/completions in 0.399911 seconds
+2025-03-16 06:28:40,708 - openai._base_client - INFO - Retrying request to /chat/completions in 0.814489 seconds
+2025-03-16 06:28:41,617 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:41,623 - linkedin_job_analyzer - INFO - 處理 36/193: Micron Technology - Application Solutions Engineer
+2025-03-16 06:28:41,720 - openai._base_client - INFO - Retrying request to /chat/completions in 0.433769 seconds
+2025-03-16 06:28:42,252 - openai._base_client - INFO - Retrying request to /chat/completions in 0.888190 seconds
+2025-03-16 06:28:43,233 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:43,235 - linkedin_job_analyzer - INFO - 處理 37/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:43,326 - openai._base_client - INFO - Retrying request to /chat/completions in 0.445932 seconds
+2025-03-16 06:28:43,865 - openai._base_client - INFO - Retrying request to /chat/completions in 0.820149 seconds
+2025-03-16 06:28:44,796 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:44,799 - linkedin_job_analyzer - INFO - 處理 38/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:44,888 - openai._base_client - INFO - Retrying request to /chat/completions in 0.443527 seconds
+2025-03-16 06:28:45,504 - openai._base_client - INFO - Retrying request to /chat/completions in 0.833398 seconds
+2025-03-16 06:28:46,429 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:46,432 - linkedin_job_analyzer - INFO - 處理 39/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:46,528 - openai._base_client - INFO - Retrying request to /chat/completions in 0.398863 seconds
+2025-03-16 06:28:47,015 - openai._base_client - INFO - Retrying request to /chat/completions in 0.788063 seconds
+2025-03-16 06:28:47,893 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:47,900 - linkedin_job_analyzer - INFO - 處理 40/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:48,002 - openai._base_client - INFO - Retrying request to /chat/completions in 0.464828 seconds
+2025-03-16 06:28:48,562 - openai._base_client - INFO - Retrying request to /chat/completions in 0.851888 seconds
+2025-03-16 06:28:49,515 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:49,517 - linkedin_job_analyzer - INFO - 處理 41/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:28:49,609 - openai._base_client - INFO - Retrying request to /chat/completions in 0.388599 seconds
+2025-03-16 06:28:50,085 - openai._base_client - INFO - Retrying request to /chat/completions in 0.965976 seconds
+2025-03-16 06:28:51,145 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:51,148 - linkedin_job_analyzer - INFO - 處理 42/193: Amazon - Sr. Software Development Engineer, FireTV Platform Engineering team
+2025-03-16 06:28:51,261 - openai._base_client - INFO - Retrying request to /chat/completions in 0.437566 seconds
+2025-03-16 06:28:51,803 - openai._base_client - INFO - Retrying request to /chat/completions in 0.887369 seconds
+2025-03-16 06:28:52,787 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:52,789 - linkedin_job_analyzer - INFO - 處理 43/193: Synopsys Inc - R&D Engineering, Staff Engineer_VCS
+2025-03-16 06:28:52,875 - openai._base_client - INFO - Retrying request to /chat/completions in 0.386482 seconds
+2025-03-16 06:28:53,352 - openai._base_client - INFO - Retrying request to /chat/completions in 0.807550 seconds
+2025-03-16 06:28:54,258 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:54,261 - linkedin_job_analyzer - INFO - 處理 44/193: Canonical - Containerization & Virtualisation Engineer
+2025-03-16 06:28:54,366 - openai._base_client - INFO - Retrying request to /chat/completions in 0.493371 seconds
+2025-03-16 06:28:54,952 - openai._base_client - INFO - Retrying request to /chat/completions in 0.846132 seconds
+2025-03-16 06:28:55,893 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:55,896 - linkedin_job_analyzer - INFO - 處理 45/193: ShopBack - Staff Software Engineer
+2025-03-16 06:28:55,985 - openai._base_client - INFO - Retrying request to /chat/completions in 0.425435 seconds
+2025-03-16 06:28:56,500 - openai._base_client - INFO - Retrying request to /chat/completions in 0.832096 seconds
+2025-03-16 06:28:57,483 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:57,489 - linkedin_job_analyzer - INFO - 處理 46/193: Siemens EDA (Siemens Digital Industries Software) - Senior Application Engineer (AE) - Aprisa P&R
+2025-03-16 06:28:57,692 - openai._base_client - INFO - Retrying request to /chat/completions in 0.438898 seconds
+2025-03-16 06:28:58,224 - openai._base_client - INFO - Retrying request to /chat/completions in 0.891627 seconds
+2025-03-16 06:28:59,207 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:28:59,209 - linkedin_job_analyzer - INFO - 處理 47/193: Canonical - Containerization & Virtualisation Engineer
+2025-03-16 06:28:59,315 - openai._base_client - INFO - Retrying request to /chat/completions in 0.499572 seconds
+2025-03-16 06:28:59,909 - openai._base_client - INFO - Retrying request to /chat/completions in 0.833768 seconds
+2025-03-16 06:29:00,836 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:00,839 - linkedin_job_analyzer - INFO - 處理 48/193: NVIDIA - System Software Engineering Intern - 2025
+2025-03-16 06:29:00,931 - openai._base_client - INFO - Retrying request to /chat/completions in 0.469946 seconds
+2025-03-16 06:29:01,503 - openai._base_client - INFO - Retrying request to /chat/completions in 0.922094 seconds
+2025-03-16 06:29:02,518 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:02,521 - linkedin_job_analyzer - INFO - 處理 49/193: Synopsys Inc - R&D Engineering, Architect_Zebu
+2025-03-16 06:29:02,617 - openai._base_client - INFO - Retrying request to /chat/completions in 0.418708 seconds
+2025-03-16 06:29:03,124 - openai._base_client - INFO - Retrying request to /chat/completions in 0.885696 seconds
+2025-03-16 06:29:04,108 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:04,111 - linkedin_job_analyzer - INFO - 處理 50/193: Agoda - Senior DevOps Engineer (Bangkok-Based, Relocation Provided)
+2025-03-16 06:29:04,202 - openai._base_client - INFO - Retrying request to /chat/completions in 0.439807 seconds
+2025-03-16 06:29:04,733 - openai._base_client - INFO - Retrying request to /chat/completions in 0.907870 seconds
+2025-03-16 06:29:05,743 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:05,745 - linkedin_job_analyzer - INFO - 處理 51/193: Agoda - Senior DevOps Engineer (Bangkok-Based, Relocation Provided)
+2025-03-16 06:29:05,835 - openai._base_client - INFO - Retrying request to /chat/completions in 0.381241 seconds
+2025-03-16 06:29:06,322 - openai._base_client - INFO - Retrying request to /chat/completions in 0.769896 seconds
+2025-03-16 06:29:07,182 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:07,185 - linkedin_job_analyzer - INFO - 處理 52/193: Agoda - Senior DevOps Engineer (Bangkok-Based, Relocation Provided)
+2025-03-16 06:29:07,276 - openai._base_client - INFO - Retrying request to /chat/completions in 0.457002 seconds
+2025-03-16 06:29:07,821 - openai._base_client - INFO - Retrying request to /chat/completions in 0.811735 seconds
+2025-03-16 06:29:08,725 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:08,729 - linkedin_job_analyzer - INFO - 處理 53/193: Agoda - Senior DevOps Engineer (Bangkok-Based, Relocation Provided)
+2025-03-16 06:29:08,820 - openai._base_client - INFO - Retrying request to /chat/completions in 0.498344 seconds
+2025-03-16 06:29:09,410 - openai._base_client - INFO - Retrying request to /chat/completions in 0.755318 seconds
+2025-03-16 06:29:10,258 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:10,260 - linkedin_job_analyzer - INFO - 處理 54/193: Agoda - Staff Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:29:10,351 - openai._base_client - INFO - Retrying request to /chat/completions in 0.473639 seconds
+2025-03-16 06:29:10,912 - openai._base_client - INFO - Retrying request to /chat/completions in 0.944710 seconds
+2025-03-16 06:29:11,953 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:11,960 - linkedin_job_analyzer - INFO - 處理 55/193: Micron Technology - PROCT FE COST EXCELLENCE SENIOR ENGINEER
+2025-03-16 06:29:12,058 - openai._base_client - INFO - Retrying request to /chat/completions in 0.431219 seconds
+2025-03-16 06:29:12,581 - openai._base_client - INFO - Retrying request to /chat/completions in 0.779545 seconds
+2025-03-16 06:29:13,452 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:13,453 - linkedin_job_analyzer - INFO - 處理 56/193: Agoda - Staff Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:29:13,550 - openai._base_client - INFO - Retrying request to /chat/completions in 0.486652 seconds
+2025-03-16 06:29:14,137 - openai._base_client - INFO - Retrying request to /chat/completions in 0.890856 seconds
+2025-03-16 06:29:15,125 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:15,141 - linkedin_job_analyzer - INFO - 處理 57/193: Agoda - Staff Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:29:15,229 - openai._base_client - INFO - Retrying request to /chat/completions in 0.436241 seconds
+2025-03-16 06:29:15,759 - openai._base_client - INFO - Retrying request to /chat/completions in 0.932262 seconds
+2025-03-16 06:29:16,833 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:16,837 - linkedin_job_analyzer - INFO - 處理 58/193: Agoda - Staff Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:29:16,939 - openai._base_client - INFO - Retrying request to /chat/completions in 0.477597 seconds
+2025-03-16 06:29:17,512 - openai._base_client - INFO - Retrying request to /chat/completions in 0.802006 seconds
+2025-03-16 06:29:18,418 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:18,420 - linkedin_job_analyzer - INFO - 處理 59/193: Visa - Staff SW Engineer - AIOPS developer
+2025-03-16 06:29:18,525 - openai._base_client - INFO - Retrying request to /chat/completions in 0.375798 seconds
+2025-03-16 06:29:18,997 - openai._base_client - INFO - Retrying request to /chat/completions in 0.970102 seconds
+2025-03-16 06:29:20,065 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:20,067 - linkedin_job_analyzer - INFO - 處理 60/193: Ailytics - Customer Success Engineer
+2025-03-16 06:29:20,203 - openai._base_client - INFO - Retrying request to /chat/completions in 0.459794 seconds
+2025-03-16 06:29:20,755 - openai._base_client - INFO - Retrying request to /chat/completions in 0.904965 seconds
+2025-03-16 06:29:21,759 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:21,763 - linkedin_job_analyzer - INFO - 處理 61/193: Michael Page - Sr. SAP Engineer
+2025-03-16 06:29:21,853 - openai._base_client - INFO - Retrying request to /chat/completions in 0.456146 seconds
+2025-03-16 06:29:22,400 - openai._base_client - INFO - Retrying request to /chat/completions in 0.900848 seconds
+2025-03-16 06:29:23,395 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:23,398 - linkedin_job_analyzer - INFO - 處理 62/193: Agoda - Senior Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:29:23,492 - openai._base_client - INFO - Retrying request to /chat/completions in 0.464451 seconds
+2025-03-16 06:29:24,049 - openai._base_client - INFO - Retrying request to /chat/completions in 0.797907 seconds
+2025-03-16 06:29:24,939 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:24,940 - linkedin_job_analyzer - INFO - 處理 63/193: Agoda - Senior Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:29:25,036 - openai._base_client - INFO - Retrying request to /chat/completions in 0.434067 seconds
+2025-03-16 06:29:25,566 - openai._base_client - INFO - Retrying request to /chat/completions in 0.770548 seconds
+2025-03-16 06:29:26,428 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:26,430 - linkedin_job_analyzer - INFO - 處理 64/193: Agoda - Senior Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:29:26,521 - openai._base_client - INFO - Retrying request to /chat/completions in 0.495578 seconds
+2025-03-16 06:29:27,112 - openai._base_client - INFO - Retrying request to /chat/completions in 0.997149 seconds
+2025-03-16 06:29:28,202 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:28,205 - linkedin_job_analyzer - INFO - 處理 65/193: NXP Semiconductors - Salesforce CRM System Business Analyst
+2025-03-16 06:29:28,306 - openai._base_client - INFO - Retrying request to /chat/completions in 0.425654 seconds
+2025-03-16 06:29:28,839 - openai._base_client - INFO - Retrying request to /chat/completions in 0.894604 seconds
+2025-03-16 06:29:29,849 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:29,851 - linkedin_job_analyzer - INFO - 處理 66/193: Agoda - Senior Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:29:29,938 - openai._base_client - INFO - Retrying request to /chat/completions in 0.486353 seconds
+2025-03-16 06:29:30,508 - openai._base_client - INFO - Retrying request to /chat/completions in 0.871537 seconds
+2025-03-16 06:29:31,469 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:31,473 - linkedin_job_analyzer - INFO - 處理 67/193: Vy Systems - Singapore - Artificial Intelligence Engineer
+2025-03-16 06:29:31,561 - openai._base_client - INFO - Retrying request to /chat/completions in 0.383497 seconds
+2025-03-16 06:29:32,032 - openai._base_client - INFO - Retrying request to /chat/completions in 0.907780 seconds
+2025-03-16 06:29:33,032 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:33,034 - linkedin_job_analyzer - INFO - 處理 68/193: SHIELD - Machine Learning Engineer (Risk)
+2025-03-16 06:29:33,126 - openai._base_client - INFO - Retrying request to /chat/completions in 0.416834 seconds
+2025-03-16 06:29:33,630 - openai._base_client - INFO - Retrying request to /chat/completions in 0.820118 seconds
+2025-03-16 06:29:34,547 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:34,554 - linkedin_job_analyzer - INFO - 處理 69/193: DSO National Laboratories - Computer Vision / Machine Learning Engineer
+2025-03-16 06:29:34,644 - openai._base_client - INFO - Retrying request to /chat/completions in 0.401186 seconds
+2025-03-16 06:29:35,148 - openai._base_client - INFO - Retrying request to /chat/completions in 0.948326 seconds
+2025-03-16 06:29:36,193 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:36,194 - linkedin_job_analyzer - INFO - 處理 70/193: Axelera AI - Senior Engineer - Silicon Physical Design (Italy based)
+2025-03-16 06:29:36,284 - openai._base_client - INFO - Retrying request to /chat/completions in 0.439381 seconds
+2025-03-16 06:29:36,808 - openai._base_client - INFO - Retrying request to /chat/completions in 0.783856 seconds
+2025-03-16 06:29:37,686 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:37,688 - linkedin_job_analyzer - INFO - 處理 71/193: SHIELD - Machine Learning Engineer (Risk)
+2025-03-16 06:29:37,779 - openai._base_client - INFO - Retrying request to /chat/completions in 0.394772 seconds
+2025-03-16 06:29:38,267 - openai._base_client - INFO - Retrying request to /chat/completions in 0.928218 seconds
+2025-03-16 06:29:39,297 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:39,305 - linkedin_job_analyzer - INFO - 處理 72/193: Peoplebank - Gen AI Engineer (up to $5k)
+2025-03-16 06:29:39,398 - openai._base_client - INFO - Retrying request to /chat/completions in 0.468700 seconds
+2025-03-16 06:29:39,951 - openai._base_client - INFO - Retrying request to /chat/completions in 0.927904 seconds
+2025-03-16 06:29:40,973 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:40,974 - linkedin_job_analyzer - INFO - 處理 73/193: RoleChain - Machine Learning Engineer - Query Understanding
+2025-03-16 06:29:41,063 - openai._base_client - INFO - Retrying request to /chat/completions in 0.384307 seconds
+2025-03-16 06:29:41,534 - openai._base_client - INFO - Retrying request to /chat/completions in 0.919447 seconds
+2025-03-16 06:29:42,547 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:42,549 - linkedin_job_analyzer - INFO - 處理 74/193: TikTok - Machine Learning Engineer (Recommendation Alliance), TikTok Global E-Commerce - 2025 Start
+2025-03-16 06:29:42,651 - openai._base_client - INFO - Retrying request to /chat/completions in 0.498374 seconds
+2025-03-16 06:29:43,234 - openai._base_client - INFO - Retrying request to /chat/completions in 0.789122 seconds
+2025-03-16 06:29:44,118 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:44,122 - linkedin_job_analyzer - INFO - 處理 75/193: TikTok - Machine Learning Engineer - TikTok E-Commerce
+2025-03-16 06:29:44,231 - openai._base_client - INFO - Retrying request to /chat/completions in 0.417797 seconds
+2025-03-16 06:29:44,738 - openai._base_client - INFO - Retrying request to /chat/completions in 0.775720 seconds
+2025-03-16 06:29:45,608 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:45,609 - linkedin_job_analyzer - INFO - 處理 76/193: Holicay - Full Stack Ai Engineer
+2025-03-16 06:29:45,704 - openai._base_client - INFO - Retrying request to /chat/completions in 0.479091 seconds
+2025-03-16 06:29:46,275 - openai._base_client - INFO - Retrying request to /chat/completions in 0.975651 seconds
+2025-03-16 06:29:47,346 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:47,350 - linkedin_job_analyzer - INFO - 處理 77/193: Airwallex - Software Engineer, AI
+2025-03-16 06:29:47,446 - openai._base_client - INFO - Retrying request to /chat/completions in 0.397432 seconds
+2025-03-16 06:29:47,931 - openai._base_client - INFO - Retrying request to /chat/completions in 0.966234 seconds
+2025-03-16 06:29:48,987 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:48,989 - linkedin_job_analyzer - INFO - 處理 78/193: TikTok - Machine Learning Engineer, Search E-Commerce - 2025 Start (PhD)
+2025-03-16 06:29:49,084 - openai._base_client - INFO - Retrying request to /chat/completions in 0.424466 seconds
+2025-03-16 06:29:49,600 - openai._base_client - INFO - Retrying request to /chat/completions in 0.981701 seconds
+2025-03-16 06:29:50,668 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:50,670 - linkedin_job_analyzer - INFO - 處理 79/193: Cygnify - Senior Solutions Engineer/Architect - AI Fintech
+2025-03-16 06:29:50,757 - openai._base_client - INFO - Retrying request to /chat/completions in 0.479324 seconds
+2025-03-16 06:29:51,328 - openai._base_client - INFO - Retrying request to /chat/completions in 0.954591 seconds
+2025-03-16 06:29:52,394 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:52,401 - linkedin_job_analyzer - INFO - 處理 80/193: TikTok - PhD Intern Machine Learning Engineer - TikTok BRIC (Singapore) - 2025 Start
+2025-03-16 06:29:52,492 - openai._base_client - INFO - Retrying request to /chat/completions in 0.409069 seconds
+2025-03-16 06:29:52,988 - openai._base_client - INFO - Retrying request to /chat/completions in 0.940231 seconds
+2025-03-16 06:29:54,020 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:54,022 - linkedin_job_analyzer - INFO - 處理 81/193: Outlier - Coding Expertise for AI Training (English - Singapore)
+2025-03-16 06:29:54,127 - openai._base_client - INFO - Retrying request to /chat/completions in 0.403500 seconds
+2025-03-16 06:29:54,621 - openai._base_client - INFO - Retrying request to /chat/completions in 0.988505 seconds
+2025-03-16 06:29:55,704 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:55,707 - linkedin_job_analyzer - INFO - 處理 82/193: Outlier - Remote Coding Expertise for AI Training (English - Singapore)
+2025-03-16 06:29:55,792 - openai._base_client - INFO - Retrying request to /chat/completions in 0.427033 seconds
+2025-03-16 06:29:56,311 - openai._base_client - INFO - Retrying request to /chat/completions in 0.900304 seconds
+2025-03-16 06:29:57,295 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:57,298 - linkedin_job_analyzer - INFO - 處理 83/193: Vy Systems - Singapore - Artificial Intelligence Engineer
+2025-03-16 06:29:57,387 - openai._base_client - INFO - Retrying request to /chat/completions in 0.484329 seconds
+2025-03-16 06:29:57,986 - openai._base_client - INFO - Retrying request to /chat/completions in 0.831448 seconds
+2025-03-16 06:29:58,921 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:29:58,929 - linkedin_job_analyzer - INFO - 處理 84/193: DSO National Laboratories - Computer Vision / Machine Learning Engineer
+2025-03-16 06:29:59,021 - openai._base_client - INFO - Retrying request to /chat/completions in 0.484493 seconds
+2025-03-16 06:29:59,636 - openai._base_client - INFO - Retrying request to /chat/completions in 0.864169 seconds
+2025-03-16 06:30:00,631 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:00,649 - linkedin_job_analyzer - INFO - 處理 85/193: RoleChain - Machine Learning Engineer - Query Understanding
+2025-03-16 06:30:00,738 - openai._base_client - INFO - Retrying request to /chat/completions in 0.466354 seconds
+2025-03-16 06:30:01,318 - openai._base_client - INFO - Retrying request to /chat/completions in 0.751239 seconds
+2025-03-16 06:30:02,183 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:02,189 - linkedin_job_analyzer - INFO - 處理 86/193: TikTok - Machine Learning Engineer - TikTok E-Commerce
+2025-03-16 06:30:02,282 - openai._base_client - INFO - Retrying request to /chat/completions in 0.417733 seconds
+2025-03-16 06:30:02,787 - openai._base_client - INFO - Retrying request to /chat/completions in 0.782954 seconds
+2025-03-16 06:30:03,679 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:03,683 - linkedin_job_analyzer - INFO - 處理 87/193: TikTok - PhD Intern Machine Learning Engineer - TikTok BRIC (Singapore) - 2025 Start
+2025-03-16 06:30:03,778 - openai._base_client - INFO - Retrying request to /chat/completions in 0.472262 seconds
+2025-03-16 06:30:04,340 - openai._base_client - INFO - Retrying request to /chat/completions in 0.789586 seconds
+2025-03-16 06:30:05,246 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:05,258 - linkedin_job_analyzer - INFO - 處理 88/193: TikTok - Machine Learning Engineer (Recommendation Alliance), TikTok Global E-Commerce - 2025 Start
+2025-03-16 06:30:05,349 - openai._base_client - INFO - Retrying request to /chat/completions in 0.413972 seconds
+2025-03-16 06:30:05,854 - openai._base_client - INFO - Retrying request to /chat/completions in 0.819733 seconds
+2025-03-16 06:30:06,774 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:06,779 - linkedin_job_analyzer - INFO - 處理 89/193: Peoplebank - Gen AI Engineer (up to $5k)
+2025-03-16 06:30:06,874 - openai._base_client - INFO - Retrying request to /chat/completions in 0.430423 seconds
+2025-03-16 06:30:07,402 - openai._base_client - INFO - Retrying request to /chat/completions in 0.780007 seconds
+2025-03-16 06:30:08,283 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:08,287 - linkedin_job_analyzer - INFO - 處理 90/193: TikTok - Machine Learning Engineer, Search E-Commerce - 2025 Start (PhD)
+2025-03-16 06:30:08,384 - openai._base_client - INFO - Retrying request to /chat/completions in 0.412137 seconds
+2025-03-16 06:30:08,911 - openai._base_client - INFO - Retrying request to /chat/completions in 0.775125 seconds
+2025-03-16 06:30:09,788 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:09,790 - linkedin_job_analyzer - INFO - 處理 91/193: Grab - Lead Data Scientist (Supply Planning)
+2025-03-16 06:30:09,882 - openai._base_client - INFO - Retrying request to /chat/completions in 0.419641 seconds
+2025-03-16 06:30:10,408 - openai._base_client - INFO - Retrying request to /chat/completions in 0.962153 seconds
+2025-03-16 06:30:11,475 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:11,487 - linkedin_job_analyzer - INFO - 處理 92/193: Acronis - TRU Researcher
+2025-03-16 06:30:11,577 - openai._base_client - INFO - Retrying request to /chat/completions in 0.444486 seconds
+2025-03-16 06:30:12,117 - openai._base_client - INFO - Retrying request to /chat/completions in 0.873067 seconds
+2025-03-16 06:30:13,088 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:13,094 - linkedin_job_analyzer - INFO - 處理 93/193: TikTok - LLM platform R&D engineer - AI Innovation Center (Singapore)
+2025-03-16 06:30:13,194 - openai._base_client - INFO - Retrying request to /chat/completions in 0.378275 seconds
+2025-03-16 06:30:13,681 - openai._base_client - INFO - Retrying request to /chat/completions in 0.802658 seconds
+2025-03-16 06:30:14,590 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:14,598 - linkedin_job_analyzer - INFO - 處理 94/193: A*STAR - Agency for Science, Technology and Research - Research Scientist, Advanced Remanufacturing Division (ARTC)
+2025-03-16 06:30:14,715 - openai._base_client - INFO - Retrying request to /chat/completions in 0.486249 seconds
+2025-03-16 06:30:15,303 - openai._base_client - INFO - Retrying request to /chat/completions in 0.791949 seconds
+2025-03-16 06:30:16,188 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:16,192 - linkedin_job_analyzer - INFO - 處理 95/193: TikTok - Algorithm Engineer - Pangle Ranking
+2025-03-16 06:30:16,288 - openai._base_client - INFO - Retrying request to /chat/completions in 0.476292 seconds
+2025-03-16 06:30:16,855 - openai._base_client - INFO - Retrying request to /chat/completions in 0.991565 seconds
+2025-03-16 06:30:17,960 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:17,968 - linkedin_job_analyzer - INFO - 處理 96/193: Holicay - Full Stack Ai Engineer
+2025-03-16 06:30:18,067 - openai._base_client - INFO - Retrying request to /chat/completions in 0.376504 seconds
+2025-03-16 06:30:18,530 - openai._base_client - INFO - Retrying request to /chat/completions in 0.947094 seconds
+2025-03-16 06:30:19,562 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:19,564 - linkedin_job_analyzer - INFO - 處理 97/193: Emerson - Senior Software Engineer - Full Stack Developer
+2025-03-16 06:30:19,650 - openai._base_client - INFO - Retrying request to /chat/completions in 0.445343 seconds
+2025-03-16 06:30:20,189 - openai._base_client - INFO - Retrying request to /chat/completions in 0.973014 seconds
+2025-03-16 06:30:21,263 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:21,273 - linkedin_job_analyzer - INFO - 處理 98/193: Airwallex - Software Engineer, AI
+2025-03-16 06:30:21,369 - openai._base_client - INFO - Retrying request to /chat/completions in 0.441157 seconds
+2025-03-16 06:30:21,913 - openai._base_client - INFO - Retrying request to /chat/completions in 0.764139 seconds
+2025-03-16 06:30:22,781 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:22,786 - linkedin_job_analyzer - INFO - 處理 99/193: Saksoft - Developer
+2025-03-16 06:30:22,887 - openai._base_client - INFO - Retrying request to /chat/completions in 0.422786 seconds
+2025-03-16 06:30:23,412 - openai._base_client - INFO - Retrying request to /chat/completions in 0.831881 seconds
+2025-03-16 06:30:24,363 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:24,372 - linkedin_job_analyzer - INFO - 處理 100/193: Morgan McKinley - Full Stack Developer
+2025-03-16 06:30:24,469 - openai._base_client - INFO - Retrying request to /chat/completions in 0.498101 seconds
+2025-03-16 06:30:25,057 - openai._base_client - INFO - Retrying request to /chat/completions in 0.788080 seconds
+2025-03-16 06:30:25,936 - linkedin_job_analyzer - ERROR - AI 分析過程中發生錯誤: Connection error.
+2025-03-16 06:30:25,938 - linkedin_job_analyzer - INFO - 處理 101/193: Saksoft - Developer
+2025-03-16 06:30:26,036 - openai._base_client - INFO - Retrying request to /chat/completions in 0.376924 seconds
+2025-03-16 06:31:51,840 - linkedin_app - INFO - 開始執行 AI 職缺分析，處理最近 24 小時的資料...
+2025-03-16 06:31:51,840 - linkedin_job_analyzer - INFO - 開始執行職缺分析，處理 24 小時前的資料
+2025-03-16 06:31:51,856 - linkedin_job_analyzer - INFO - 找到 193 筆未處理的職缺資料
+2025-03-16 06:31:51,862 - linkedin_job_analyzer - INFO - 處理 1/193: LITEON Technology - Data Scientist
+2025-03-16 06:31:55,006 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:31:55,022 - linkedin_job_analyzer - INFO - 處理 2/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:31:57,831 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:31:57,851 - linkedin_job_analyzer - INFO - 處理 3/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:32:00,533 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:32:00,552 - linkedin_job_analyzer - INFO - 處理 4/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:32:03,328 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:32:03,351 - linkedin_job_analyzer - INFO - 處理 5/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:32:06,380 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:32:06,384 - linkedin_job_analyzer - INFO - 處理 6/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:32:13,097 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:32:13,106 - linkedin_job_analyzer - ERROR - 無法解析 AI 回應: ```json
+{
+    "keywords": "ai, model, training, generative, language",
+    "hard_skill": "java, python, javascript, typescript, c++, swift, verilog",
+    "soft_skill": "detail, communication",
+    "cleaned_job_title": "ai trainer",
+    "suitable_personality": "precise, adaptable",
+    "representative_anime_character": "megumi fushiguro",
+    "representative_animal": "octopus",
+    "job_superpower": "分身術",
+    "job_theme_song": "告白氣球"
+}
+```
+
+Explanation:
+
+- **Keywords**: Extracted from the job description, focusing on AI/ML/DS-related terms: "ai, model, training, generative, language".
+- **Hard Skills**: Programming languages mentioned in the job description: "java, python, javascript, typescript, c++, swift, verilog".
+- **Soft Skills**: Relevant soft skills mentioned: "detail, communication".
+- **Cleaned Job Title**: The core role without qualifiers, inferred from the job title and description: "ai trainer".
+- **Suitable Personality**: Traits that would suit the role, inferred from the job requirements and nature of the work: "precise, adaptable".
+- **Representative Anime Character**: Megumi Fushiguro from "Jujutsu Kaisen" is chosen for his precision and adaptability, which align with the role's needs.
+- **Representative Animal**: An octopus represents adaptability and precision in handling multiple tasks, which fits the role's requirements.
+- **Job Superpower**: "分身術" (Clone Technique) from "Naruto" symbolizes the ability to handle multiple tasks simultaneously, fitting the role's diverse and variable nature.
+- **Job Theme Song**: "告白氣球" (Confession Balloon) by Jay Chou, which represents the meticulous and thoughtful approach needed for the role.
+2025-03-16 06:32:13,110 - linkedin_job_analyzer - INFO - 處理 7/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:32:15,814 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:32:15,819 - linkedin_job_analyzer - INFO - 處理 8/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:15,574 - linkedin_app - INFO - 開始執行 AI 職缺分析，處理最近 24 小時的資料...
+2025-03-16 06:33:15,575 - linkedin_job_analyzer - INFO - 開始執行職缺分析，處理 24 小時前的資料
+2025-03-16 06:33:15,588 - linkedin_job_analyzer - INFO - 找到 193 筆未處理的職缺資料
+2025-03-16 06:33:15,595 - linkedin_job_analyzer - INFO - 處理 1/193: LITEON Technology - Data Scientist
+2025-03-16 06:33:18,114 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:18,127 - linkedin_job_analyzer - ERROR - 無法解析 AI 回應: ```json
+{
+    "keywords": "data, insights, pattern, dataset, ml, dl, regressor, forcast, algorithm, knowhow, roadmap, requirement, business",
+    "hard_skill": "ml, dl",
+    "soft_skill": "analytical, communication",
+    "cleaned_job_title": "data scientist",
+    "suitable_personality": "analytical, curious",
+    "representative_anime_character": "light yagami",
+    "representative_animal": "owl",
+    "job_superpower": "死亡筆記",
+    "job_theme_song": "scientist"
+}
+```
+2025-03-16 06:33:18,129 - linkedin_job_analyzer - INFO - 處理 2/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:20,897 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:20,910 - linkedin_job_analyzer - INFO - 處理 3/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:23,731 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:23,734 - linkedin_job_analyzer - INFO - 處理 4/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:26,296 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:26,320 - linkedin_job_analyzer - INFO - 處理 5/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:28,604 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:28,607 - linkedin_job_analyzer - INFO - 處理 6/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:30,956 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:30,959 - linkedin_job_analyzer - INFO - 處理 7/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:33,459 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:33,491 - linkedin_job_analyzer - INFO - 處理 8/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:36,156 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:36,182 - linkedin_job_analyzer - INFO - 處理 9/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:38,927 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:38,949 - linkedin_job_analyzer - INFO - 處理 10/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:41,250 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:41,256 - linkedin_job_analyzer - INFO - 處理 11/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:44,210 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:44,236 - linkedin_job_analyzer - INFO - 處理 12/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:46,943 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:46,973 - linkedin_job_analyzer - INFO - 處理 13/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:49,602 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:49,623 - linkedin_job_analyzer - INFO - 處理 14/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:51,915 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:51,924 - linkedin_job_analyzer - INFO - 處理 15/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:33:54,470 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:54,479 - linkedin_job_analyzer - INFO - 處理 16/193: NVIDIA - Senior Memory Engineer
+2025-03-16 06:33:57,357 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:33:57,366 - linkedin_job_analyzer - INFO - 處理 17/193: NVIDIA - Senior Memory Engineer
+2025-03-16 06:34:00,104 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:00,125 - linkedin_job_analyzer - INFO - 處理 18/193: LITEON Technology - Data Scientist
+2025-03-16 06:34:02,934 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:02,939 - linkedin_job_analyzer - INFO - 處理 19/193: NVIDIA - Research Scientist - Design Automation
+2025-03-16 06:34:05,771 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:05,791 - linkedin_job_analyzer - INFO - 處理 20/193: thingnario - [RD] 資深全端工程師 Senior Full Stack Engineer ( hybrid )
+2025-03-16 06:34:08,135 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:08,156 - linkedin_job_analyzer - INFO - 處理 21/193: Google - Embedded System Software Engineer, Pixel Watch
+2025-03-16 06:34:10,792 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:10,807 - linkedin_job_analyzer - INFO - 處理 22/193: Synopsys Inc - R&D Engineering, Staff Engineer
+2025-03-16 06:34:13,243 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:13,283 - linkedin_job_analyzer - INFO - 處理 23/193: Google - Software Engineer Ⅲ, Quality, Google Cloud Platform
+2025-03-16 06:34:15,734 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:15,748 - linkedin_job_analyzer - INFO - 處理 24/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:34:18,390 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:18,406 - linkedin_job_analyzer - INFO - 處理 25/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:34:20,851 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:20,873 - linkedin_job_analyzer - INFO - 處理 26/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:34:23,534 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:23,548 - linkedin_job_analyzer - INFO - 處理 27/193: Uber - Partner Engineer II
+2025-03-16 06:34:25,950 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:25,952 - linkedin_job_analyzer - INFO - 處理 28/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:34:28,459 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:28,490 - linkedin_job_analyzer - INFO - 處理 29/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:34:30,867 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:30,900 - linkedin_job_analyzer - INFO - 處理 30/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:34:33,250 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:33,254 - linkedin_job_analyzer - INFO - 處理 31/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:34:35,674 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:35,694 - linkedin_job_analyzer - INFO - 處理 32/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:34:38,120 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:38,162 - linkedin_job_analyzer - INFO - 處理 33/193: Qualcomm - Automotive- Infotainment Software Customer Engineer, up to Staff – Platform/BSP
+2025-03-16 06:34:46,601 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:46,616 - linkedin_job_analyzer - ERROR - 無法解析 AI 回應: {
+    'keywords': 'bsp, embedded, linux, android, qnx, hypervisor, soc, automotive, platform',
+    'hard_skill': 'c, c++, java, python, device driver, jtag, trace32, oscilloscope, logical analyzer, arm, iso26262, autosar, serial peripherals, usb, system performance, multitasking, audio frameworks, audio dsp',
+    'soft_skill': 'analytical, problem-solving, communication, teamwork, self-starter, self-motivated, independent, resourceful, active listening',
+    'cleaned_job_title': 'software engineer',
+    'suitable_personality': 'analytical, problem-solving, communicative, team-oriented, independent',
+    'representative_anime_character': '光子郎 (Photon)',
+    'representative_animal': 'octopus',
+    'job_superpower': '超級駭客 (Super Hacker)',
+    'job_theme_song': 'Let It Go'
+}
+
+Explanation:
+- **Keywords**: Extracted from the job description, focusing on AI/ML/DS and related technologies.
+- **Hard Skills**: Technical skills required for the role, including programming languages, tools, and specific knowledge areas.
+- **Soft Skills**: Non-technical skills important for the role, inferred from the job description.
+- **Cleaned Job Title**: The core role without qualifiers, inferred as 'software engineer' from the job title and description.
+- **Suitable Personality**: Traits inferred from the job description, focusing on what would be beneficial for the role.
+- **Representative Anime Character**: 光子郎 (Photon) from "Photon: The Idiot Adventures" is chosen for his technical prowess and problem-solving skills, which align well with the role's requirements.
+- **Representative Animal**: An octopus is selected for its multitasking and problem-solving abilities, reflecting the job's demands.
+- **Job Superpower**: '超級駭客' (Super Hacker) from various animations, symbolizing the deep technical expertise required.
+- **Job Theme Song**: 'Let It Go' by Idina Menzel, representing the independence and self-motivation needed for the role.
+2025-03-16 06:34:46,623 - linkedin_job_analyzer - INFO - 處理 34/193: The Shanghai Commercial & Savings Bank - 軟體工程師
+2025-03-16 06:34:49,263 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:49,269 - linkedin_job_analyzer - INFO - 處理 35/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:34:52,006 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:52,042 - linkedin_job_analyzer - INFO - 處理 36/193: Micron Technology - Application Solutions Engineer
+2025-03-16 06:34:54,918 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:54,938 - linkedin_job_analyzer - INFO - 處理 37/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:34:57,785 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:34:57,793 - linkedin_job_analyzer - INFO - 處理 38/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:35:00,626 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:00,659 - linkedin_job_analyzer - INFO - 處理 39/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:35:03,492 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:03,497 - linkedin_job_analyzer - INFO - 處理 40/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:35:05,841 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:05,844 - linkedin_job_analyzer - INFO - 處理 41/193: Outlier - Coding Expertise for AI Training (Traditional Chinese)
+2025-03-16 06:35:08,899 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:08,929 - linkedin_job_analyzer - INFO - 處理 42/193: Amazon - Sr. Software Development Engineer, FireTV Platform Engineering team
+2025-03-16 06:35:11,731 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:11,756 - linkedin_job_analyzer - INFO - 處理 43/193: Synopsys Inc - R&D Engineering, Staff Engineer_VCS
+2025-03-16 06:35:15,209 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:15,222 - linkedin_job_analyzer - INFO - 處理 44/193: Canonical - Containerization & Virtualisation Engineer
+2025-03-16 06:35:19,319 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:19,330 - linkedin_job_analyzer - INFO - 處理 45/193: ShopBack - Staff Software Engineer
+2025-03-16 06:35:21,793 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:21,798 - linkedin_job_analyzer - INFO - 處理 46/193: Siemens EDA (Siemens Digital Industries Software) - Senior Application Engineer (AE) - Aprisa P&R
+2025-03-16 06:35:25,359 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:25,366 - linkedin_job_analyzer - INFO - 處理 47/193: Canonical - Containerization & Virtualisation Engineer
+2025-03-16 06:35:28,791 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:28,837 - linkedin_job_analyzer - INFO - 處理 48/193: NVIDIA - System Software Engineering Intern - 2025
+2025-03-16 06:35:31,635 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:31,668 - linkedin_job_analyzer - INFO - 處理 49/193: Synopsys Inc - R&D Engineering, Architect_Zebu
+2025-03-16 06:35:34,615 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:34,617 - linkedin_job_analyzer - INFO - 處理 50/193: Agoda - Senior DevOps Engineer (Bangkok-Based, Relocation Provided)
+2025-03-16 06:35:37,735 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:37,745 - linkedin_job_analyzer - INFO - 處理 51/193: Agoda - Senior DevOps Engineer (Bangkok-Based, Relocation Provided)
+2025-03-16 06:35:40,500 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:40,503 - linkedin_job_analyzer - INFO - 處理 52/193: Agoda - Senior DevOps Engineer (Bangkok-Based, Relocation Provided)
+2025-03-16 06:35:43,839 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:43,858 - linkedin_job_analyzer - INFO - 處理 53/193: Agoda - Senior DevOps Engineer (Bangkok-Based, Relocation Provided)
+2025-03-16 06:35:46,743 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:46,751 - linkedin_job_analyzer - INFO - 處理 54/193: Agoda - Staff Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:35:49,512 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:49,515 - linkedin_job_analyzer - INFO - 處理 55/193: Micron Technology - PROCT FE COST EXCELLENCE SENIOR ENGINEER
+2025-03-16 06:35:51,778 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:51,785 - linkedin_job_analyzer - INFO - 處理 56/193: Agoda - Staff Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:35:54,324 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:54,327 - linkedin_job_analyzer - INFO - 處理 57/193: Agoda - Staff Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:35:57,112 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:57,120 - linkedin_job_analyzer - INFO - 處理 58/193: Agoda - Staff Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:35:59,825 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:35:59,828 - linkedin_job_analyzer - INFO - 處理 59/193: Visa - Staff SW Engineer - AIOPS developer
+2025-03-16 06:36:04,990 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:05,015 - linkedin_job_analyzer - INFO - 處理 60/193: Ailytics - Customer Success Engineer
+2025-03-16 06:36:07,671 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:07,675 - linkedin_job_analyzer - INFO - 處理 61/193: Michael Page - Sr. SAP Engineer
+2025-03-16 06:36:09,769 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:09,791 - linkedin_job_analyzer - INFO - 處理 62/193: Agoda - Senior Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:36:12,458 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:12,481 - linkedin_job_analyzer - INFO - 處理 63/193: Agoda - Senior Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:36:15,720 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:15,723 - linkedin_job_analyzer - INFO - 處理 64/193: Agoda - Senior Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:36:18,469 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:18,474 - linkedin_job_analyzer - INFO - 處理 65/193: NXP Semiconductors - Salesforce CRM System Business Analyst
+2025-03-16 06:36:20,903 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:20,928 - linkedin_job_analyzer - INFO - 處理 66/193: Agoda - Senior Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:36:23,821 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:23,823 - linkedin_job_analyzer - INFO - 處理 67/193: Vy Systems - Singapore - Artificial Intelligence Engineer
+2025-03-16 06:36:26,125 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:26,129 - linkedin_job_analyzer - INFO - 處理 68/193: SHIELD - Machine Learning Engineer (Risk)
+2025-03-16 06:36:29,081 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:29,113 - linkedin_job_analyzer - INFO - 處理 69/193: DSO National Laboratories - Computer Vision / Machine Learning Engineer
+2025-03-16 06:36:31,480 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:31,488 - linkedin_job_analyzer - INFO - 處理 70/193: Axelera AI - Senior Engineer - Silicon Physical Design (Italy based)
+2025-03-16 06:36:35,372 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:35,377 - linkedin_job_analyzer - INFO - 處理 71/193: SHIELD - Machine Learning Engineer (Risk)
+2025-03-16 06:36:38,177 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:38,186 - linkedin_job_analyzer - INFO - 處理 72/193: Peoplebank - Gen AI Engineer (up to $5k)
+2025-03-16 06:36:41,032 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:41,045 - linkedin_job_analyzer - INFO - 處理 73/193: RoleChain - Machine Learning Engineer - Query Understanding
+2025-03-16 06:36:43,646 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:43,653 - linkedin_job_analyzer - INFO - 處理 74/193: TikTok - Machine Learning Engineer (Recommendation Alliance), TikTok Global E-Commerce - 2025 Start
+2025-03-16 06:36:47,137 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:47,143 - linkedin_job_analyzer - INFO - 處理 75/193: TikTok - Machine Learning Engineer - TikTok E-Commerce
+2025-03-16 06:36:49,953 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:49,958 - linkedin_job_analyzer - INFO - 處理 76/193: Holicay - Full Stack Ai Engineer
+2025-03-16 06:36:52,335 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:52,361 - linkedin_job_analyzer - INFO - 處理 77/193: Airwallex - Software Engineer, AI
+2025-03-16 06:36:54,386 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:54,391 - linkedin_job_analyzer - INFO - 處理 78/193: TikTok - Machine Learning Engineer, Search E-Commerce - 2025 Start (PhD)
+2025-03-16 06:36:57,918 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:36:57,927 - linkedin_job_analyzer - INFO - 處理 79/193: Cygnify - Senior Solutions Engineer/Architect - AI Fintech
+2025-03-16 06:37:00,538 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:00,548 - linkedin_job_analyzer - INFO - 處理 80/193: TikTok - PhD Intern Machine Learning Engineer - TikTok BRIC (Singapore) - 2025 Start
+2025-03-16 06:37:03,502 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:03,533 - linkedin_job_analyzer - INFO - 處理 81/193: Outlier - Coding Expertise for AI Training (English - Singapore)
+2025-03-16 06:37:05,802 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:05,808 - linkedin_job_analyzer - INFO - 處理 82/193: Outlier - Remote Coding Expertise for AI Training (English - Singapore)
+2025-03-16 06:37:09,038 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:09,061 - linkedin_job_analyzer - INFO - 處理 83/193: Vy Systems - Singapore - Artificial Intelligence Engineer
+2025-03-16 06:37:12,529 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:12,552 - linkedin_job_analyzer - INFO - 處理 84/193: DSO National Laboratories - Computer Vision / Machine Learning Engineer
+2025-03-16 06:37:16,136 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:16,141 - linkedin_job_analyzer - INFO - 處理 85/193: RoleChain - Machine Learning Engineer - Query Understanding
+2025-03-16 06:37:19,886 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:19,890 - linkedin_job_analyzer - INFO - 處理 86/193: TikTok - Machine Learning Engineer - TikTok E-Commerce
+2025-03-16 06:37:22,241 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:22,249 - linkedin_job_analyzer - INFO - 處理 87/193: TikTok - PhD Intern Machine Learning Engineer - TikTok BRIC (Singapore) - 2025 Start
+2025-03-16 06:37:25,922 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:25,928 - linkedin_job_analyzer - INFO - 處理 88/193: TikTok - Machine Learning Engineer (Recommendation Alliance), TikTok Global E-Commerce - 2025 Start
+2025-03-16 06:37:29,100 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:29,104 - linkedin_job_analyzer - INFO - 處理 89/193: Peoplebank - Gen AI Engineer (up to $5k)
+2025-03-16 06:37:32,583 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:32,607 - linkedin_job_analyzer - INFO - 處理 90/193: TikTok - Machine Learning Engineer, Search E-Commerce - 2025 Start (PhD)
+2025-03-16 06:37:42,582 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:42,618 - linkedin_job_analyzer - ERROR - 無法解析 AI 回應: ```json
+{
+    "keywords": "machine learning, nlp, cv, multi-modal, search, e-commerce",
+    "hard_skill": "query analysis, text relevance, multi-modal matching, ranking system, data structure, algorithms, modeling",
+    "soft_skill": "analysis, problem-solving, communication, self-driven, adaptability",
+    "cleaned_job_title": "machine learning engineer",
+    "suitable_personality": "innovative, analytical, persistent, communicative",
+    "representative_anime_character": "Lelouch Lamperouge",
+    "representative_animal": "owl",
+    "job_superpower": "心靈感應",
+    "job_theme_song": "Can't Stop the Feeling!"
+}
+```
+
+Explanation:
+
+- **Keywords**: Extracted from the job description, focusing on AI/ML/DS-related terms such as "machine learning", "nlp", "cv", "multi-modal", "search", and "e-commerce".
+- **Hard Skills**: Technical skills mentioned or implied in the job description, including "query analysis", "text relevance", "multi-modal matching", "ranking system", "data structure", "algorithms", and "modeling".
+- **Soft Skills**: Skills that are relevant to the role, such as "analysis", "problem-solving", "communication", "self-driven", and "adaptability".
+- **Cleaned Job Title**: The core role without qualifiers, resulting in "machine learning engineer".
+- **Suitable Personality**: Traits inferred from the job description and requirements, such as "innovative", "analytical", "persistent", and "communicative".
+- **Representative Anime Character**: Lelouch Lamperouge from "Code Geass" is chosen for his strategic and analytical mind, which aligns with the role's requirements.
+- **Representative Animal**: An owl is chosen to symbolize wisdom and analytical skills, fitting the role's need for deep analysis and problem-solving.
+- **Job Superpower**: "心靈感應" (Telepathy) from various anime and movies, reflecting the need for deep understanding and communication in the role.
+- **Job Theme Song**: "Can't Stop the Feeling!" by Justin Timberlake, which reflects the joy and creativity that TikTok aims to inspire, aligning with the company's mission.
+2025-03-16 06:37:42,627 - linkedin_job_analyzer - INFO - 處理 91/193: Grab - Lead Data Scientist (Supply Planning)
+2025-03-16 06:37:45,515 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:45,521 - linkedin_job_analyzer - INFO - 處理 92/193: Acronis - TRU Researcher
+2025-03-16 06:37:48,626 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:48,629 - linkedin_job_analyzer - INFO - 處理 93/193: TikTok - LLM platform R&D engineer - AI Innovation Center (Singapore)
+2025-03-16 06:37:52,016 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:52,042 - linkedin_job_analyzer - INFO - 處理 94/193: A*STAR - Agency for Science, Technology and Research - Research Scientist, Advanced Remanufacturing Division (ARTC)
+2025-03-16 06:37:55,456 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:55,486 - linkedin_job_analyzer - INFO - 處理 95/193: TikTok - Algorithm Engineer - Pangle Ranking
+2025-03-16 06:37:58,971 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:37:58,990 - linkedin_job_analyzer - INFO - 處理 96/193: Holicay - Full Stack Ai Engineer
+2025-03-16 06:38:01,484 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:01,504 - linkedin_job_analyzer - INFO - 處理 97/193: Emerson - Senior Software Engineer - Full Stack Developer
+2025-03-16 06:38:04,201 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:04,207 - linkedin_job_analyzer - INFO - 處理 98/193: Airwallex - Software Engineer, AI
+2025-03-16 06:38:06,451 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:06,478 - linkedin_job_analyzer - INFO - 處理 99/193: Saksoft - Developer
+2025-03-16 06:38:09,819 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:09,849 - linkedin_job_analyzer - INFO - 處理 100/193: Morgan McKinley - Full Stack Developer
+2025-03-16 06:38:12,753 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:12,783 - linkedin_job_analyzer - INFO - 處理 101/193: Saksoft - Developer
+2025-03-16 06:38:15,565 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:15,590 - linkedin_job_analyzer - INFO - 處理 102/193: Snap Inc. - Solutions Engineer
+2025-03-16 06:38:17,856 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:17,860 - linkedin_job_analyzer - INFO - 處理 103/193: Outlier - Remote Coding Expertise for AI Training (English - Singapore)
+2025-03-16 06:38:20,244 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:20,269 - linkedin_job_analyzer - INFO - 處理 104/193: TikTok - Backend Software Engineer - TikTok Location Based Service (LBS) Platform
+2025-03-16 06:38:23,415 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:23,448 - linkedin_job_analyzer - INFO - 處理 105/193: Outlier - Coding Expertise for AI Training (English - Singapore)
+2025-03-16 06:38:26,783 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:26,804 - linkedin_job_analyzer - INFO - 處理 106/193: Intrinsic - Senior Robotics Software Engineer
+2025-03-16 06:38:30,135 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:30,154 - linkedin_job_analyzer - INFO - 處理 107/193: TikTok - Software Development Engineer in Test - TikTok (SG)
+2025-03-16 06:38:33,141 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:33,148 - linkedin_job_analyzer - INFO - 處理 108/193: Crypto.com - Senior DevOps Engineer - Trading team
+2025-03-16 06:38:36,835 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:36,857 - linkedin_job_analyzer - INFO - 處理 109/193: Solomon AI - Full Stack Developer for Solomon AI
+2025-03-16 06:38:39,465 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:39,489 - linkedin_job_analyzer - INFO - 處理 110/193: ST Engineering - Senior/Software Engineer  (Entry level candidates welcome) -DSC/EZ
+2025-03-16 06:38:42,000 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:42,019 - linkedin_job_analyzer - INFO - 處理 111/193: Peoplebank - Data Platform Engineer
+2025-03-16 06:38:45,508 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:45,537 - linkedin_job_analyzer - INFO - 處理 112/193: ABeam Consulting Indonesia | Data Management and Analytics Sector - Software Developer
+2025-03-16 06:38:49,051 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:49,056 - linkedin_job_analyzer - INFO - 處理 113/193: Acronis - Senior Go/Python Software Developer with Application Security skills
+2025-03-16 06:38:51,850 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:51,866 - linkedin_job_analyzer - INFO - 處理 114/193: OSTTRA - Solutions Engineer
+2025-03-16 06:38:54,296 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:54,299 - linkedin_job_analyzer - INFO - 處理 115/193: INTELSOFT PTE. LTD. - Frontend Developer
+2025-03-16 06:38:57,667 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:38:57,687 - linkedin_job_analyzer - INFO - 處理 116/193: Amazon Web Services (AWS) - Senior AIML Specialist STAM, ASEAN ES
+2025-03-16 06:39:00,686 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:00,748 - linkedin_job_analyzer - INFO - 處理 117/193: Amazon Web Services (AWS) - Data Center Engineering Ops Engineer, DCEO
+2025-03-16 06:39:03,380 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:03,398 - linkedin_job_analyzer - INFO - 處理 118/193: TP-LINK CORPORATION PTE. LTD - Site Reliability Engineer
+2025-03-16 06:39:07,118 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:07,154 - linkedin_job_analyzer - INFO - 處理 119/193: SILICON BOX - CIM Associate Engineer
+2025-03-16 06:39:10,363 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:10,400 - linkedin_job_analyzer - INFO - 處理 120/193: appstech.com.sg - Full Stack Developer
+2025-03-16 06:39:13,133 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:13,159 - linkedin_job_analyzer - INFO - 處理 121/193: Peoplebank - Full Stack Developer
+2025-03-16 06:39:15,795 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:15,816 - linkedin_job_analyzer - INFO - 處理 122/193: Nanyang Technological University Singapore - Research Engineer I (Trust Technologies)
+2025-03-16 06:39:20,381 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:20,399 - linkedin_job_analyzer - INFO - 處理 123/193: ByteDance - Tech Lead - Infrastructure Platform
+2025-03-16 06:39:23,972 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:23,988 - linkedin_job_analyzer - INFO - 處理 124/193: TikTok - iOS/Android Engineer - Intelligent Creation - 2025 Start
+2025-03-16 06:39:26,572 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:26,592 - linkedin_job_analyzer - INFO - 處理 125/193: Aitea Pte Ltd - Junior System Engineer
+2025-03-16 06:39:28,984 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:29,009 - linkedin_job_analyzer - INFO - 處理 126/193: JPMorganChase - Software Engineer II, Solutions Delivery
+2025-03-16 06:39:31,796 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:31,815 - linkedin_job_analyzer - INFO - 處理 127/193: TikTok - Backend Engineer - Search & Recommendation Architecture
+2025-03-16 06:39:34,527 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:34,550 - linkedin_job_analyzer - INFO - 處理 128/193: Sea - Software Engineering Intern
+2025-03-16 06:39:43,326 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:43,360 - linkedin_job_analyzer - ERROR - 無法解析 AI 回應: {
+    'keywords': 'data, structures',
+    'hard_skill': 'data, structures',
+    'soft_skill': 'problem, solving, critical, thinking, communication',
+    'cleaned_job_title': 'software engineering intern',
+    'suitable_personality': 'passionate, innovative',
+    'representative_anime_character': 'shiro',
+    'representative_animal': 'dolphin',
+    'job_superpower': '程序師之眼',
+    'job_theme_song': 'imagine'
+}
+
+Explanation:
+- **Keywords and Hard Skills**: The job description mentions "data structures" which is directly related to computer science and software engineering. Thus, 'data, structures' are listed as both keywords and hard skills.
+- **Soft Skills**: The job requires "problem solving, critical thinking and communication skills," which are essential soft skills for a software engineering intern.
+- **Cleaned Job Title**: The core role is 'software engineering intern'.
+- **Suitable Personality**: The description highlights "Passionate about coding and programming, innovation," suggesting traits like 'passionate, innovative'.
+- **Representative Anime Character**: Shiro from 'No Game No Life' is chosen due to her exceptional problem-solving skills and innovative thinking, aligning well with the job's requirements.
+- **Representative Animal**: Dolphins are known for their intelligence and problem-solving abilities, making them a fitting representation for this role.
+- **Job Superpower**: '程序師之眼' (Programmer's Eye) from various tech-related themes in anime/movies, symbolizing the ability to see and solve complex programming problems.
+- **Job Theme Song**: 'Imagine' by John Lennon, which emphasizes creativity and innovation, aligns with the personality traits required for the role.
+2025-03-16 06:39:43,366 - linkedin_job_analyzer - INFO - 處理 129/193: TikTok - TikTok Shop - Global Business Analyst
+2025-03-16 06:39:46,616 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:46,643 - linkedin_job_analyzer - INFO - 處理 130/193: Shopee - Android Engineer, Marketplace Intelligence & Data (Campus Recruitment 2025)
+2025-03-16 06:39:53,886 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:53,902 - linkedin_job_analyzer - ERROR - 無法解析 AI 回應: ```json
+{
+    "keywords": "data, intelligence, ai, machine learning, algorithm",
+    "hard_skill": "android, kotlin, java, sdk, git",
+    "soft_skill": "teamwork, communication",
+    "cleaned_job_title": "android engineer",
+    "suitable_personality": "collaborative, detail-oriented",
+    "representative_anime_character": "megumi kato",
+    "representative_animal": "ant",
+    "job_superpower": "程序修改",
+    "job_theme_song": "team"
+}
+```
+
+Explanation:
+
+- **Keywords**: Extracted AI/ML/DS-related terms from the job description such as "data, intelligence, ai, machine learning, algorithm".
+- **Hard Skills**: Identified technical skills required for the role, including "android, kotlin, java, sdk, git".
+- **Soft Skills**: Noted relevant soft skills from the job description, such as "teamwork, communication".
+- **Cleaned Job Title**: Removed qualifiers to focus on the core role, resulting in "android engineer".
+- **Suitable Personality**: Inferred from job requirements and responsibilities, traits like "collaborative, detail-oriented" are suitable.
+- **Representative Anime Character**: Megumi Kato from "Saekano: How to Raise a Boring Girlfriend" is chosen for her collaborative nature and attention to detail in software development.
+- **Representative Animal**: An "ant" symbolizes the collaborative and detail-oriented nature of the role.
+- **Job Superpower**: "程序修改" (Program Modification) from "The World God Only Knows" represents the ability to enhance and maintain software, fitting the role's responsibilities.
+- **Job Theme Song**: "Team" by Lorde reflects the collaborative aspect emphasized in the job description.
+2025-03-16 06:39:53,909 - linkedin_job_analyzer - INFO - 處理 131/193: TikTok - Backend Software Engineer (Data Management Suite)
+2025-03-16 06:39:57,539 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:39:57,557 - linkedin_job_analyzer - INFO - 處理 132/193: TikTok - Tech Lead- CSP
+2025-03-16 06:40:00,519 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:00,548 - linkedin_job_analyzer - INFO - 處理 133/193: OKX - Software Engineer - Basic Platform Middleware (Security Development)
+2025-03-16 06:40:03,307 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:03,325 - linkedin_job_analyzer - INFO - 處理 134/193: Synapxe - Uni Internship May to Oct 2025 -Development and Operationalisation of Anomaly Detection Models
+2025-03-16 06:40:06,611 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:06,620 - linkedin_job_analyzer - INFO - 處理 135/193: Visa - Staff SW Engineer - AIOPS developer
+2025-03-16 06:40:10,708 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:10,723 - linkedin_job_analyzer - INFO - 處理 136/193: Razer Inc. - Software QA Intern
+2025-03-16 06:40:13,351 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:13,372 - linkedin_job_analyzer - INFO - 處理 137/193: Mandai Wildlife Group - Senior/Manager, Planning and Analytics (Indoor Attractions)
+2025-03-16 06:40:16,069 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:16,080 - linkedin_job_analyzer - INFO - 處理 138/193: Billigence - PEGA CDH Engineer
+2025-03-16 06:40:18,652 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:18,660 - linkedin_job_analyzer - INFO - 處理 139/193: TikTok - Backend Software Engineer - Global Streaming Media (Live Event)
+2025-03-16 06:40:21,348 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:21,353 - linkedin_job_analyzer - INFO - 處理 140/193: Resmed - Senior Engineer, Systems Engineering
+2025-03-16 06:40:24,639 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:24,662 - linkedin_job_analyzer - INFO - 處理 141/193: GOLDTECH RESOURCES PTE LTD - M365 System Engineer
+2025-03-16 06:40:27,286 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:27,319 - linkedin_job_analyzer - INFO - 處理 142/193: Visa - Staff Data Engineer
+2025-03-16 06:40:31,266 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:31,293 - linkedin_job_analyzer - INFO - 處理 143/193: Nityo Infotech - Drupal Developer
+2025-03-16 06:40:34,636 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:34,646 - linkedin_job_analyzer - INFO - 處理 144/193: GIC - Associate/AVP, Quantitative Strategist, Sustainability Office 16159
+2025-03-16 06:40:36,892 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:36,895 - linkedin_job_analyzer - INFO - 處理 145/193: Canonical - Containerization & Virtualisation Engineer
+2025-03-16 06:40:39,883 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:39,901 - linkedin_job_analyzer - INFO - 處理 146/193: Agoda - Senior DevOps Engineer (Bangkok-Based, Relocation Provided)
+2025-03-16 06:40:42,899 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:42,904 - linkedin_job_analyzer - INFO - 處理 147/193: GXS Bank - IT System Engineer
+2025-03-16 06:40:46,496 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:46,512 - linkedin_job_analyzer - INFO - 處理 148/193: Agoda - Staff Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:40:49,406 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:49,421 - linkedin_job_analyzer - INFO - 處理 149/193: Agoda - Senior Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:40:52,311 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:52,333 - linkedin_job_analyzer - INFO - 處理 150/193: LITEON Technology - Data Scientist
+2025-03-16 06:40:55,555 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:55,582 - linkedin_job_analyzer - INFO - 處理 151/193: Google - Software Engineer Ⅲ, Quality, Google Cloud Platform
+2025-03-16 06:40:58,188 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:40:58,196 - linkedin_job_analyzer - INFO - 處理 152/193: Google - Embedded System Software Engineer, Pixel Watch
+2025-03-16 06:41:01,293 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:01,322 - linkedin_job_analyzer - INFO - 處理 153/193: Qualcomm - Automotive- Infotainment Software Customer Engineer, up to Staff – Platform/BSP
+2025-03-16 06:41:06,490 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:06,514 - linkedin_job_analyzer - INFO - 處理 154/193: Amazon - Sr. Software Development Engineer, FireTV Platform Engineering team
+2025-03-16 06:41:08,858 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:08,873 - linkedin_job_analyzer - INFO - 處理 155/193: ShopBack - Staff Software Engineer
+2025-03-16 06:41:11,226 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:11,250 - linkedin_job_analyzer - INFO - 處理 156/193: Agoda - Staff Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:41:14,239 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:14,273 - linkedin_job_analyzer - INFO - 處理 157/193: Agoda - Staff Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:41:16,911 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:16,927 - linkedin_job_analyzer - INFO - 處理 158/193: Agoda - Senior Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:41:20,458 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:20,484 - linkedin_job_analyzer - INFO - 處理 159/193: Agoda - Senior Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:41:23,405 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:23,439 - linkedin_job_analyzer - INFO - 處理 160/193: Agoda - Staff Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:41:30,189 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:30,199 - linkedin_job_analyzer - ERROR - 無法解析 AI 回應: ```json
+{
+    "keywords": "data, kafka, pipeline, ingestion, distributed, scalability",
+    "hard_skill": "kafka, hadoop, elasticsearch, golang, java, scala, python, c#, linux",
+    "soft_skill": "communication, detail-oriented, leadership, teamwork",
+    "cleaned_job_title": "data engineer",
+    "suitable_personality": "analytical, meticulous, collaborative, proactive",
+    "representative_anime_character": "shikamaru nara",
+    "representative_animal": "ant",
+    "job_superpower": "影遁術",
+    "job_theme_song": "can't stop the feeling!"
+}
+```
+Explanation:
+- **Keywords**: Extracted from the job description, focusing on AI/ML/DS-related terms.
+- **Hard Skills**: Technical skills required for the role, directly mentioned in the job description.
+- **Soft Skills**: Soft skills inferred from the job description, relevant to AI/ML/DS roles.
+- **Cleaned Job Title**: Core role without qualifiers, derived from "Staff Data Engineer – Kafka Expert".
+- **Suitable Personality**: Traits inferred from the job description, suitable for the role.
+- **Representative Anime Character**: Shikamaru Nara from "Naruto" is chosen for his strategic thinking and meticulous nature, which align with the role's requirements.
+- **Representative Animal**: Ants are known for their teamwork and meticulous work, symbolizing the role's traits.
+- **Job Superpower**: "影遁術" (Shadow Manipulation) from "Naruto", symbolizing the strategic and detailed control over data pipelines.
+- **Job Theme Song**: "Can't Stop the Feeling!" by Justin Timberlake, reflecting the proactive and energetic nature required for the role.
+2025-03-16 06:41:30,209 - linkedin_job_analyzer - INFO - 處理 161/193: Agoda - Senior Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:41:33,143 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:33,181 - linkedin_job_analyzer - INFO - 處理 162/193: Agoda - Staff Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:41:36,422 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:36,442 - linkedin_job_analyzer - INFO - 處理 163/193: Agoda - Senior Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:41:38,986 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:38,999 - linkedin_job_analyzer - INFO - 處理 164/193: SHIELD - Machine Learning Engineer (Risk)
+2025-03-16 06:41:42,084 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:42,118 - linkedin_job_analyzer - INFO - 處理 165/193: DSO National Laboratories - Computer Vision / Machine Learning Engineer
+2025-03-16 06:41:44,417 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:44,420 - linkedin_job_analyzer - INFO - 處理 166/193: TikTok - Machine Learning Engineer - TikTok E-Commerce
+2025-03-16 06:41:47,027 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:47,041 - linkedin_job_analyzer - INFO - 處理 167/193: RoleChain - Machine Learning Engineer - Query Understanding
+2025-03-16 06:41:49,523 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:49,526 - linkedin_job_analyzer - INFO - 處理 168/193: TikTok - Machine Learning Engineer (Recommendation Alliance), TikTok Global E-Commerce - 2025 Start
+2025-03-16 06:41:52,787 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:52,790 - linkedin_job_analyzer - INFO - 處理 169/193: Emerson - Senior Software Engineer - Full Stack Developer
+2025-03-16 06:41:55,763 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:55,770 - linkedin_job_analyzer - INFO - 處理 170/193: TikTok - PhD Intern Machine Learning Engineer - TikTok BRIC (Singapore) - 2025 Start
+2025-03-16 06:41:58,782 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:41:58,791 - linkedin_job_analyzer - INFO - 處理 171/193: TikTok - Machine Learning Engineer, Search E-Commerce - 2025 Start (PhD)
+2025-03-16 06:42:01,679 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:01,684 - linkedin_job_analyzer - INFO - 處理 172/193: Airwallex - Software Engineer, AI
+2025-03-16 06:42:04,139 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:04,159 - linkedin_job_analyzer - INFO - 處理 173/193: Intrinsic - Senior Robotics Software Engineer
+2025-03-16 06:42:07,494 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:07,496 - linkedin_job_analyzer - INFO - 處理 174/193: Grab - Lead Data Scientist (Supply Planning)
+2025-03-16 06:42:10,198 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:10,203 - linkedin_job_analyzer - INFO - 處理 175/193: TikTok - Software Development Engineer in Test - TikTok (SG)
+2025-03-16 06:42:14,183 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:14,207 - linkedin_job_analyzer - INFO - 處理 176/193: TikTok - Backend Software Engineer - TikTok Location Based Service (LBS) Platform
+2025-03-16 06:42:17,492 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:17,498 - linkedin_job_analyzer - INFO - 處理 177/193: ST Engineering - Senior/Software Engineer  (Entry level candidates welcome) -DSC/EZ
+2025-03-16 06:42:20,796 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:20,802 - linkedin_job_analyzer - INFO - 處理 178/193: Peoplebank - Data Platform Engineer
+2025-03-16 06:42:23,968 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:23,978 - linkedin_job_analyzer - INFO - 處理 179/193: Amazon Web Services (AWS) - Data Center Engineering Ops Engineer, DCEO
+2025-03-16 06:42:26,699 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:26,705 - linkedin_job_analyzer - INFO - 處理 180/193: Shopee - Android Engineer, Marketplace Intelligence & Data (Campus Recruitment 2025)
+2025-03-16 06:42:29,448 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:29,454 - linkedin_job_analyzer - INFO - 處理 181/193: OKX - Software Engineer - Basic Platform Middleware (Security Development)
+2025-03-16 06:42:32,417 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:32,434 - linkedin_job_analyzer - INFO - 處理 182/193: ByteDance - Software Engineer, Real Time Communication
+2025-03-16 06:42:35,835 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:35,838 - linkedin_job_analyzer - INFO - 處理 183/193: JPMorganChase - Software Engineer II, Solutions Delivery
+2025-03-16 06:42:38,890 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:38,896 - linkedin_job_analyzer - INFO - 處理 184/193: Visa - Staff Data Engineer
+2025-03-16 06:42:43,237 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:43,264 - linkedin_job_analyzer - INFO - 處理 185/193: Smart IMS Inc. - Data Centre (Design) Engineer (DC Hall Design / Banking Domain)
+2025-03-16 06:42:45,937 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:45,940 - linkedin_job_analyzer - INFO - 處理 186/193: TikTok - Backend Software Engineer (Data Management Suite)
+2025-03-16 06:42:49,636 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:49,643 - linkedin_job_analyzer - INFO - 處理 187/193: Gemini - Staff Software Engineer, Funding (Frontend)
+2025-03-16 06:42:52,251 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:52,256 - linkedin_job_analyzer - INFO - 處理 188/193: GREAT EASTERN - Lead Software Engineer
+2025-03-16 06:42:56,137 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:56,147 - linkedin_job_analyzer - INFO - 處理 189/193: Agoda - Senior Lead Software Engineer, Back End (Singapore-based)
+2025-03-16 06:42:58,877 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:42:58,882 - linkedin_job_analyzer - INFO - 處理 190/193: TikTok - Senior Backend Software Engineer, Video Arch
+2025-03-16 06:43:02,276 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:43:02,279 - linkedin_job_analyzer - INFO - 處理 191/193: TikTok - Backend Software Engineer - Global Streaming Media (Live Event)
+2025-03-16 06:43:05,112 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:43:05,135 - linkedin_job_analyzer - INFO - 處理 192/193: Agoda - Staff Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:43:08,157 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:43:08,170 - linkedin_job_analyzer - INFO - 處理 193/193: Agoda - Senior Data Engineer – Kafka Expert (Bangkok based, relocation provided)
+2025-03-16 06:43:11,687 - httpx - INFO - HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 06:43:11,892 - linkedin_job_analyzer - INFO - 完成處理 193 筆職缺描述
+2025-03-16 06:43:12,048 - linkedin_job_analyzer - INFO - 成功儲存 193 筆分析結果
+2025-03-16 06:43:12,048 - linkedin_job_analyzer - INFO - 職缺分析完成，共處理 193 筆資料，成功儲存 193 筆結果
+2025-03-16 06:43:12,048 - linkedin_app - INFO - AI 職缺分析完成
+2025-03-16 10:18:40,793 - linkedin_app - INFO - 初始化資料庫...
+2025-03-16 10:18:40,804 - linkedin_app - INFO - 資料庫初始化完成: postgresql://postgres:***@db:5432/linkedin_jobs
+2025-03-16 10:19:50,184 - linkedin_app - INFO - 初始化資料庫...
+2025-03-16 10:19:50,193 - linkedin_app - INFO - 資料庫初始化完成: postgresql://postgres:***@db:5432/linkedin_jobs
+2025-03-16 10:20:24,429 - linkedin_app - INFO - 升級資料庫...
+2025-03-16 10:20:24,447 - linkedin_app - INFO - 資料庫升級完成
+2025-03-16 10:23:03,387 - linkedin_scraper - INFO - 開始執行所有搜索配置 - 2025-03-16 18:23:03.387080+08:00
+2025-03-16 10:23:03,396 - linkedin_scraper - WARNING - 沒有找到活躍的搜索配置，請先添加配置
+2025-03-16 10:23:21,536 - linkedin_scraper - INFO - 開始執行所有搜索配置 - 2025-03-16 18:23:21.536411+08:00
+2025-03-16 10:23:21,545 - linkedin_scraper - INFO - 找到 6 個活躍配置，開始依序執行
+2025-03-16 10:23:21,545 - linkedin_scraper - INFO - 執行配置 'AI Engineer in Taiwan': AI Engineer 在 Taiwan
+2025-03-16 10:28:52,109 - linkedin_scraper - INFO - 配置 'AI Engineer in Taiwan' 完成，共取得 70 筆職缺
+2025-03-16 10:29:22,155 - linkedin_scraper - INFO - 執行配置 'Data Scientist in Taiwan': Data Scientist 在 Taiwan
+2025-03-16 10:36:59,939 - linkedin_scraper - INFO - 配置 'Data Scientist in Taiwan' 完成，共取得 100 筆職缺
+2025-03-16 10:37:29,986 - linkedin_scraper - INFO - 執行配置 'AI Engineer in Singapore': AI Engineer 在 Singapore
+2025-03-16 10:45:22,959 - linkedin_scraper - INFO - 配置 'AI Engineer in Singapore' 完成，共取得 99 筆職缺
+2025-03-16 10:45:53,003 - linkedin_scraper - INFO - 執行配置 'Data Scientist in Singapore': Data Scientist 在 Singapore
+2025-03-16 10:53:41,553 - linkedin_scraper - INFO - 配置 'Data Scientist in Singapore' 完成，共取得 100 筆職缺
+2025-03-16 10:54:11,573 - linkedin_scraper - INFO - 執行配置 'Machine Learning Engineer in Taiwan': Machine Learning Engineer 在 Taiwan
+2025-03-16 11:02:02,804 - linkedin_scraper - INFO - 配置 'Machine Learning Engineer in Taiwan' 完成，共取得 100 筆職缺
+2025-03-16 11:02:32,849 - linkedin_scraper - INFO - 執行配置 'Machine Learning Engineer in Singapore': Machine Learning Engineer 在 Singapore
+2025-03-16 11:11:54,099 - linkedin_scraper - INFO - 配置 'Machine Learning Engineer in Singapore' 完成，共取得 108 筆職缺
+2025-03-16 11:12:24,139 - linkedin_scraper - INFO - 所有配置爬取完成，開始執行資料去重...
+2025-03-16 11:12:24,242 - linkedin_scraper - INFO - 資料去重完成: 已刪除 0 條重複記錄，保留 577 條唯一記錄
+2025-03-16 11:12:24,242 - linkedin_scraper - INFO - 排程 1 小時後執行 AI 職缺分析...
+2025-03-16 11:12:24,242 - linkedin_scraper - INFO - 職缺分析將在 12:12 執行

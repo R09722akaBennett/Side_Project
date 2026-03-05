@@ -1,0 +1,16 @@
+2025-03-16 19:44:05,151 - job_analysis_runner - INFO - 開始執行職缺分析...
+2025-03-16 19:44:06,688 - linkedin_job_analyzer - ERROR - 初始化 OpenAI 客戶端失敗: __init__() got an unexpected keyword argument 'proxies'
+2025-03-16 19:44:06,688 - job_analysis_runner - INFO - 開始分析過去 24 小時爬取的職缺...
+2025-03-16 19:44:06,688 - linkedin_job_analyzer - INFO - 開始執行職缺分析，處理 24 小時前的資料
+2025-03-16 19:44:06,768 - linkedin_job_analyzer - ERROR - 獲取未處理職缺時發生錯誤: (psycopg2.OperationalError) could not translate host name "db" to address: nodename nor servname provided, or not known
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-03-16 19:44:06,768 - linkedin_job_analyzer - INFO - 沒有找到需要處理的新職缺資料
+2025-03-16 19:44:06,768 - job_analysis_runner - INFO - 職缺分析完成，耗時: 0:00:00.080047
+2025-03-16 19:44:37,104 - job_analysis_runner - INFO - 開始執行職缺分析...
+2025-03-16 19:44:38,112 - linkedin_job_analyzer - ERROR - 初始化 OpenAI 客戶端失敗: __init__() got an unexpected keyword argument 'proxies'
+2025-03-16 19:44:38,112 - job_analysis_runner - INFO - 開始分析過去 24 小時爬取的職缺...
+2025-03-16 19:44:38,112 - linkedin_job_analyzer - INFO - 開始執行職缺分析，處理 24 小時前的資料
+2025-03-16 19:44:38,134 - linkedin_job_analyzer - INFO - 沒有找到需要處理的新職缺資料
+2025-03-16 19:44:38,135 - linkedin_job_analyzer - INFO - 沒有找到需要處理的新職缺資料
+2025-03-16 19:44:38,135 - job_analysis_runner - INFO - 職缺分析完成，耗時: 0:00:00.022902

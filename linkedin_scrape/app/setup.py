@@ -12,6 +12,7 @@ def setup_default_configs(update_existing=True):
             "name": "AI Engineer in Taiwan",
             "keyword": "AI Engineer",
             "location": "Taiwan",
+            # "time_filter": "r604800",
             "time_filter": "r86400",  # 一週內
             "max_pages": 5
         },
@@ -20,6 +21,7 @@ def setup_default_configs(update_existing=True):
             "keyword": "Data Scientist",
             "location": "Taiwan",
             "time_filter": "r86400",
+            # "time_filter": "r604800",
             "max_pages": 5
         },
         {
@@ -27,6 +29,7 @@ def setup_default_configs(update_existing=True):
             "keyword": "AI Engineer",
             "location": "Singapore",
             "time_filter": "r86400",
+            # "time_filter": "r604800",
             "max_pages": 5
         },
         {
@@ -34,6 +37,7 @@ def setup_default_configs(update_existing=True):
             "keyword": "Data Scientist",
             "location": "Singapore",
             "time_filter": "r86400",
+            # "time_filter": "r604800",
             "max_pages": 5
         },
         {
@@ -41,6 +45,7 @@ def setup_default_configs(update_existing=True):
             "keyword": "Machine Learning Engineer",
             "location": "Taiwan",
             "time_filter": "r86400",  # 24小時內
+            # "time_filter": "r604800",
             "max_pages": 5
         },
         {
@@ -48,6 +53,7 @@ def setup_default_configs(update_existing=True):
             "keyword": "Machine Learning Engineer",
             "location": "Singapore",
             "time_filter": "r86400",
+            # "time_filter": "r604800",
             "max_pages": 5
         }
     ]

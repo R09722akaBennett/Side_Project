@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, create_engine, Boolean
+from sqlalchemy import Column, Integer, String, Text, DateTime, create_engine, Boolean, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 
 from app.config import DATABASE_URL
 
@@ -25,6 +26,32 @@ class LinkedInJob(Base):
     scrape_date = Column(DateTime, default=func.now())
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+    
+    # Relationship to the analyzed data
+    analysis = relationship("JobAnalysis", back_populates="job", uselist=False)
+
+class JobAnalysis(Base):
+    """職缺分析資料表模型"""
+    __tablename__ = "job_analysis"
+    
+    id = Column(Integer, primary_key=True)
+    job_id = Column(Integer, ForeignKey("linkedin_jobs.id"), nullable=False, unique=True)
+    keywords = Column(Text, nullable=True)  # AI/ML/DS關鍵詞
+    hard_skill = Column(Text, nullable=True)  # 硬技能
+    soft_skill = Column(Text, nullable=True)  # 軟技能
+    cleaned_job_title = Column(String(255), nullable=True)  # 清理後的職位名稱
+    suitable_personality = Column(Text, nullable=True)  # 適合的個性特質
+    representative_anime_character = Column(String(255), nullable=True)  # 代表性動漫角色
+    representative_animal = Column(String(255), nullable=True)  # 代表性動物
+    job_superpower = Column(String(255), nullable=True)  # 職業超能力
+    job_theme_song = Column(String(255), nullable=True)  # 職業主題曲
+    processed_at = Column(DateTime, default=func.now())  # 處理時間
+    
+    # Relationship to the job data
+    job = relationship("LinkedInJob", back_populates="analysis")
+    
+    def __repr__(self):
+        return f"<JobAnalysis {self.id}: {self.cleaned_job_title}>"
 
 class SearchConfig(Base):
     """搜索參數配置表"""

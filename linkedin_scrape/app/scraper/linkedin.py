@@ -186,7 +186,7 @@ class LinkedInScraper:
                     'Employment Type': employment_type,
                     'Job Function': job_function,
                     'Industries': industries,
-                    'Scrape Date': datetime.now().isoformat(),
+                    'Scrape Date': datetime.now(),  # 使用 datetime 物件而非字串
                     'Job Scrape': keyword,
                     'Location': location
                 })
@@ -235,7 +235,7 @@ class LinkedInScraper:
             'Employment Type': '未找到',
             'Job Function': '未找到',
             'Industries': '未找到',
-            'Scrape Date': datetime.now().isoformat(),
+            'Scrape Date': datetime.now(),  # 使用 datetime 物件而非字串
             'Job Scrape': '未找到',
             'Location': '未找到'
         }
@@ -252,7 +252,7 @@ class LinkedInScraper:
             'Employment Type': '錯誤',
             'Job Function': '錯誤',
             'Industries': '錯誤',
-            'Scrape Date': datetime.now().isoformat(),
+            'Scrape Date': datetime.now(),  # 使用 datetime 物件而非字串
             'Job Scrape': '錯誤',
             'Location': '錯誤'
         } 

@@ -1,0 +1,13 @@
+2025-03-16 19:42:09,985 - scheduler_runner - INFO - Starting LinkedIn job scheduler with local configuration...
+2025-03-16 19:42:11,572 - linkedin_job_analyzer - ERROR - 初始化 OpenAI 客戶端失敗: __init__() got an unexpected keyword argument 'proxies'
+2025-03-16 19:42:11,646 - scheduler_runner - INFO - Initializing scheduler thread...
+2025-03-16 19:42:11,646 - linkedin_scraper - INFO - 啟動排程器，設置為每72小時(3天)中午12點執行爬蟲，每日中午12點執行資料去重
+2025-03-16 19:42:11,646 - linkedin_scraper - INFO - 爬蟲首次執行時間: 2025-03-17 12:00:00+08:00, 延遲: 16.30 小時
+2025-03-16 19:42:11,647 - scheduler_runner - INFO - Scheduler started successfully. Press Ctrl+C to stop.
+2025-03-17 12:00:11,303 - linkedin_scraper - INFO - 開始執行每日資料去重處理 - 2025-03-17 12:00:11.295902+08:00
+2025-03-17 12:00:11,811 - linkedin_scraper - INFO - 每日資料去重完成: 已刪除 0 條重複記錄，保留 0 條唯一記錄
+2025-03-18 12:00:32,759 - linkedin_scraper - INFO - 開始執行每日資料去重處理 - 2025-03-18 12:00:32.752246+08:00
+2025-03-18 12:00:32,956 - linkedin_scraper - INFO - 每日資料去重完成: 已刪除 0 條重複記錄，保留 0 條唯一記錄
+2025-03-19 12:00:58,317 - linkedin_scraper - INFO - 開始執行每日資料去重處理 - 2025-03-19 12:00:58.307472+08:00
+2025-03-19 12:00:58,498 - linkedin_scraper - INFO - 每日資料去重完成: 已刪除 0 條重複記錄，保留 0 條唯一記錄
+2025-03-19 19:12:20,981 - linkedin_scraper - INFO - 開始執行所有搜索配置 - 2025-03-19 19:12:20.967466+08:00

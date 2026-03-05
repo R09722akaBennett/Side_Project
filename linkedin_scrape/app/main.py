@@ -7,8 +7,10 @@ from app.database.operations import (
     create_search_config, 
     get_all_search_configs, 
     update_search_config, 
-    delete_search_config
+    delete_search_config,
+    deduplicate_jobs
 )
+from app.processor import run_job_analysis
 from app.database.upgrade_db import upgrade_database
 from app.config import DEFAULT_KEYWORD, DEFAULT_LOCATION, DEFAULT_TIME_FILTER, DEFAULT_MAX_PAGES
 
@@ -51,6 +53,9 @@ def main():
     parser.add_argument('--location', type=str, default=DEFAULT_LOCATION, help='地點')
     parser.add_argument('--time-filter', type=str, default=DEFAULT_TIME_FILTER, help='時間過濾器')
     parser.add_argument('--max-pages', type=int, default=DEFAULT_MAX_PAGES, help='最大爬取頁數')
+    parser.add_argument('--deduplicate', action='store_true', help='執行資料庫職缺去重 (基於公司、職稱、描述、連結)')
+    parser.add_argument('--analyze', action='store_true', help='執行 AI 職缺分析')
+    parser.add_argument('--hours', type=int, default=24, help='分析多少小時內的職缺 (與 --analyze 一起使用)')
     
     # 新增搜索配置管理參數
     subparsers = parser.add_subparsers(dest='command', help='配置管理命令')
@@ -98,6 +103,21 @@ def main():
             logger.info("資料庫升級完成")
         else:
             logger.error("資料庫升級失敗")
+    
+    # 執行職缺資料去重
+    if args.deduplicate:
+        logger.info("開始執行職缺資料去重...")
+        deleted_count, kept_count = deduplicate_jobs()
+        logger.info(f"去重完成: 已刪除 {deleted_count} 條重複記錄，保留 {kept_count} 條唯一記錄")
+    
+    # 執行 AI 職缺分析
+    if args.analyze:
+        logger.info(f"開始執行 AI 職缺分析，處理最近 {args.hours} 小時的資料...")
+        success = run_job_analysis(hours_ago=args.hours)
+        if success:
+            logger.info("AI 職缺分析完成")
+        else:
+            logger.error("AI 職缺分析失敗")
     
     # 處理搜索配置命令
     if args.command == 'list-configs':
@@ -174,7 +194,7 @@ def main():
             logger.info("收到終止信號，停止應用程式...")
     
     # 如果沒有任何參數，顯示說明
-    if not (args.init or args.scrape or args.schedule or args.command):
+    if not (args.init or args.scrape or args.schedule or args.command or args.deduplicate or args.analyze):
         parser.print_help()
 
 if __name__ == "__main__":

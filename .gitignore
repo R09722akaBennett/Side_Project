@@ -2,3 +2,18 @@ contract/
 notebook/
 **/.venv/
 **/.env
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# thumbnails
+._*
+
+# python
+__pycache__/
+*.pyc
+
+# node
+node_modules/
